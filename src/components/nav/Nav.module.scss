@@ -1,5 +1,8 @@
 @import '../../../sass/variables';
-
+@font-face {
+	font-family: 'Faded';
+	src: url('../../fonts/Dreamwalker.ttf') format('truetype');
+}
 .nav {
 	width: 100vw;
 	height: 7rem;
@@ -10,11 +13,14 @@
 	position: fixed;
 	top: 0;
 	z-index: 999999;
+	animation: slidein 1s linear forwards;
+	transform: translateY(-10vh);
+	opacity: 0;
 	& .nav_title {
 		& h2 {
-			font-family: 'Archivo';
+			font-family: 'Faded';
 			color: $brand-main;
-			font-size: 1.5vw;
+			font-size: 1.7vw;
 			font-weight: 100;
 			text-transform: uppercase;
 		}
@@ -35,5 +41,16 @@
 				cursor: pointer;
 			}
 		}
+	}
+}
+
+@keyframes slidein {
+	0% {
+		transform: translateY(-10vh);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0vh);
+		opacity: 1;
 	}
 }

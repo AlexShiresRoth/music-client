@@ -10,6 +10,10 @@
 	position: relative;
 	z-index: 0;
 	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
 	& .overlay {
 		height: 100%;
 		width: 100%;
@@ -22,11 +26,78 @@
 		opacity: 0.7;
 	}
 	& .text_box {
-		transform: translate(40vw, 30vh);
-		background: rgba(163, 86, 56, 0.7);
+		z-index: 1;
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
+		flex-direction: row;
+		justify-content: flex-start;
+		animation: fadein 1s linear forwards;
+		transform: translateY(-10vh);
+		opacity: 0;
+		& h2 {
+			color: $brand-text;
+			font-size: 3vw;
+			font-family: 'Playfair Display';
+			font-weight: 100;
+		}
+	}
+	& .grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		justify-items: center;
+		align-items: center;
 		width: 40vw;
+		z-index: 1;
+		animation: fadein 1.2s linear forwards;
+		transform: translateY(-10vh);
+		opacity: 0;
+		height: 6vh;
+		gap: 1rem;
+		& button {
+			background: transparent;
+			border: 3px solid #eee;
+			width: 17rem;
+			color: $brand-text;
+			text-transform: uppercase;
+			transition: all 0.3s ease-in-out;
+			height: 100%;
+			&:hover {
+				cursor: pointer;
+				background: $brand-main;
+				border: 3px solid $brand-main;
+			}
+		}
+	}
+	& .social {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+		background: $brand-main;
+		z-index: 1;
+		height: 100%;
+		animation: fadein 1.3s linear forwards;
+		transform: translateY(-10vh);
+		opacity: 0;
+		& svg {
+			margin: 0 0.5vw;
+			color: darken($brand-text, 20%);
+			font-size: 1.2vw;
+			transition: all 0.3s ease-in-out;
+			&:hover {
+				cursor: pointer;
+				color: $brand-text;
+			}
+		}
+	}
+}
+
+@keyframes fadein {
+	0% {
+		transform: translateY(10vh);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
 	}
 }
