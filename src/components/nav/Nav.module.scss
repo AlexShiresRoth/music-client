@@ -1,0 +1,39 @@
+@import '../../../sass/variables';
+
+.nav {
+	width: 100vw;
+	height: 7rem;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	top: 0;
+	z-index: 999999;
+	& .nav_title {
+		& h2 {
+			font-family: 'Archivo';
+			color: $brand-main;
+			font-size: 1.5vw;
+			font-weight: 100;
+			text-transform: uppercase;
+		}
+	}
+	& .nav_inner {
+		width: 1000px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+		& a {
+			font-size: 0.8vw;
+			color: darken($brand-text, 20%);
+			transition: all 0.3s ease-in-out;
+			text-transform: uppercase;
+			&:hover {
+				color: $brand-text;
+				cursor: pointer;
+			}
+		}
+	}
+}
