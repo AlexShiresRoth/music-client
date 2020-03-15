@@ -1,11 +1,14 @@
 import React from 'react';
 import './css/main.css';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import Landing from './components/landing/Landing.js';
 const App = () => {
 	return (
-		<>
-			<Landing />
-		</>
+		<Router>
+			<Switch>
+				<Route exact path="/home" component={Landing} />
+			</Switch>
+		</Router>
 	);
 };
 

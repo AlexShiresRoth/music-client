@@ -31,15 +31,19 @@
 		flex-direction: row;
 		justify-content: space-around;
 		align-items: center;
-		& a {
+		& .link {
 			font-size: 0.8vw;
 			color: darken($brand-text, 20%);
 			transition: all 0.3s ease-in-out;
 			text-transform: uppercase;
+			text-decoration: none;
 			&:hover {
 				color: $brand-text;
 				cursor: pointer;
 			}
+		}
+		& .active {
+			color: $brand-text;
 		}
 	}
 }

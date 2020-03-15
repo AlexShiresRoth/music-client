@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import navStyle from './Nav.module.scss';
 
 const Nav = () => {
 	const navLinks = ['home', 'gigs', 'music', 'bio', 'store', 'contact'].map((link, i) => {
-		return <a key={i}>{link}</a>;
+		return (
+			<NavLink exact to={'/' + link} key={i} activeClassName={navStyle.active} className={navStyle.link}>
+				{link}
+			</NavLink>
+		);
 	});
 	return (
 		<nav className={navStyle.nav}>
