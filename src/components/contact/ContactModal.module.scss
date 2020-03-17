@@ -1,0 +1,117 @@
+@import '../../../sass/variables';
+@font-face {
+	font-family: 'Faded';
+	src: url('../../fonts/Dreamwalker.ttf') format('truetype');
+}
+.contact_modal {
+	display: flex;
+	position: fixed;
+	height: 100vh;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 999999;
+	justify-content: center;
+	align-items: center;
+
+	& .form_container {
+		padding: 1rem;
+		min-height: 50vh;
+		width: 50vw;
+		background: $brand-main;
+		color: #fff;
+		display: flex;
+		flex-direction: column;
+		animation: fadeIn 0.5s linear forwards;
+		& .btn_container {
+			padding: 1rem;
+			border-radius: 50%;
+			color: #fff;
+			font-size: 2rem;
+			background: $brand-accent;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			align-self: flex-end;
+			transition: all 0.3s ease-in-out;
+			&:hover {
+				box-shadow: 0 10px 10px darken($brand-main, 10%);
+				cursor: pointer;
+			}
+		}
+		& .grid {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: 1fr;
+			& .text_box {
+				& h2 {
+					font-family: 'Muli';
+					font-size: 5vw;
+					&:after {
+						content: '';
+						width: 80%;
+						height: 3px;
+						display: block;
+						background: $brand-accent;
+					}
+				}
+			}
+			& .form {
+				display: grid;
+				grid-template-rows: repeat(5, 1fr);
+				gap: 1rem;
+				& .input_row {
+					width: 100%;
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					& label {
+						color: '#fff';
+						font-size: 1vw;
+					}
+					& input,
+					textarea {
+						border: 0;
+						border-bottom: 1px solid $brand-accent;
+						font-size: 16px;
+						color: #fff;
+						padding: 0.5rem;
+						background: transparent;
+						width: 100%;
+					}
+					& button {
+						color: #fff;
+						background: $brand-accent;
+						align-self: flex-end;
+						height: 3vw;
+						width: 20vw;
+						border: 1px solid transparent;
+						transition: all 0.3s ease-in-out;
+						text-transform: uppercase;
+						box-shadow: 0 10px 10px darken($brand-main, 10%);
+						&:hover {
+							cursor: pointer;
+							box-shadow: 0 1px 1px darken($brand-main, 10%);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+		transform: scale(0);
+	}
+	90% {
+		opacity: 0.9;
+		transform: scale(1.05);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
