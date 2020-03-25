@@ -1,10 +1,6 @@
 @import '../../../sass/variables';
 
 .landing {
-	background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1584142792/gerry-m/gabriel-gurrola-2UuhMZEChdc-unsplash_yfw4bn.jpg');
-	background-position: center;
-	background-attachment: fixed;
-	background-size: cover;
 	height: 100vh;
 	width: 100vw;
 	position: relative;
@@ -14,13 +10,17 @@
 	flex-direction: column;
 	justify-content: flex-end;
 	align-items: center;
+	background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1585118479/gerry-m/gerry_xbgul1.jpg');
+	background-position: center;
+	background-attachment: fixed;
+	background-size: cover;
+	filter: sepia(0.2);
 	& .overlay {
 		height: 100%;
 		width: 100%;
 		position: absolute;
 		top: 0;
 		left: 0;
-		z-index: 0;
 		display: flex;
 		background: linear-gradient(90deg, #000, #222);
 		opacity: 0.7;
@@ -41,20 +41,20 @@
 		}
 	}
 	& .grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		justify-items: center;
-		align-items: center;
-		width: 40vw;
+		display: flex;
+		justify-content: center;
+		width: 100vw;
 		z-index: 1;
 		animation: fadein 1.2s linear forwards;
 		transform: translateY(-10vh);
 		opacity: 0;
 		height: 6vh;
 		gap: 1rem;
+		background: #000;
+		border-bottom: 1px solid #111;
 		& button {
 			background: transparent;
-			border: 3px solid #eee;
+			border: 0px solid #eee;
 			width: 17rem;
 			color: $brand-text;
 			text-transform: uppercase;
@@ -63,7 +63,7 @@
 			&:hover {
 				cursor: pointer;
 				background: $brand-main;
-				border: 3px solid $brand-main;
+				border: 0px solid $brand-main;
 			}
 		}
 	}

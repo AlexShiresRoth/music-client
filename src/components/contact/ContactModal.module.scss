@@ -19,7 +19,7 @@
 		padding: 1rem;
 		min-height: 50vh;
 		width: 50vw;
-		background: $brand-main;
+		background: $brand-accent;
 		color: #fff;
 		display: flex;
 		flex-direction: column;
@@ -29,7 +29,7 @@
 			border-radius: 50%;
 			color: #fff;
 			font-size: 2rem;
-			background: $brand-accent;
+			background: $brand-main;
 			display: flex;
 			flex-direction: row;
 			align-items: center;
@@ -37,7 +37,7 @@
 			align-self: flex-end;
 			transition: all 0.3s ease-in-out;
 			&:hover {
-				box-shadow: 0 10px 10px darken($brand-main, 10%);
+				box-shadow: 0 10px 10px darken($brand-accent, 10%);
 				cursor: pointer;
 			}
 		}
@@ -54,7 +54,7 @@
 						width: 80%;
 						height: 3px;
 						display: block;
-						background: $brand-accent;
+						background: $brand-main;
 					}
 				}
 			}
@@ -74,7 +74,7 @@
 					& input,
 					textarea {
 						border: 0;
-						border-bottom: 1px solid $brand-accent;
+						border-bottom: 1px solid $brand-main;
 						font-size: 16px;
 						color: #fff;
 						padding: 0.5rem;
@@ -83,17 +83,17 @@
 					}
 					& button {
 						color: #fff;
-						background: $brand-accent;
+						background: $brand-main;
 						align-self: flex-end;
 						height: 3vw;
 						width: 20vw;
 						border: 1px solid transparent;
 						transition: all 0.3s ease-in-out;
 						text-transform: uppercase;
-						box-shadow: 0 10px 10px darken($brand-main, 10%);
+						box-shadow: 0 10px 10px darken($brand-accent, 10%);
 						&:hover {
 							cursor: pointer;
-							box-shadow: 0 1px 1px darken($brand-main, 10%);
+							box-shadow: 0 1px 1px darken($brand-accent, 10%);
 						}
 					}
 				}

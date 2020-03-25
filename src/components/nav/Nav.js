@@ -18,6 +18,7 @@ const Nav = () => {
 			</NavLink>
 		);
 	});
+
 	return (
 		<nav className={navStyle.nav}>
 			<div className={navStyle.nav_title}>

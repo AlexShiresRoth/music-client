@@ -8,4 +8,17 @@ body {
 	margin: 0;
 	box-sizing: border-box;
 	font-family: 'Muli';
+	overflow-x: hidden;
+}
+main {
+	min-height: 100vh;
+	position: relative;
+}
+
+section {
+	z-index: 1;
+}
+p {
+	font-size: 16px;
+	line-height: 1.5;
 }

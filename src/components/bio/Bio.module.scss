@@ -1,0 +1,50 @@
+@import '../../../sass/variables';
+@font-face {
+	font-family: 'Rustic';
+	src: url('../../fonts/rustic.ttf') format('truetype');
+}
+.section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 100vh;
+	background: #000;
+	& .bio_heading {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		& h2 {
+			font-family: 'Rustic';
+			color: $brand-main;
+			font-size: 4vw;
+			font-weight: 100;
+			text-transform: uppercase;
+			text-align: center;
+			&:after {
+				content: '';
+				width: 350px;
+				height: 2px;
+				display: block;
+				margin-top: 1rem;
+				background: darken($brand-main, 5%);
+			}
+		}
+	}
+	& .par_grid {
+		z-index: 1000;
+		max-width: 50vw;
+		margin-top: 20vh;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: auto;
+		background: rgba(0, 0, 0, 0.5);
+		box-shadow: 0 5px 5px #000;
+		& .par_container {
+			padding: 0rem 4rem;
+			& p {
+				color: $brand-text;
+				font-size: 1.3vw;
+			}
+		}
+	}
+}
