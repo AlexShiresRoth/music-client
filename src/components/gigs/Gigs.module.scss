@@ -1,0 +1,44 @@
+@import '../../../sass/variables';
+@import '../../../sass/mixins';
+@font-face {
+	font-family: 'Rustic';
+	src: url('../../fonts/rustic.ttf') format('truetype');
+}
+
+.section {
+	background: #000;
+	min-height: 50vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 4rem 0;
+	& .heading {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		& h2 {
+			@include heading;
+		}
+	}
+	& .grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: auto;
+		gap: 1rem;
+		min-width: 50vw;
+		max-width: 50vw;
+		& .gig_container {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-around;
+			padding: 0.5rem;
+			width: 100%;
+			border-bottom: 1px solid #111;
+			& p {
+				display: block;
+				color: $brand-text;
+			}
+		}
+	}
+}

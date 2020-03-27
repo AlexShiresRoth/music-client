@@ -1,4 +1,5 @@
 @import '../../../sass/variables';
+@import '../../../sass/mixins';
 @font-face {
 	font-family: 'Rustic';
 	src: url('../../fonts/rustic.ttf') format('truetype');
@@ -7,44 +8,50 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	min-height: 100vh;
+	justify-content: flex-start;
 	background: #000;
+	overflow-y: hidden;
+	padding: 2rem 0;
 	& .bio_heading {
 		width: 100%;
 		display: flex;
 		justify-content: center;
 		& h2 {
-			font-family: 'Rustic';
-			color: $brand-main;
-			font-size: 4vw;
-			font-weight: 100;
-			text-transform: uppercase;
-			text-align: center;
-			&:after {
-				content: '';
-				width: 350px;
-				height: 2px;
-				display: block;
-				margin-top: 1rem;
-				background: darken($brand-main, 5%);
-			}
+			@include heading;
 		}
 	}
 	& .par_grid {
-		z-index: 1000;
-		max-width: 50vw;
-		margin-top: 20vh;
+		max-width: 40vw;
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-template-rows: auto;
 		background: rgba(0, 0, 0, 0.5);
 		box-shadow: 0 5px 5px #000;
+		transition: all 1s ease;
 		& .par_container {
 			padding: 0rem 4rem;
 			& p {
 				color: $brand-text;
-				font-size: 1.3vw;
+				font-size: 1vw;
 			}
 		}
+		& .text_expand_btn {
+			background: transparent;
+			color: $brand-main;
+			border: 0px solid transparent;
+			justify-self: flex-end;
+			font-size: 1vw;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+	& .reduced {
+		min-height: 70vh;
+		max-height: 80vh;
+	}
+	& .expanded {
+		min-height: 100vh;
+		max-height: 1000vh;
 	}
 }

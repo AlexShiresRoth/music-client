@@ -5,6 +5,8 @@ import { ApolloClient } from 'apollo-client';
 import { PrismicLink } from 'apollo-link-prismic';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HashRouter, Switch, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
 import Home from './components/layout/Home';
 const App = () => {
 	const client = new ApolloClient({
@@ -14,13 +16,16 @@ const App = () => {
 		}),
 		cache: new InMemoryCache(),
 	});
+
 	return (
 		<ApolloProvider client={client}>
-			<HashRouter>
-				<Switch>
-					<Route exact path="/" component={Home} />
-				</Switch>
-			</HashRouter>
+			<Provider store={store}>
+				<HashRouter>
+					<Switch>
+						<Route exact path="/" component={Home} />
+					</Switch>
+				</HashRouter>
+			</Provider>
 		</ApolloProvider>
 	);
 };
