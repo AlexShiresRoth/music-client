@@ -1,15 +1,28 @@
 import React, { useRef, useEffect } from 'react';
 import gigStyle from './Gigs.module.scss';
 import GigMap from './GigMap';
-import { addRef } from '../../actions/refs';
+import { addRef, setCurrent } from '../../actions/refs';
 import { connect } from 'react-redux';
 
-const Gigs = ({ addRef }) => {
+const Gigs = ({ addRef, setCurrent }) => {
 	const gigsRef = useRef();
 
 	useEffect(() => {
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) {
+					console.log('intersecting');
+					setCurrent('gigs');
+					//add redux to handle state
+				}
+			},
+			{ rootMargin: '0px 0px 00px 0px', threshold: 0.5 }
+		);
+		if (gigsRef.current) {
+			observer.observe(gigsRef.current);
+		}
 		addRef(gigsRef);
-	}, [addRef, gigsRef]);
+	}, [addRef, gigsRef, setCurrent]);
 
 	const gigs = [
 		{ date: '10/10/20', location: `The Ol' Bar`, time: '7:00pm-9:00pm', address: '1234 bar street, NY' },
@@ -41,4 +54,4 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps, { addRef })(Gigs);
+export default connect(mapStateToProps, { addRef, setCurrent })(Gigs);

@@ -1,0 +1,32 @@
+@import '../../../sass/variables';
+
+.footer {
+	width: 100vw;
+	background: #111;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	min-height: 5rem;
+	& .left {
+		& p {
+			color: $brand-main;
+		}
+	}
+	& .center {
+		& a {
+			color: $brand-main;
+			text-decoration: none;
+		}
+	}
+	& .right {
+		& svg {
+			color: #333;
+			font-size: 1vw;
+			transition: all 0.3s ease-in-out;
+			&:hover {
+				color: $brand-main;
+				cursor: pointer;
+			}
+		}
+	}
+}

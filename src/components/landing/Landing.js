@@ -3,10 +3,10 @@ import landingStyle from './Landing.module.scss';
 import ContactModal from '../contact/ContactModal';
 import { TiSocialInstagram, TiSocialFacebook, TiSocialTwitter } from 'react-icons/ti';
 import { FaSpotify } from 'react-icons/fa';
-import { addRef, setActive } from '../../actions/refs';
+import { addRef, setActive, setCurrent } from '../../actions/refs';
 import { connect } from 'react-redux';
 
-const Landing = ({ setActive, addRef }) => {
+const Landing = ({ setActive, addRef, setCurrent }) => {
 	const [modalState, setModalState] = useState(false);
 
 	const headerRef = useRef();
@@ -15,12 +15,11 @@ const Landing = ({ setActive, addRef }) => {
 		const observer = new IntersectionObserver(
 			([entry]) => {
 				if (entry.intersectionRatio <= 5) {
-					console.log('not intersecting');
 					setActive(true);
 				}
 				if (entry.isIntersecting) {
-					console.log('intersecting');
 					setActive(false);
+					setCurrent('home');
 					//add redux to handle state
 				}
 			},
@@ -30,10 +29,10 @@ const Landing = ({ setActive, addRef }) => {
 			observer.observe(headerRef.current);
 		}
 		addRef(headerRef);
-	}, [setActive, addRef]);
+	}, [setActive, addRef, setCurrent]);
 	return (
 		<>
-			<header className={landingStyle.landing} ref={headerRef} id="landing">
+			<header className={landingStyle.landing} ref={headerRef} id="home">
 				<div className={landingStyle.overlay}></div>
 				<div className={landingStyle.grid}>
 					<button>Gigs</button>
@@ -57,4 +56,4 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps, { addRef, setActive })(Landing);
+export default connect(mapStateToProps, { addRef, setActive, setCurrent })(Landing);

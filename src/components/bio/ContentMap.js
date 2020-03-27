@@ -1,18 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import bioStyles from './Bio.module.scss';
+import { addRef, setCurrent } from '../../actions/refs';
+import { connect } from 'react-redux';
 
-const ContentMap = ({ content: { content } }) => {
+const ContentMap = ({ content: { content }, addRef, setCurrent }) => {
 	const [contentLength, setContentLength] = useState({
 		text: [],
 		reduced: true,
 	});
-
+	const bioRef = useRef();
 	const { text, reduced } = contentLength;
 
 	useEffect(() => {
 		setContentLength({ text: content.slice(0, 4), reduced: true });
-	}, [content, setContentLength]);
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) {
+					console.log(entry);
+					setCurrent('bio');
+				}
+			},
+			{ rootMargin: '0px 0px 0px 0px', threshold: 0.5 }
+		);
+		if (bioRef.current) {
+			observer.observe(bioRef.current);
+		}
+		if (bioRef) addRef(bioRef);
+	}, [content, setContentLength, addRef, setCurrent]);
 
 	const changeLength = e =>
 		setTimeout(() => {
@@ -37,7 +52,7 @@ const ContentMap = ({ content: { content } }) => {
 				reduced ? `${bioStyles.par_grid} ${bioStyles.reduced}` : `${bioStyles.par_grid} ${bioStyles.expanded}`
 			}
 		>
-			<div className={bioStyles.bio_heading}>
+			<div className={bioStyles.bio_heading} ref={bioRef} id="bio">
 				<h2>Bio</h2>
 			</div>{' '}
 			{contentMap}
@@ -52,4 +67,10 @@ ContentMap.propTypes = {
 	content: PropTypes.object.isRequired,
 };
 
-export default ContentMap;
+const mapStateToProps = state => {
+	return {
+		refs: state.refs,
+	};
+};
+
+export default connect(mapStateToProps, { addRef, setCurrent })(ContentMap);

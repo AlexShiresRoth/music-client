@@ -4,9 +4,9 @@ import { NavLink } from 'react-router-dom';
 import navStyle from './Nav.module.scss';
 import { connect } from 'react-redux';
 
-const Nav = ({ refs: { active, refs } }) => {
+const Nav = ({ refs: { active, refs, currentSection } }) => {
 	const navLinks = [
-		{ url: '/', title: 'home', type: 'link' },
+		{ url: '/', title: 'home', type: 'button' },
 		{ url: '/gigs', title: 'gigs', type: 'button' },
 		{ url: '/music', title: 'music', type: 'link' },
 		{ url: '/bio', title: 'bio', type: 'button' },
@@ -19,7 +19,7 @@ const Nav = ({ refs: { active, refs } }) => {
 			</NavLink>
 		) : (
 			<a
-				className={navStyle.link}
+				className={currentSection === link.title ? `${navStyle.link} ${navStyle.active} ` : `${navStyle.link}`}
 				onClick={() => scrollToSection(refs.filter(ref => ref.current.id === link.title))}
 			>
 				{link.title}
@@ -42,7 +42,7 @@ const Nav = ({ refs: { active, refs } }) => {
 			case selectedSection.current.id === 'bio':
 				handleScroll(selectedSection);
 				break;
-			case selectedSection.current.id === 'landing':
+			case selectedSection.current.id === 'home':
 				handleScroll(selectedSection);
 				break;
 			case selectedSection.current.id === 'gigs':
@@ -68,6 +68,7 @@ Nav.propTypes = {
 };
 
 const mapStateToProps = state => {
+	console.log(state);
 	return {
 		refs: state.refs,
 	};

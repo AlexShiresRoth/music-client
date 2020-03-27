@@ -39,6 +39,7 @@
 			transition: all 0.3s ease-in-out;
 			text-transform: uppercase;
 			text-decoration: none;
+			transition: all 0.3s ease;
 			&:hover {
 				color: $brand-text;
 				cursor: pointer;
@@ -46,6 +47,7 @@
 		}
 		& .active {
 			color: $brand-text;
+			transition: all 0.3s ease;
 			&::after {
 				content: '';
 				height: 1px;
@@ -53,6 +55,7 @@
 				display: block;
 				background: $brand-text;
 				margin-top: 0.5rem;
+				transition: all 0.3s ease;
 			}
 		}
 	}

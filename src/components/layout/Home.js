@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Landing from '../landing/Landing';
 import Gigs from '../gigs/Gigs';
 import Bio from '../bio/Bio';
+import Footer from '../footer/Footer';
 import Layout from './Layout';
 const Home = props => {
 	return (
@@ -10,6 +11,7 @@ const Home = props => {
 			<Landing />
 			<Gigs />
 			<Bio />
+			<Footer />
 		</Layout>
 	);
 };

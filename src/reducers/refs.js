@@ -1,8 +1,9 @@
-import { ADD_REF, SET_ACTIVE } from '../actions/types';
+import { ADD_REF, SET_ACTIVE, SET_CURRENT } from '../actions/types';
 
 const initialState = {
 	refs: [],
 	active: false,
+	currentSection: '',
 };
 
 export default (state = initialState, action) => {
@@ -17,6 +18,11 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				active: payload,
+			};
+		case SET_CURRENT:
+			return {
+				...state,
+				currentSection: payload,
 			};
 		default:
 			return state;
