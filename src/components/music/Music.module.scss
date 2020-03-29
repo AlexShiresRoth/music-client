@@ -1,0 +1,86 @@
+@import '../../../sass/variables';
+@import '../../../sass/mixins';
+@font-face {
+	font-family: 'Rustic';
+	src: url('../../fonts/rustic.ttf') format('truetype');
+}
+
+.section {
+	background: #000;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 4rem 0;
+	& .heading {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		& h2 {
+			@include heading;
+		}
+	}
+
+	& .section_inner {
+		display: grid;
+		grid-template-columns: repeat(2, auto);
+		& .text_box {
+			background: #111;
+			padding: 5rem;
+			padding-left: 6rem;
+			& h3 {
+				color: $brand-text;
+				font-family: 'Muli';
+				font-weight: 700;
+				font-size: 2vw;
+				padding-bottom: 0.5rem;
+				border-bottom: 1px solid $brand-main;
+			}
+			& .actions {
+				display: flex;
+				flex-direction: column;
+
+				& a {
+					width: 50%;
+					height: 100%;
+					text-decoration: none;
+					& .spotify_btn {
+						background: #2ebd59;
+						border: 1px solid #2ebd59;
+						border-radius: 200px;
+						height: 5vh;
+						width: 10vw;
+						color: #fff;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						text-align: center;
+						font-size: 0.9vw;
+						transition: all 0.3s ease-in-out;
+						&:hover {
+							cursor: pointer;
+							background: darken(#2ebd59, 5%);
+							border: 1px solid darken(#2ebd59, 5%);
+						}
+					}
+				}
+				& iframe {
+					min-height: 0;
+					height: 10vh;
+				}
+			}
+		}
+		& .spotify_container {
+			width: 20vw;
+			margin-right: -2vw;
+
+			& .spotify_iframe {
+				width: 100%;
+				min-height: 40vh;
+				padding: 1rem;
+				background-color: rgba(163, 86, 56, 0.5);
+				margin-top: 2vh;
+			}
+		}
+	}
+}

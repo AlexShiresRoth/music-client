@@ -8,7 +8,7 @@ const Nav = ({ refs: { active, refs, currentSection } }) => {
 	const navLinks = [
 		{ url: '/', title: 'home', type: 'button' },
 		{ url: '/gigs', title: 'gigs', type: 'button' },
-		{ url: '/music', title: 'music', type: 'link' },
+		{ url: '/music', title: 'music', type: 'button' },
 		{ url: '/bio', title: 'bio', type: 'button' },
 		{ url: '/store', title: 'store', type: 'link' },
 		{ url: '/contact', title: 'contact', type: 'link' },
@@ -48,6 +48,9 @@ const Nav = ({ refs: { active, refs, currentSection } }) => {
 				handleScroll(selectedSection);
 				break;
 			case selectedSection.current.id === 'gigs':
+				handleScroll(selectedSection);
+				break;
+			case selectedSection.current.id === 'music':
 				handleScroll(selectedSection);
 				break;
 			default:

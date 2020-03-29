@@ -4,12 +4,14 @@ import Landing from '../landing/Landing';
 import Gigs from '../gigs/Gigs';
 import Bio from '../bio/Bio';
 import Footer from '../footer/Footer';
+import Music from '../music/Music';
 import Layout from './Layout';
 const Home = props => {
 	return (
 		<Layout>
 			<Landing />
 			<Gigs />
+			<Music />
 			<Bio />
 			<Footer />
 		</Layout>
