@@ -16,7 +16,7 @@ const Music = ({ addRef, setCurrent }) => {
 					//add redux to handle state
 				}
 			},
-			{ rootMargin: '0px 0px 00px 0px', threshold: 0.5 }
+			{ rootMargin: '0px 0px -200px 0px', threshold: 0.5 }
 		);
 		if (musicRef.current) {
 			observer.observe(musicRef.current);

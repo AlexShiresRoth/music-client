@@ -23,7 +23,7 @@ const Landing = ({ setActive, addRef, setCurrent }) => {
 					//add redux to handle state
 				}
 			},
-			{ rootMargin: '0px 0px 00px 0px', threshold: 0.5 }
+			{ rootMargin: '0px 0px 00px 0px', threshold: 0.8 }
 		);
 		if (headerRef.current) {
 			observer.observe(headerRef.current);

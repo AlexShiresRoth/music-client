@@ -20,7 +20,7 @@ const ContentMap = ({ content: { content }, addRef, setCurrent }) => {
 					setCurrent('bio');
 				}
 			},
-			{ rootMargin: '0px 0px 0px 0px', threshold: 0.5 }
+			{ rootMargin: '0px 0px -200px 0px', threshold: 0.5 }
 		);
 		if (bioRef.current) {
 			observer.observe(bioRef.current);
