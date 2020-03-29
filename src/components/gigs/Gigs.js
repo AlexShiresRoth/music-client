@@ -39,8 +39,8 @@ const Gigs = ({ addRef, setCurrent }) => {
 		{ date: '10/10/20', location: `The Ol' Bar`, time: '7:00pm-9:00pm', address: '1234 bar street, NY' },
 	];
 	return (
-		<section className={gigStyle.section} ref={gigsRef} id="gigs">
-			<div className={gigStyle.heading}>
+		<section className={gigStyle.section}>
+			<div className={gigStyle.heading} ref={gigsRef} id="gigs">
 				<h2>Upcoming Gigs</h2>
 			</div>
 			<GigMap gigs={gigs} />
