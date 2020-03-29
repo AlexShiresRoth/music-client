@@ -20,7 +20,9 @@ const Nav = ({ refs: { active, refs, currentSection } }) => {
 		) : (
 			<a
 				className={currentSection === link.title ? `${navStyle.link} ${navStyle.active} ` : `${navStyle.link}`}
-				onClick={() => scrollToSection(refs.filter(ref => ref.current.id === link.title))}
+				onClick={() =>
+					scrollToSection(refs.filter(ref => ref.current !== null && ref.current.id === link.title))
+				}
 			>
 				{link.title}
 			</a>
@@ -68,7 +70,6 @@ Nav.propTypes = {
 };
 
 const mapStateToProps = state => {
-	console.log(state);
 	return {
 		refs: state.refs,
 	};

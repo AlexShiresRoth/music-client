@@ -28,14 +28,15 @@ const Landing = ({ setActive, addRef, setCurrent }) => {
 		if (headerRef.current) {
 			observer.observe(headerRef.current);
 		}
-		addRef(headerRef);
+		if (headerRef.current !== null) addRef(headerRef);
 	}, [setActive, addRef, setCurrent]);
+
 	return (
 		<>
 			<header className={landingStyle.landing} ref={headerRef} id="home">
 				<div className={landingStyle.overlay}></div>
 				<div className={landingStyle.grid}>
-					<button>Gigs</button>
+					<button>Store</button>
 					<button onClick={e => setModalState(true)}>Contact</button>
 					<div className={landingStyle.social}>
 						<TiSocialFacebook />

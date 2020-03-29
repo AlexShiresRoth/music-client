@@ -21,7 +21,7 @@ const Gigs = ({ addRef, setCurrent }) => {
 		if (gigsRef.current) {
 			observer.observe(gigsRef.current);
 		}
-		addRef(gigsRef);
+		if (gigsRef.current !== null) addRef(gigsRef);
 	}, [addRef, gigsRef, setCurrent]);
 
 	const gigs = [

@@ -17,7 +17,6 @@ const ContentMap = ({ content: { content }, addRef, setCurrent }) => {
 		const observer = new IntersectionObserver(
 			([entry]) => {
 				if (entry.isIntersecting) {
-					console.log(entry);
 					setCurrent('bio');
 				}
 			},
@@ -26,7 +25,7 @@ const ContentMap = ({ content: { content }, addRef, setCurrent }) => {
 		if (bioRef.current) {
 			observer.observe(bioRef.current);
 		}
-		if (bioRef) addRef(bioRef);
+		if (bioRef.current !== null) addRef(bioRef);
 	}, [content, setContentLength, addRef, setCurrent]);
 
 	const changeLength = e =>
