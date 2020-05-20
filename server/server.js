@@ -1,12 +1,39 @@
+require('dotenv').config();
 const express = require('express');
+const http = require('http');
 const stripe = require('stripe');
-
+const mongoose = require('mongoose');
 const app = express();
 
+app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => res.send('Music client api is running'));
+app.use('/api/users', require('./routes/users'));
+
+//Mongo db connect
+const connectDB = async () => {
+	const uri = process.env.MONGO_URI;
+
+	try {
+		await mongoose.connect(uri, {
+			useNewUrlParser: true,
+			useCreateIndex: true,
+			useFindAndModify: false,
+			useUnifiedTopology: true,
+		});
+
+		console.log('Database connected');
+	} catch (error) {
+		console.log(error);
+		process.exit(1);
+	}
+};
+
+connectDB();
+
+const server = http.createServer(app);
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => console.log('App is running on port:' + PORT));
+server.listen(PORT, () => console.log('App is running on port:' + PORT));

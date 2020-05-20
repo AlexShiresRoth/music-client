@@ -10,8 +10,8 @@ const Footer = () => {
 				<p> gerrymckeveny.com &copy; 2020</p>
 			</div>
 			<div className={footerStyle.center}>
-				<a href="https://www.alexrothproductions.com/" target="_blank" rel="noopener noreferrer">
-					powered by alexrothproductions.com
+				<a href="https://fillthevoid.io" target="_blank" rel="noopener noreferrer">
+					powered by fillthevoid.io
 				</a>
 			</div>
 			<div className={footerStyle.right}>
