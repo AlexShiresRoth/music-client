@@ -8,8 +8,9 @@ const app = express();
 app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => res.send('Music client api is running'));
+app.get('/api', (req, res) => res.send('Music client api is running'));
 app.use('/api/users', require('./routes/users'));
+app.use('/api/auth', require('./routes/auth'))
 
 //Mongo db connect
 const connectDB = async () => {

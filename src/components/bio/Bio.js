@@ -18,13 +18,13 @@ const Bio = () => {
 			<p>Loading...</p>
 		</div>
 	) : (
-		<section className={bioStyle.section}>
+		<section className={bioStyle.section} id="bio">
 			<ContentMap content={content} />
 		</section>
 	);
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
 		refs: state.refs,
 	};

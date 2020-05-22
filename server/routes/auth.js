@@ -5,6 +5,25 @@ const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
+
+//@route GET ROUTE
+//@desc get user
+//@access private access
+router.get('/', auth, async (req, res) => {
+	try {
+		const user = await User.findById(req.user.id).select('-password');
+
+		if (!user) {
+			return res.status(400).json({ errors: [{ msg: 'Could not load user' }] });
+		}
+		console.log(user, 'GOT THAT USER');
+		return res.json(user);
+	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ errors: [{ msg: 'Internal Server Error' }] });
+	}
+});
+
 //@route POST ROUTE
 //@desc login user
 //@access private access
@@ -14,7 +33,7 @@ router.post(
 		check('email', 'Could not find a user with that email').isEmail(),
 		check('password', 'Password is not valid').exists(),
 	],
-	async (req, res, next) => {
+	async (req, res) => {
 		const errors = validationResult(req);
 
 		if (!errors.isEmpty()) {
@@ -53,3 +72,22 @@ router.post(
 		}
 	}
 );
+
+//@route POST ROUTE
+//@desc logout user
+router.post('/logout', async (req, res) => {
+	const foundUser = await User.findOne({ email: req.user.email });
+
+	if (!foundUser) {
+		return res.status(400).json({ errors: [{ msg: ' You must be logged in to do that' }] });
+	}
+
+	try {
+		return res.json({ msg: 'You have been logged out' });
+	} catch (error) {
+		console.log(error);
+		return res.status(500).json({ errors: [{ msg: 'Internal Server Error' }] });
+	}
+});
+
+module.exports = router;

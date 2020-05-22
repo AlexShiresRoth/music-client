@@ -1,0 +1,102 @@
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import style from './Signup.module.scss';
+import { createUser } from '../../../actions/auth';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+const Signup = ({ setForm, history, createUser }) => {
+	const [data, setData] = useState({
+		name: '',
+		email: '',
+		password: '',
+		password2: '',
+		adminCode: '',
+	});
+
+	const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
+
+	const { name, email, password, password2, adminCode } = data;
+
+	const formSubmit = (e) => {
+		e.preventDefault();
+		createUser(data, history);
+	};
+
+	return (
+		<form className={style.form}>
+			<div className={style.heading}>
+				<h2>
+					Create an account to access the history of your purchases. If you already have an account, please
+					<a onClick={() => setForm({ type: 'login' })}>login</a>
+				</h2>
+			</div>
+			<div className={style.grid}>
+				<div className={style.input_col}>
+					<label>Please enter your name.</label>
+					<input
+						type="text"
+						placeholder="enter your name"
+						value={name}
+						name="name"
+						onChange={(e) => onChange(e)}
+						required={true}
+					/>
+				</div>
+				<div className={style.input_col}>
+					<label>Please enter your email.</label>
+					<input
+						type="email"
+						placeholder="enter your email"
+						value={email}
+						name="email"
+						onChange={(e) => onChange(e)}
+						required={true}
+					/>
+				</div>
+				<div className={style.input_col}>
+					<label>Please create a password.</label>
+					<input
+						type="password"
+						placeholder="create a password"
+						value={password}
+						name="password"
+						onChange={(e) => onChange(e)}
+						required={true}
+					/>
+				</div>
+				<div className={style.input_col}>
+					<label>Please confirm your password.</label>
+					<input
+						type="password"
+						placeholder="reenter your password"
+						value={password2}
+						name="password2"
+						onChange={(e) => onChange(e)}
+						required={true}
+					/>
+				</div>
+				<div className={style.input_col}>
+					<label>If you have an admin code, please enter it.</label>
+					<input
+						type="password"
+						placeholder="enter admin code"
+						value={adminCode}
+						name="adminCode"
+						onChange={(e) => onChange(e)}
+						required={true}
+					/>
+				</div>
+				<div className={style.input_col}>
+					<button onClick={(e) => formSubmit(e)}>Create Account</button>
+				</div>
+			</div>
+		</form>
+	);
+};
+
+Signup.propTypes = {
+	setForm: PropTypes.func.isRequired,
+	createUser: PropTypes.func.isRequired,
+};
+
+export default connect(null, { createUser })(withRouter(Signup));
