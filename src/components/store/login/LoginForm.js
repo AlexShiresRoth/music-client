@@ -21,14 +21,16 @@ const LoginForm = ({ setForm, history, authenticateUser }) => {
 	};
 
 	return (
-		<form className={style.form} onSubmit={(e) => formSubmit(e)}>
+		<div className={style.container}>
+			<div className={style.grunge_overlay}></div>
 			<div className={style.heading}>
 				<h2>
 					Please Login or
-					<a onClick={() => setForm({ type: 'signup' })}>Sign Up</a>
+					<button onClick={() => setForm({ type: 'signup' })}>Sign Up</button>
 				</h2>
 			</div>
-			<div className={style.grid}>
+
+			<form className={style.form} onSubmit={(e) => formSubmit(e)}>
 				<div className={style.input_col}>
 					<label>Please enter your email.</label>
 					<input
@@ -44,7 +46,7 @@ const LoginForm = ({ setForm, history, authenticateUser }) => {
 					<label>Please create a password.</label>
 					<input
 						type="password"
-						placeholder="create a password"
+						placeholder="enter your password"
 						value={password}
 						name="password"
 						onChange={(e) => onChange(e)}
@@ -55,8 +57,8 @@ const LoginForm = ({ setForm, history, authenticateUser }) => {
 				<div className={style.input_col}>
 					<button onClick={(e) => formSubmit(e)}>Login</button>
 				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 	);
 };
 

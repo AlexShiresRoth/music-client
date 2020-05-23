@@ -36,8 +36,9 @@ router.post(
 
 			const userFields = {};
 
-			if (adminCode === process.env.ADMIN_CODE) userFields.role = 'admin';
-			if (!adminCode) userFields.role = 'buyer';
+			if (adminCode === process.env.ADMIN_CODE) {
+				userFields.role = 'admin';
+			} else userFields.role = 'buyer';
 			if (email) userFields.email = email;
 			if (name) userFields.name = name;
 			if (password) userFields.password = password;

@@ -47,21 +47,23 @@ export const authenticateUser = (data, history) => async (dispatch) => {
 	}
 };
 
-export const createUser = ({ name, email, password, password2, adminCode }) => async (dispatch) => {
+export const createUser = (data, history) => async (dispatch) => {
 	const config = {
 		headers: {
 			'Content-Type': 'application/json',
 		},
 	};
 
-	const data = JSON.stringify({ name, email, password, password2, adminCode });
+	const body = JSON.stringify({ ...data });
 	try {
-		const res = await axios.post('/users', data, config);
+		const res = await axios.post('/users', body, config);
 
 		dispatch({
 			type: CREATE_USER,
 			payload: res.data,
 		});
+		history.push('/store');
+
 		dispatch(loadUser());
 	} catch (error) {
 		console.error(error);
@@ -71,7 +73,7 @@ export const createUser = ({ name, email, password, password2, adminCode }) => a
 	}
 };
 
-export const logoutUser = () => async (dispatch) => {
+export const logoutUser = (history) => async (dispatch) => {
 	dispatch({
 		type: CLEAR_USER,
 	});

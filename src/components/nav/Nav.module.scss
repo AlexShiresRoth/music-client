@@ -40,6 +40,8 @@
 			text-transform: uppercase;
 			text-decoration: none;
 			transition: all 0.3s ease;
+			background:transparent;
+			border:0;
 			&:hover {
 				color: $brand-text;
 				cursor: pointer;

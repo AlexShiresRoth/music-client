@@ -1,0 +1,101 @@
+@import '../../../../sass/variables';
+
+.container {
+	display: flex;
+	flex-direction: column;
+	min-width: 30vw;
+	max-width: 40vw;
+	background: $brand-accent;
+	position: relative;
+	border-radius: 2px;
+	& .grunge_overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1590187338/gerry-m/Grunge-Texture-PNG-Clipart_hdlfvg.png');
+		height: 100%;
+		width: 100%;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: 100px 150px;
+		z-index: 0;
+		opacity: 0.5;
+		filter: brightness(0) invert(1);
+	}
+	& .heading {
+		z-index: 2;
+		padding: 1rem;
+		display: flex;
+		box-shadow: 0 1px 6px darken($brand-accent, 5%);
+		border-top-left-radius: 2px;
+		border-top-right-radius: 2px;
+
+		& h2 {
+			font-weight: 100;
+			line-height: 2;
+			z-index: 2;
+		}
+		& button {
+			margin-left: 0rem;
+			height: 2rem;
+			min-width: 5rem;
+			background: transparent;
+			border: 0;
+			transition: all 0.3s ease;
+			color: $brand-main;
+			font-size: 1.4rem;
+			z-index: 2;
+			font-weight: 700;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+	& .form {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: auto;
+		gap: 2rem;
+		z-index: 2;
+		padding: 1rem;
+		& .input_col {
+			display: flex;
+			flex-direction: column;
+			& label {
+				color: $brand-main;
+			}
+			& input {
+				height: 2.5rem;
+				padding: 0.5rem;
+				background: transparent;
+				border: 0;
+				border-bottom: 2px solid $brand-main;
+				color: $brand-text;
+				font-size: 16px;
+				&::placeholder {
+					color: darken($brand-text, 1%);
+				}
+				&:focus {
+					outline: 2px solid $brand-main;
+				}
+			}
+			& button {
+				height: 3rem;
+				width: 12rem;
+				background: $brand-main;
+				border: 1px solid $brand-main;
+				border-radius: 150px;
+				transition: all 0.3s ease;
+				box-shadow: 0 1px 7px darken($brand-main, 2%);
+				color: $brand-text;
+				align-self: flex-end;
+				&:hover {
+					cursor: pointer;
+					background: darken($brand-main, 5%);
+					border: 1px solid darken($brand-main, 5%);
+					box-shadow: 0 1px 15px darken($brand-main, 5%);
+				}
+			}
+		}
+	}
+}

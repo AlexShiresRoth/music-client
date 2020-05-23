@@ -5,7 +5,8 @@ body {
   margin: 0;
   box-sizing: border-box;
   font-family: 'Muli';
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  background: #000; }
 
 main {
   min-height: 100vh;

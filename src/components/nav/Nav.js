@@ -4,8 +4,9 @@ import { NavLink, withRouter } from 'react-router-dom';
 import navStyle from './Nav.module.scss';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/auth';
+import { setActive } from '../../actions/refs';
 
-const Nav = ({ refs: { active, refs, currentSection }, history, auth: { isAuthenticated }, logoutUser }) => {
+const Nav = ({ refs: { active, refs, currentSection }, setActive, history, auth: { isAuthenticated }, logoutUser }) => {
 	const [page, setPage] = useState('');
 
 	const navLinks = [
@@ -103,7 +104,8 @@ const Nav = ({ refs: { active, refs, currentSection }, history, auth: { isAuthen
 
 	useEffect(() => {
 		setPage(history.location.pathname);
-	}, [history.location.pathname]);
+		setActive(history.location.pathname !== '/');
+	}, [history.location.pathname, setActive]);
 
 	return (
 		<nav className={active ? `${navStyle.nav} ${navStyle.active_nav}` : `${navStyle.nav}`}>
@@ -132,4 +134,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { logoutUser })(withRouter(Nav));
+export default connect(mapStateToProps, { logoutUser, setActive })(withRouter(Nav));

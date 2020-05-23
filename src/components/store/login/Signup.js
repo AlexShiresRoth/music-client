@@ -23,14 +23,16 @@ const Signup = ({ setForm, history, createUser }) => {
 	};
 
 	return (
-		<form className={style.form}>
+		<div className={style.container}>
+			<div className={style.grunge_overlay}></div>
+
 			<div className={style.heading}>
 				<h2>
 					Create an account to access the history of your purchases. If you already have an account, please
-					<a onClick={() => setForm({ type: 'login' })}>login</a>
+					<button onClick={() => setForm({ type: 'login' })}>login.</button>
 				</h2>
 			</div>
-			<div className={style.grid}>
+			<form className={style.form}>
 				<div className={style.input_col}>
 					<label>Please enter your name.</label>
 					<input
@@ -89,8 +91,8 @@ const Signup = ({ setForm, history, createUser }) => {
 				<div className={style.input_col}>
 					<button onClick={(e) => formSubmit(e)}>Create Account</button>
 				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 	);
 };
 
