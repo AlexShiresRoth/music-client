@@ -21,15 +21,17 @@ const Nav = ({ refs: { active, refs, currentSection }, setActive, history, auth:
 	const authLinks = [
 		{ url: '/', title: 'home', type: 'link' },
 		{ url: '/store', title: 'store', type: 'link' },
-		{ url: '/store/login', title: 'signup/login', type: 'link' },
+		{ url: '/store/signup', title: 'signup', type: 'link' },
+		{ url: '/store/login', title: 'login', type: 'link' },
 		{ url: '/store', title: 'cart', type: 'button' },
 	];
 
 	const authLinksAuthorized = [
 		{ url: '/', title: 'home', type: 'link' },
 		{ url: '/store', title: 'store', type: 'link' },
-		{ url: '/store/logout', title: 'logout', type: 'button' },
+		{ url: '/store/additem', title: 'upload', type: 'link' },
 		{ url: '/store', title: 'cart', type: 'button' },
+		{ url: '/store/logout', title: 'logout', type: 'button' },
 	];
 
 	//todo DRY this up
@@ -45,7 +47,7 @@ const Nav = ({ refs: { active, refs, currentSection }, setActive, history, auth:
 						className={
 							currentSection === link.title ? `${navStyle.link} ${navStyle.active} ` : `${navStyle.link}`
 						}
-						onClick={() => logoutUser()}
+						onClick={() => logoutUser(history)}
 					>
 						{link.title}
 					</button>

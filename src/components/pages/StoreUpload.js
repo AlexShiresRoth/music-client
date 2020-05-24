@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Layout from '../layout/Layout';
-import LoginForm from '../store/login/LoginForm';
+import ItemUpload from '../store/additems/ItemUpload';
 
-const Login = (props) => {
+const StoreUpload = (props) => {
 	return (
 		<Layout>
-			<LoginForm />
+			<ItemUpload />
 		</Layout>
 	);
 };
 
-Login.propTypes = {};
-
-export default Login;
+export default StoreUpload;

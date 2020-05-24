@@ -12,6 +12,9 @@ import setAuthToken from './reusable/setAuthToken';
 import { loadUser } from './actions/auth';
 import Store from './components/pages/Store';
 import Login from './components/pages/Login';
+import PrivateRoute from './components/routing/PrivateRoute';
+import Signup from './components/pages/Signup';
+import StoreUpload from './components/pages/StoreUpload';
 
 if (localStorage.token) {
 	setAuthToken(localStorage.token);
@@ -38,6 +41,8 @@ const App = () => {
 						<Route exact path="/" component={Home} />
 						<Route exact path="/store" component={Store} />
 						<Route path="/store/login" component={Login} />
+						<Route exact path="/store/signup" component={Signup} />
+						<PrivateRoute exact path="/store/additem" component={StoreUpload} />
 					</Switch>
 				</HashRouter>
 			</Provider>

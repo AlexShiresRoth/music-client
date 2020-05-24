@@ -5,10 +5,6 @@ const StoreItemSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	id: {
-		type: String,
-		required: true,
-	},
 	amount: {
 		type: String,
 		required: true,
@@ -20,6 +16,14 @@ const StoreItemSchema = new mongoose.Schema({
 	description: {
 		type: String,
 		required: true,
+	},
+	quantity: {
+		type: String,
+		required: true,
+	},
+	uploadDate: {
+		type: Date,
+		default: Date.now,
 	},
 });
 

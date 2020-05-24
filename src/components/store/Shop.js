@@ -3,20 +3,21 @@ import PropTypes from 'prop-types';
 import style from './Shop.module.scss';
 import { connect } from 'react-redux';
 import { loadUser } from '../../actions/auth';
+import ShopGrid from './ShopGrid';
 const Shop = ({ loadUser, auth: { isAuthenticated, user, loading } }) => {
 	useEffect(() => {
 		if (isAuthenticated) {
 			loadUser();
 		}
 	}, [isAuthenticated, loadUser]);
-	console.log(user);
+
 	return !loading && user ? (
 		<section className={style.section}>
-			<h1>{user.name}</h1>
+			<ShopGrid />
 		</section>
 	) : (
 		<section className={style.section}>
-			<p>loading</p>
+			<ShopGrid />
 		</section>
 	);
 };
@@ -27,7 +28,6 @@ Shop.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-	console.log(state);
 	return {
 		auth: state.auth,
 	};

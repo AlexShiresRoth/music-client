@@ -7,3 +7,4 @@ export const USER_LOADED = 'USER_LOADED';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const CLEAR_USER = 'CLEAR_USER';
 export const LOAD_USER = 'LOAD_USER';
+export const LOAD_ITEMS = 'LOAD_ITEMS';

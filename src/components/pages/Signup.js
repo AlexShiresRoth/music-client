@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Layout from '../layout/Layout';
-import LoginForm from '../store/login/LoginForm';
+import SignupForm from '../store/login/SignupForm';
 
-const Login = (props) => {
+const Signup = (props) => {
 	return (
 		<Layout>
-			<LoginForm />
+			<SignupForm />
 		</Layout>
 	);
 };
 
-Login.propTypes = {};
+Signup.propTypes = {};
 
-export default Login;
+export default Signup;
