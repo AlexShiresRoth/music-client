@@ -17,6 +17,7 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/shop', require('./routes/storeItems'));
 
 //Mongo db connect
+//wtf
 const connectDB = async () => {
 	const uri = process.env.MONGO_URI;
 
