@@ -61,6 +61,8 @@
 		& .input_col {
 			display: flex;
 			flex-direction: column;
+			padding: 1rem;
+			box-shadow: 0 1px 6px darken($brand-accent, 5%);
 			& label {
 				color: $brand-main;
 			}

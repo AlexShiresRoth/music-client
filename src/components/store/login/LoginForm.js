@@ -6,7 +6,6 @@ import { authenticateUser } from '../../../actions/auth';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 const LoginForm = ({ setForm, history, authenticateUser }) => {
-	console.log(history);
 	const [data, setData] = useState({
 		email: '',
 		password: '',

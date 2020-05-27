@@ -11,11 +11,35 @@ cloudinary.config({
 	api_key: process.env.CLOUDINARY_API,
 	api_secret: process.env.CLOUDINARY_SECRET,
 });
+
+//@route POST ROUTE
+//@desc create cloudinary upload presets
+//@access private
+router.post('/uploadpresets', async (req, res) => {
+	cloudinary.v2.api.create_upload_preset(
+		{
+			name: req.body.preset_name,
+			unsigned: true,
+			tags: 'remote',
+			allowed_formats: 'jpg,png',
+		},
+		function (error, result) {
+			if (error) {
+				console.log(error);
+				return error;
+			} else {
+				console.log(result);
+				return result;
+			}
+		}
+	);
+});
+
 //@route POST ROUTE
 //@desc create a store item
 //@access private
 router.post(
-	'/',
+	'/additem',
 	auth,
 	[
 		check('amount', 'Please enter an amount for this item').not().isEmpty(),
@@ -25,9 +49,10 @@ router.post(
 	async (req, res) => {
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
+			console.log(errors.array());
 			return res.status(400).json({ errors: [{ msg: errors.array() }] });
 		}
-
+		console.log(req.body);
 		const { amount, quantity, description, name, image } = req.body;
 
 		const user = await User.findById(req.user.id);
@@ -51,7 +76,7 @@ router.post(
 				quantity,
 				description,
 				name,
-				image: imgResult.secure_url,
+				image,
 			});
 
 			await data.save();

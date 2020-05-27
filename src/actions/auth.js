@@ -77,5 +77,5 @@ export const logoutUser = (history) => async (dispatch) => {
 	dispatch({
 		type: CLEAR_USER,
 	});
-	history.push('/store');
+	history.push('/');
 };

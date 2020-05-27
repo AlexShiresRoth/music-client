@@ -7,6 +7,7 @@
 	background: $brand-accent;
 	position: relative;
 	border-radius: 2px;
+
 	& .grunge_overlay {
 		position: absolute;
 		bottom: 0;
@@ -21,48 +22,19 @@
 		opacity: 0.5;
 		filter: brightness(0) invert(1);
 	}
-	& .heading {
-		z-index: 2;
-		padding: 1rem;
-		display: flex;
-		box-shadow: 0 1px 6px darken($brand-accent, 5%);
-		border-top-left-radius: 2px;
-		border-top-right-radius: 2px;
-		position: relative;
 
-		& h2 {
-			font-weight: 100;
-			line-height: 2;
-			z-index: 2;
-		}
-		& button {
-			margin-left: 0rem;
-			height: 2rem;
-			min-width: 5rem;
-			background: transparent;
-			border: 0;
-			transition: all 0.3s ease;
-			color: $brand-main;
-			font-size: 1.4rem;
-			z-index: 2;
-			font-weight: 700;
-			&:hover {
-				cursor: pointer;
-			}
-		}
-	}
 	& .form {
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-template-rows: auto;
-		gap: 2rem;
+		gap: 1rem;
 		z-index: 2;
 		padding: 1rem;
 		& .input_col {
 			display: flex;
 			flex-direction: column;
+			box-shadow: 0 1px 5px darken($brand-accent, 5%);
 			padding: 1rem;
-			box-shadow: 0 1px 6px darken($brand-accent, 5%);
 			& label {
 				color: $brand-main;
 			}
@@ -81,6 +53,10 @@
 					outline: 2px solid $brand-main;
 				}
 			}
+			& button:nth-of-type(1) {
+				margin-top: 1rem;
+			}
+
 			& button {
 				height: 3rem;
 				width: 12rem;

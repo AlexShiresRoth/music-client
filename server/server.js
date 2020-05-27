@@ -3,7 +3,10 @@ const express = require('express');
 const http = require('http');
 const stripe = require('stripe');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const app = express();
+
+app.use(cors());
 
 app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: true }));
@@ -11,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/api', (req, res) => res.send('Music client api is running'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
-app.use('/api/store', require('./routes/storeItems'));
+app.use('/api/shop', require('./routes/storeItems'));
 
 //Mongo db connect
 const connectDB = async () => {

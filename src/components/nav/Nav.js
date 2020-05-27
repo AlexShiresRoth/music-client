@@ -5,39 +5,21 @@ import navStyle from './Nav.module.scss';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/auth';
 import { setActive } from '../../actions/refs';
-
-const Nav = ({ refs: { active, refs, currentSection }, setActive, history, auth: { isAuthenticated }, logoutUser }) => {
+import { navLinks, authLinks, adminLinks, authLinksAuthorized } from './navLinks';
+const Nav = ({
+	refs: { active, refs, currentSection },
+	setActive,
+	history,
+	auth: { isAuthenticated, user, loading },
+	logoutUser,
+}) => {
 	const [page, setPage] = useState('');
 
-	const navLinks = [
-		{ url: '/', title: 'home', type: 'button' },
-		{ url: '/gigs', title: 'gigs', type: 'button' },
-		{ url: '/music', title: 'music', type: 'button' },
-		{ url: '/bio', title: 'bio', type: 'button' },
-		{ url: '/store', title: 'store', type: 'link' },
-		{ url: '/contact', title: 'contact', type: 'link' },
-	];
-
-	const authLinks = [
-		{ url: '/', title: 'home', type: 'link' },
-		{ url: '/store', title: 'store', type: 'link' },
-		{ url: '/store/signup', title: 'signup', type: 'link' },
-		{ url: '/store/login', title: 'login', type: 'link' },
-		{ url: '/store', title: 'cart', type: 'button' },
-	];
-
-	const authLinksAuthorized = [
-		{ url: '/', title: 'home', type: 'link' },
-		{ url: '/store', title: 'store', type: 'link' },
-		{ url: '/store/additem', title: 'upload', type: 'link' },
-		{ url: '/store', title: 'cart', type: 'button' },
-		{ url: '/store/logout', title: 'logout', type: 'button' },
-	];
-
 	//todo DRY this up
-	const handleNavLinks = (links) => {
-		return links.map((link, i) => {
+	const handleNavLinks = (links, linksTwo) => {
+		return [...links, ...linksTwo].map((link, i) => {
 			return history.location.pathname.includes('store') ? (
+				//handling navigation outside home page
 				link.type === 'link' ? (
 					<NavLink exact to={link.url} key={i} activeClassName={navStyle.active} className={navStyle.link}>
 						{link.title}
@@ -116,10 +98,12 @@ const Nav = ({ refs: { active, refs, currentSection }, setActive, history, auth:
 			</div>
 			<div className={navStyle.nav_inner}>
 				{page !== '/'
-					? isAuthenticated
-						? handleNavLinks(authLinksAuthorized)
-						: handleNavLinks(authLinks)
-					: handleNavLinks(navLinks)}
+					? !loading && isAuthenticated && user !== null
+						? user.role === 'admin'
+							? handleNavLinks(authLinksAuthorized, adminLinks)
+							: handleNavLinks(authLinksAuthorized, [])
+						: handleNavLinks(authLinks, [])
+					: handleNavLinks(navLinks, [])}
 			</div>
 		</nav>
 	);

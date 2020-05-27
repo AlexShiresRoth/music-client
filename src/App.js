@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import Home from './components/pages/Home';
 import setAuthToken from './reusable/setAuthToken';
-import { loadUser } from './actions/auth';
+import { loadUser, logoutUser } from './actions/auth';
 import Store from './components/pages/Store';
 import Login from './components/pages/Login';
 import PrivateRoute from './components/routing/PrivateRoute';
@@ -21,6 +21,11 @@ if (localStorage.token) {
 }
 
 const App = () => {
+	console.log(store.getState());
+
+	const initState = store.getState();
+	console.log(initState.auth);
+
 	useEffect(() => {
 		store.dispatch(loadUser);
 	}, []);
