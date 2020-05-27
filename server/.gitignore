@@ -2,7 +2,10 @@
 /node_modules
 /.pnp
 .pnp.js
-
+../src
+../package.json
+../public
+../node_modules
 # testing
 /coverage
 
