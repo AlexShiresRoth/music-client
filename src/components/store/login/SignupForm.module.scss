@@ -1,12 +1,17 @@
 @import '../../../../sass/variables';
-
+@font-face {
+	font-family: 'Rustic';
+	src: url('../../../fonts/rustic.ttf') format('truetype');
+}
 .container {
 	display: flex;
 	flex-direction: column;
+	min-width: 35vw;
 	max-width: 40vw;
-	background: $brand-accent;
+	background: #eee;
 	position: relative;
 	border-radius: 2px;
+	margin: 7rem 0;
 	& .grunge_overlay {
 		position: absolute;
 		bottom: 0;
@@ -19,13 +24,17 @@
 		background-position: 200px 100px;
 		z-index: 0;
 		opacity: 0.5;
-		filter: brightness(0) invert(1);
+		filter: brightness(0) invert(0.7);
 	}
 	& .heading {
 		z-index: 2;
 		padding: 1rem;
-		display: flex;
-		box-shadow: 0 1px 6px darken($brand-accent, 5%);
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: auto;
+		gap: 0.5rem;
+		justify-items: center;
+		box-shadow: 0 1px 6px darken(#eee, 5%);
 		border-top-left-radius: 2px;
 		border-top-right-radius: 2px;
 		position: relative;
@@ -34,53 +43,50 @@
 			font-weight: 100;
 			line-height: 2;
 			z-index: 2;
-		}
-		& button {
-			margin-left: 0rem;
-			height: 2rem;
-			min-width: 5rem;
-			background: transparent;
-			border: 0;
-			transition: all 0.3s ease;
+			margin: 0;
+			font-size: 2.3rem;
+			font-family: 'Rustic';
+			text-transform: uppercase;
 			color: $brand-main;
-			font-size: 1.4rem;
-			z-index: 2;
-			font-weight: 700;
-			&:hover {
-				cursor: pointer;
-			}
 		}
 	}
 	& .form {
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-template-rows: auto;
-		gap: 2rem;
+		gap: 1rem;
 		z-index: 2;
 		padding: 1rem;
 		& .input_col {
 			display: flex;
 			flex-direction: column;
 			padding: 1rem;
-			box-shadow: 0 1px 6px darken($brand-accent, 5%);
+			background: transparent;
+			border-radius: 5px;
 			& label {
 				color: $brand-main;
+				font-weight: 100;
 			}
 			& input {
-				height: 2.5rem;
+				height: 2rem;
 				padding: 0.5rem;
 				background: transparent;
 				border: 0;
-				border-bottom: 2px solid $brand-main;
-				color: $brand-text;
+				border-bottom: 3px solid $brand-main;
+				color: $brand-main;
 				font-size: 16px;
 				&::placeholder {
-					color: darken($brand-text, 1%);
+					color: darken($brand-main, 1%);
+					opacity: 0.5;
 				}
 				&:focus {
-					outline: 2px solid $brand-main;
+					outline: 0px solid $brand-main;
 				}
 			}
+		}
+		& .btn_col {
+			display: flex;
+			flex-direction: column;
 			& button {
 				height: 3rem;
 				width: 12rem;
@@ -91,6 +97,7 @@
 				box-shadow: 0 1px 7px darken($brand-main, 2%);
 				color: $brand-text;
 				align-self: flex-end;
+				font-size: 1rem;
 				&:hover {
 					cursor: pointer;
 					background: darken($brand-main, 5%);

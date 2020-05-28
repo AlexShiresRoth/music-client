@@ -6,7 +6,6 @@
 }
 
 .section {
-	background: #000;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -25,7 +24,7 @@
 		display: grid;
 		grid-template-columns: repeat(2, auto);
 		& .text_box {
-			background: #111;
+			background: #222;
 			padding: 5rem;
 			padding-left: 6rem;
 			& h3 {

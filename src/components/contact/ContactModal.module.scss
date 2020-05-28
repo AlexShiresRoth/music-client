@@ -48,14 +48,7 @@
 			& .text_box {
 				& h2 {
 					font-family: 'Muli';
-					font-size: 5vw;
-					&:after {
-						content: '';
-						width: 80%;
-						height: 3px;
-						display: block;
-						background: $brand-main;
-					}
+					font-size: 5rem;
 				}
 			}
 			& .form {
@@ -74,19 +67,25 @@
 					& input,
 					textarea {
 						border: 0;
-						border-bottom: 1px solid $brand-main;
+						border-bottom: 3px solid $brand-main;
 						font-size: 16px;
 						color: #fff;
-						padding: 0.5rem;
+						padding: 0rem;
 						background: transparent;
 						width: 100%;
+						min-height: 2rem;
+						resize: none;
+						&:focus {
+							outline: 0px solid transparent;
+						}
 					}
 					& button {
 						color: #fff;
 						background: $brand-main;
 						align-self: flex-end;
-						height: 3vw;
-						width: 20vw;
+						height: 3rem;
+						width: 14rem;
+						border-radius: 100px;
 						border: 1px solid transparent;
 						transition: all 0.3s ease-in-out;
 						text-transform: uppercase;

@@ -4,8 +4,8 @@ import Auth from './Auth';
 import style from './LoginForm.module.scss';
 import { authenticateUser } from '../../../actions/auth';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-const LoginForm = ({ setForm, history, authenticateUser }) => {
+import { withRouter, NavLink } from 'react-router-dom';
+const LoginForm = ({ history, authenticateUser }) => {
 	const [data, setData] = useState({
 		email: '',
 		password: '',
@@ -25,10 +25,7 @@ const LoginForm = ({ setForm, history, authenticateUser }) => {
 			<div className={style.container}>
 				<div className={style.grunge_overlay}></div>
 				<div className={style.heading}>
-					<h2>
-						Please Login or
-						<button onClick={() => setForm({ type: 'signup' })}>Sign Up</button>
-					</h2>
+					<h2>Login</h2>
 				</div>
 
 				<form className={style.form} onSubmit={(e) => formSubmit(e)}>
@@ -44,7 +41,7 @@ const LoginForm = ({ setForm, history, authenticateUser }) => {
 						/>
 					</div>
 					<div className={style.input_col}>
-						<label>Please create a password.</label>
+						<label>Please enter your password.</label>
 						<input
 							type="password"
 							placeholder="enter your password"

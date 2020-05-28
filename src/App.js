@@ -21,8 +21,6 @@ if (localStorage.token) {
 }
 
 const App = () => {
-	console.log(store.getState());
-
 	const initState = store.getState();
 	console.log(initState.auth);
 

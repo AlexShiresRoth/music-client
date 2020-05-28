@@ -1,0 +1,32 @@
+.container {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto;
+	gap: 1rem;
+	width: 100%;
+	margin-top: 5rem;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	& .alert_success {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 3rem;
+		width: 100%;
+		background: #4f9246c4;
+		color: #eee;
+		z-index: 999999999;
+	}
+	& .alert_danger {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 3rem;
+		width: 100%;
+		background: #d1460fa4;
+		color: #fff;
+		z-index: 999999999;
+	}
+}

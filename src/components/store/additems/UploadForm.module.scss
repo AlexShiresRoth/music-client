@@ -1,78 +1,55 @@
 @import '../../../../sass/variables';
 
-.container {
-	display: flex;
-	flex-direction: column;
-	max-width: 40vw;
-	background: $brand-accent;
-	position: relative;
-	border-radius: 2px;
-
-	& .grunge_overlay {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1590187338/gerry-m/Grunge-Texture-PNG-Clipart_hdlfvg.png');
-		height: 100%;
-		width: 100%;
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-position: 200px 100px;
-		z-index: 0;
-		opacity: 0.5;
-		filter: brightness(0) invert(1);
-	}
-
-	& .form {
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-template-rows: auto;
-		gap: 1rem;
-		z-index: 2;
+.form {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto;
+	gap: 1rem;
+	z-index: 2;
+	padding: 1rem;
+	& .input_col {
+		display: flex;
+		flex-direction: column;
 		padding: 1rem;
-		& .input_col {
-			display: flex;
-			flex-direction: column;
-			box-shadow: 0 1px 5px darken($brand-accent, 5%);
-			padding: 1rem;
-			& label {
-				color: $brand-main;
+		& label {
+			color: $brand-main;
+		}
+		& input {
+			height: 2.5rem;
+			padding: 0.5rem;
+			background: transparent;
+			border: 0;
+			border-bottom: 3px solid $brand-main;
+			color: $brand-main;
+			font-size: 16px;
+			&::placeholder {
+				color: darken($brand-main, 1%);
+				opacity: 0.5;
 			}
-			& input {
-				height: 2.5rem;
-				padding: 0.5rem;
-				background: transparent;
-				border: 0;
-				border-bottom: 2px solid $brand-main;
-				color: $brand-text;
-				font-size: 16px;
-				&::placeholder {
-					color: darken($brand-text, 1%);
-				}
-				&:focus {
-					outline: 2px solid $brand-main;
-				}
+			&:focus {
+				outline: 0px solid $brand-main;
 			}
-			& button:nth-of-type(1) {
-				margin-top: 1rem;
-			}
+		}
+		& button:nth-of-type(1) {
+			margin-top: 1rem;
+		}
 
-			& button {
-				height: 3rem;
-				width: 12rem;
-				background: $brand-main;
-				border: 1px solid $brand-main;
-				border-radius: 150px;
-				transition: all 0.3s ease;
-				box-shadow: 0 1px 7px darken($brand-main, 2%);
-				color: $brand-text;
-				align-self: flex-end;
-				&:hover {
-					cursor: pointer;
-					background: darken($brand-main, 5%);
-					border: 1px solid darken($brand-main, 5%);
-					box-shadow: 0 1px 15px darken($brand-main, 5%);
-				}
+		& button {
+			height: 3rem;
+			width: 12rem;
+			background: $brand-main;
+			border: 1px solid $brand-main;
+			border-radius: 150px;
+			transition: all 0.3s ease;
+			box-shadow: 0 1px 7px darken($brand-main, 2%);
+			color: $brand-text;
+			align-self: flex-end;
+			font-size: 1rem;
+			&:hover {
+				cursor: pointer;
+				background: darken($brand-main, 5%);
+				border: 1px solid darken($brand-main, 5%);
+				box-shadow: 0 1px 15px darken($brand-main, 5%);
 			}
 		}
 	}

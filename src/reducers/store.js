@@ -4,7 +4,7 @@ const initialState = {
 	items: null,
 	loading: true,
 	upload: null,
-	errors: null,
+	errors: [],
 };
 
 export default (state = initialState, action) => {

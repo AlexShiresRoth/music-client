@@ -6,14 +6,15 @@
 
 .nav {
 	width: 100vw;
-	height: 7rem;
+	height: 5rem;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	position: fixed;
 	top: 0;
-	z-index: 999999;
+	left: 0;
+	z-index: 8888;
 	animation: slidein 1s linear forwards;
 	transform: translateY(-10vh);
 	opacity: 0;
@@ -40,8 +41,8 @@
 			text-transform: uppercase;
 			text-decoration: none;
 			transition: all 0.3s ease;
-			background:transparent;
-			border:0;
+			background: transparent;
+			border: 0;
 			&:hover {
 				color: $brand-text;
 				cursor: pointer;

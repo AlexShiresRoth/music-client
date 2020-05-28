@@ -9,7 +9,6 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: flex-start;
-	background: #000;
 	overflow-y: hidden;
 	padding: 2rem 0;
 	& .bio_heading {
@@ -25,14 +24,13 @@
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-template-rows: auto;
-		background: rgba(0, 0, 0, 0.5);
-		box-shadow: 0 5px 5px #000;
 		transition: all 1s ease;
 		& .par_container {
 			padding: 0rem 4rem;
 			& p {
 				color: $brand-text;
 				font-size: 1vw;
+				line-height: 2;
 			}
 		}
 		& .text_expand_btn {

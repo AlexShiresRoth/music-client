@@ -10,3 +10,5 @@ export const LOAD_USER = 'LOAD_USER';
 export const LOAD_ITEMS = 'LOAD_ITEMS';
 export const UPLOAD_TO_STORE = 'UPLOAD_TO_STORE';
 export const UPLOAD_ERROR = 'UPLOAD_ERROR';
+export const SET_ALERT = 'SET_ALERT';
+export const REMOVE_ALERT = 'REMOVE_ALERT';

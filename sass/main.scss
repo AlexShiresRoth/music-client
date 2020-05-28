@@ -10,7 +10,7 @@ body {
 	box-sizing: border-box;
 	font-family: 'Muli';
 	overflow-x: hidden;
-	background: #000;
+	background: $brand-accent;
 }
 main {
 	min-height: 100vh;

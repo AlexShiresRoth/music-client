@@ -11,8 +11,9 @@ const ItemUpload = ({ auth: { isAuthenticated, user, loading } }) => {
 		isAuthenticated && user.role === 'admin' ? (
 			<Auth>
 				<div className={style.container}>
+					<div className={style.grunge_overlay}></div>
 					<div className={style.heading}>
-						<h2>Add an item to the store.</h2>
+						<h2>Add an item to the store</h2>
 					</div>
 					<UploadForm />
 				</div>

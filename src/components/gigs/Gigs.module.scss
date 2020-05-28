@@ -6,7 +6,6 @@
 }
 
 .section {
-	background: #000;
 	min-height: 50vh;
 	display: flex;
 	flex-direction: column;
@@ -34,7 +33,7 @@
 			justify-content: space-around;
 			padding: 0.5rem;
 			width: 100%;
-			border-bottom: 1px solid #111;
+			border-bottom: 1px solid darken($brand-accent, 3%);
 			& p {
 				display: block;
 				color: $brand-text;
@@ -53,7 +52,7 @@
 				}
 			}
 			& svg {
-				color: $brand-text;
+				color: $brand-main;
 				font-size: 1.2vw;
 			}
 		}

@@ -2,16 +2,18 @@
 
 .item {
 	padding: 1rem;
-	background: #eee;
+	background: darken(#eee, 5%);
 	display: grid;
 	grid-template-columns: 1fr;
 	grid-template-rows: auto;
 	gap: 1rem;
+	border-radius: 5px;
 	& .heading {
 		max-width: 20rem;
 		& img {
 			width: 100%;
 			height: 100%;
+			border-radius: 5px;
 		}
 	}
 	& .name,
@@ -21,9 +23,10 @@
 		flex-wrap: wrap;
 		align-items: center;
 		justify-content: space-between;
-		background: #fff;
+		background: #eee;
 		padding: 0.2rem 0.5rem;
 		box-shadow: 0 1px 10px darken(#eee, 5%);
+		border-radius: 5px;
 		& h2 {
 			color: $brand-main;
 			font-size: 1.2rem;

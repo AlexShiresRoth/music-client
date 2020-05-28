@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { AUTHENTICATE, USER_LOADED, AUTH_ERROR, LOAD_USER, CREATE_USER, CLEAR_USER } from './types';
 import setAuthToken from '../reusable/setAuthToken';
+import { setAlert } from './alert';
 
 export const loadUser = () => async (dispatch) => {
-	console.log(localStorage);
 	if (localStorage.token) {
 		setAuthToken(localStorage.token);
 	}
@@ -16,9 +16,15 @@ export const loadUser = () => async (dispatch) => {
 		});
 	} catch (error) {
 		console.error(error);
+		const errors = error.response.data.errors;
+		if (errors) {
+			errors.forEach((err) => dispatch(setAlert(err.msg[0].msg, 'danger')));
+		}
 		dispatch({
 			type: AUTH_ERROR,
+			payload: error.response.data.msg,
 		});
+		dispatch(setAlert(error.response.data.msg, 'danger'));
 	}
 };
 
@@ -30,6 +36,7 @@ export const authenticateUser = (data, history) => async (dispatch) => {
 	};
 
 	const formData = JSON.stringify({ ...data });
+
 	try {
 		const res = await axios.post('/auth', formData, config);
 
@@ -38,12 +45,22 @@ export const authenticateUser = (data, history) => async (dispatch) => {
 			payload: res.data,
 		});
 
+		dispatch(setAlert('Welcome back', 'success'));
+
 		history.push('/store');
 	} catch (error) {
-		console.error(error);
-		dispatch({
-			type: AUTH_ERROR,
-		});
+		const errors = error.response.data.errors;
+
+		if (errors) {
+			console.log(errors[0].msg[0].msg, 'HELP');
+			errors.forEach((err) => dispatch(setAlert(err.msg, 'danger')));
+		} else {
+			dispatch({
+				type: AUTH_ERROR,
+				payload: error.response.data.msg,
+			});
+			dispatch(setAlert(error.response.data.msg, 'danger'));
+		}
 	}
 };
 
@@ -62,20 +79,45 @@ export const createUser = (data, history) => async (dispatch) => {
 			type: CREATE_USER,
 			payload: res.data,
 		});
+
+		dispatch(setAlert('You have successfully created an account', 'success'));
+
 		history.push('/store');
 
 		dispatch(loadUser());
 	} catch (error) {
-		console.error(error);
-		dispatch({
-			type: AUTH_ERROR,
-		});
+		const errors = error.response.data.errors;
+		console.log(errors);
+		if (errors) {
+			errors.forEach((err) => dispatch(setAlert(err.msg, 'danger')));
+		} else {
+			dispatch({
+				type: AUTH_ERROR,
+				payload: error.response.data.msg,
+			});
+			dispatch(setAlert(error.response.data.msg, 'danger'));
+		}
 	}
 };
 
 export const logoutUser = (history) => async (dispatch) => {
-	dispatch({
-		type: CLEAR_USER,
-	});
-	history.push('/');
+	try {
+		dispatch({
+			type: CLEAR_USER,
+		});
+		dispatch(setAlert('You have been logged out', 'success'));
+		history.push('/');
+	} catch (error) {
+		console.error(error);
+		const errors = error.response.data.errors;
+		if (errors) {
+			errors.forEach((err) => dispatch(setAlert(err.msg[0].msg, 'danger')));
+		} else {
+			dispatch({
+				type: AUTH_ERROR,
+				payload: error.response.data.msg,
+			});
+			dispatch(setAlert(error.response.data.msg, 'danger'));
+		}
+	}
 };
