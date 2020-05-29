@@ -1,10 +1,11 @@
-import { LOAD_ITEMS, UPLOAD_TO_STORE, UPLOAD_ERROR } from '../actions/types';
+import { LOAD_ITEMS, UPLOAD_TO_STORE, ADD_CART, STORE_ERROR } from '../actions/types';
 
 const initialState = {
 	items: null,
 	loading: true,
 	upload: null,
 	errors: [],
+	cart: [],
 };
 
 export default (state = initialState, action) => {
@@ -22,12 +23,20 @@ export default (state = initialState, action) => {
 				upload: payload,
 				loading: false,
 			};
-		case UPLOAD_ERROR:
+		case ADD_CART:
+			//localStorage.setItem('cart', state.cart)
 			return {
 				...state,
-				errors: payload,
+				loading: false,
+				cart: [...state.cart, payload],
+			};
+		case STORE_ERROR:
+			return {
+				...state,
+				errors: [...state.errors, payload],
 				loading: false,
 			};
+
 		default:
 			return state;
 	}

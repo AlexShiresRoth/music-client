@@ -1,13 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import style from './ShopItem.module.scss';
-import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import { addToCart } from '../../actions/store';
 const ShopItem = ({
 	elements: { amount, quantity, description, uploadDate, image, name, _id },
 	auth: { isAuthenticated, user, loading },
+	addToCart,
 }) => {
+	const item = {
+		amount,
+		quantity,
+		description,
+		uploadDate,
+		image,
+		name,
+		_id,
+	};
 	return (
 		<div className={style.item}>
 			{!loading && user !== null ? isAuthenticated && user.role === 'admin' ? <p>Edit</p> : null : null}
@@ -29,7 +38,7 @@ const ShopItem = ({
 				)}
 			</div>
 			<div className={style.checkout}>
-				<button>Add To Cart</button>
+				<button onClick={() => addToCart(item)}>Add To Cart</button>
 			</div>
 		</div>
 	);
@@ -41,4 +50,4 @@ const mapStatetoProps = (state) => {
 	};
 };
 
-export default connect(mapStatetoProps, null)(ShopItem);
+export default connect(mapStatetoProps, { addToCart })(ShopItem);

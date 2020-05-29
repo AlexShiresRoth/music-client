@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import navStyle from './Nav.module.scss';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/auth';
 import { setActive } from '../../actions/refs';
-import { navLinks, authLinks, adminLinks, authLinksAuthorized } from './navLinks';
+import { AuthorizedLinks } from './AuthorizedLinks';
+import { AdminLinks } from './AdminLinks';
+import { AuthLinks } from './AuthLinks';
+import { NavLinksComponent } from './NavLinksComponent';
+import Cart from './cart/Cart';
+
 const Nav = ({
 	refs: { active, refs, currentSection },
 	setActive,
@@ -14,48 +19,6 @@ const Nav = ({
 	logoutUser,
 }) => {
 	const [page, setPage] = useState('');
-
-	//todo DRY this up
-	const handleNavLinks = (links, linksTwo) => {
-		return [...links, ...linksTwo].map((link, i) => {
-			return history.location.pathname.includes('store') ? (
-				//handling navigation outside home page
-				link.type === 'link' ? (
-					<NavLink exact to={link.url} key={i} activeClassName={navStyle.active} className={navStyle.link}>
-						{link.title}
-					</NavLink>
-				) : link.title === 'logout' ? (
-					<button
-						className={
-							currentSection === link.title ? `${navStyle.link} ${navStyle.active} ` : `${navStyle.link}`
-						}
-						onClick={() => logoutUser(history)}
-					>
-						{link.title}
-					</button>
-				) : (
-					<NavLink to={`/#${link.title}`} className={navStyle.link}>
-						{link.title}
-					</NavLink>
-				)
-			) : link.type === 'link' ? (
-				<NavLink exact to={link.url} key={i} activeClassName={navStyle.active} className={navStyle.link}>
-					{link.title}
-				</NavLink>
-			) : (
-				<button
-					className={
-						currentSection === link.title ? `${navStyle.link} ${navStyle.active} ` : `${navStyle.link}`
-					}
-					onClick={() => {
-						scrollToSection(refs.filter((ref) => ref.current !== null && ref.current.id === link.title));
-					}}
-				>
-					{link.title}
-				</button>
-			);
-		});
-	};
 
 	const scrollToSection = (refs) => {
 		const selectedSection = refs[0];
@@ -92,18 +55,41 @@ const Nav = ({
 	}, [history.location.pathname, setActive]);
 
 	return (
-		<nav className={active ? `${navStyle.nav} ${navStyle.active_nav}` : `${navStyle.nav}`}>
+		<nav
+			className={
+				active
+					? page !== '/'
+						? `${navStyle.nav_reg} ${navStyle.active_nav}`
+						: `${navStyle.nav} ${navStyle.active_nav}`
+					: `${navStyle.nav}`
+			}
+		>
 			<div className={navStyle.nav_title}>
 				<h2>Gerry Mckeveny</h2>
 			</div>
 			<div className={navStyle.nav_inner}>
-				{page !== '/'
-					? !loading && isAuthenticated && user !== null
-						? user.role === 'admin'
-							? handleNavLinks(authLinksAuthorized, adminLinks)
-							: handleNavLinks(authLinksAuthorized, [])
-						: handleNavLinks(authLinks, [])
-					: handleNavLinks(navLinks, [])}
+				{page !== '/' ? (
+					!loading && isAuthenticated && user !== null ? (
+						user.role === 'admin' ? (
+							<>
+								<AdminLinks logoutUser={logoutUser} history={history} />
+								<Cart />
+							</>
+						) : (
+							<>
+								<AuthorizedLinks logoutUser={logoutUser} history={history} />
+								<Cart />
+							</>
+						)
+					) : (
+						<>
+							<AuthLinks scrollToSection={scrollToSection} refs={refs} currentSection={currentSection} />
+							<Cart />
+						</>
+					)
+				) : (
+					<NavLinksComponent scrollToSection={scrollToSection} refs={refs} currentSection={currentSection} />
+				)}
 			</div>
 		</nav>
 	);
@@ -114,6 +100,7 @@ Nav.propTypes = {
 };
 
 const mapStateToProps = (state) => {
+	console.log(state);
 	return {
 		refs: state.refs,
 		auth: state.auth,

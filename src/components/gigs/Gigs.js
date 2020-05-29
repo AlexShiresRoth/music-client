@@ -11,7 +11,6 @@ const Gigs = ({ addRef, setCurrent }) => {
 		const observer = new IntersectionObserver(
 			([entry]) => {
 				if (entry.isIntersecting) {
-					console.log('intersecting');
 					setCurrent('gigs');
 					//add redux to handle state
 				}
@@ -48,7 +47,7 @@ const Gigs = ({ addRef, setCurrent }) => {
 	);
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
 		refs: state.refs,
 	};

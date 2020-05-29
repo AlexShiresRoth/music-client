@@ -3,7 +3,13 @@
 	font-family: 'Rustic';
 	src: url('../../fonts/rustic.ttf') format('truetype');
 }
+.nav {
+	animation: slidein 1s linear forwards;
+	transform: translateY(-10vh);
+	opacity: 0;
+}
 
+.nav_reg,
 .nav {
 	width: 100vw;
 	height: 5rem;
@@ -15,9 +21,6 @@
 	top: 0;
 	left: 0;
 	z-index: 8888;
-	animation: slidein 1s linear forwards;
-	transform: translateY(-10vh);
-	opacity: 0;
 	transition: all 0.3s ease;
 	& .nav_title {
 		& h2 {
@@ -34,8 +37,8 @@
 		flex-direction: row;
 		justify-content: space-around;
 		align-items: center;
+		height: 100%;
 		& .link {
-			font-size: 0.8vw;
 			color: darken($brand-text, 20%);
 			transition: all 0.3s ease-in-out;
 			text-transform: uppercase;
@@ -43,22 +46,64 @@
 			transition: all 0.3s ease;
 			background: transparent;
 			border: 0;
+			font-family: 'Muli';
+			font-size: 1rem;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			align-items: center;
+			height: 100%;
+			position: relative;
+			transition: all 0.3s cubic-bezier(0.86, 0, 0.07, 1);
 			&:hover {
 				color: $brand-text;
 				cursor: pointer;
+			}
+			&::after {
+				content: '';
+				height: 0px;
+				width: 0%;
+				display: block;
+				background: $brand-text;
+				margin-top: 0.5rem;
+				transition: all 0.3s ease;
+				position: absolute;
+				bottom: 0;
+			}
+			&:focus,
+			&:active {
+				outline: 0px solid transparent;
 			}
 		}
 		& .active {
 			color: $brand-text;
 			transition: all 0.3s ease;
+			background: transparent;
+			border: 0;
+			font-family: 'Muli';
+			font-size: 1rem;
+			text-transform: uppercase;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			align-items: center;
+			height: 100%;
+			position: relative;
+			transition: all 0.3s cubic-bezier(0.86, 0, 0.07, 1);
 			&::after {
 				content: '';
-				height: 1px;
+				height: 2px;
 				width: 100%;
 				display: block;
 				background: $brand-text;
 				margin-top: 0.5rem;
 				transition: all 0.3s ease;
+				position: absolute;
+				bottom: 0;
+			}
+			&:focus,
+			&:active {
+				outline: 0px solid transparent;
 			}
 		}
 	}
