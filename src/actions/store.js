@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOAD_ITEMS, UPLOAD_TO_STORE, UPLOAD_ERROR, ADD_CART, STORE_ERROR } from './types';
+import { LOAD_ITEMS, UPLOAD_TO_STORE, UPLOAD_ERROR, ADD_CART, STORE_ERROR, REMOVE_FROM_CART } from './types';
 import { setAlert } from './alert';
 import { api } from '../components/reusable/api';
 
@@ -57,5 +57,19 @@ export const addToCart = (item) => async (dispatch) => {
 			type: STORE_ERROR,
 		});
 		dispatch(setAlert('Could not add item to cart, please retry', 'danger'));
+	}
+};
+
+export const removeFromCart = (item) => async (dispatch) => {
+	try {
+		dispatch({
+			type: REMOVE_FROM_CART,
+			payload: item,
+		});
+	} catch (error) {
+		dispatch({
+			type: STORE_ERROR,
+		});
+		dispatch(setAlert('Could not remove item from cart, please retry', 'danger'));
 	}
 };

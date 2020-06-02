@@ -11,23 +11,36 @@
 	box-shadow: 0 1px 5px #111;
 	border-radius: 5px;
 	padding: 1rem;
+	min-width: 12rem;
 	&:hover {
 		cursor: pointer;
 	}
 	& .item {
 		display: flex;
-		justify-content: space-around;
-		width: 10rem;
+		align-items: center;
+		justify-content: space-between;
 		border-bottom: 1px solid #222;
+		width: 100%;
 		& p {
 			color: #bbb;
 			transition: all 0.3s ease;
+			& span {
+				font-weight: 700;
+				color: #ddd;
+				margin: 0 0.5rem;
+			}
 		}
-		&:hover p {
-			color: $brand-text;
-		}
+
 		& p:nth-child(2) {
 			color: $brand-main;
+		}
+		& button {
+			background: transparent;
+			font-size: 1.2rem;
+			border: 0;
+			color: $brand-main;
+			display: flex;
+			align-items: center;
 		}
 	}
 	& button {

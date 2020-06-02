@@ -2,15 +2,26 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import style from './CartDisplay.module.scss';
 import { NavLink } from 'react-router-dom';
+import { AiFillCloseCircle } from 'react-icons/ai';
+import { removeFromCart } from '../../../actions/store';
+import { connect } from 'react-redux';
 
-const CartDisplay = ({ items }) => {
+const CartDisplay = ({ items, removeFromCart }) => {
 	return (
 		<div className={style.cart_display}>
 			{items.map((item, i) => {
 				return (
 					<div className={style.item}>
-						<p>{item.name}</p>
-						<p>${item.amount}</p>
+						<p>
+							<span>Item:</span>
+							{item.name}
+						</p>
+						<p>
+							<span>Price:</span>${item.amount}
+						</p>
+						<button onClick={(e) => removeFromCart(item)}>
+							<AiFillCloseCircle />
+						</button>
 					</div>
 				);
 			})}
@@ -23,4 +34,4 @@ const CartDisplay = ({ items }) => {
 
 CartDisplay.propTypes = {};
 
-export default CartDisplay;
+export default connect(null, { removeFromCart })(CartDisplay);

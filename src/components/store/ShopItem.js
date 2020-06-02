@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import style from './ShopItem.module.scss';
 import { connect } from 'react-redux';
-import { addToCart } from '../../actions/store';
+import { addToCart, removeFromCart } from '../../actions/store';
 const ShopItem = ({
 	elements: { amount, quantity, description, uploadDate, image, name, _id },
 	auth: { isAuthenticated, user, loading },
 	addToCart,
+	store: { cart },
+	removeFromCart,
 }) => {
 	const item = {
 		amount,
@@ -38,7 +40,13 @@ const ShopItem = ({
 				)}
 			</div>
 			<div className={style.checkout}>
-				<button onClick={() => addToCart(item)}>Add To Cart</button>
+				{cart.filter((item) => item._id === _id).length > 0 ? (
+					<button className={style.added} onClick={(e) => removeFromCart(item)}>
+						In Cart!
+					</button>
+				) : (
+					<button onClick={() => addToCart(item)}>Add To Cart</button>
+				)}
 			</div>
 		</div>
 	);
@@ -47,7 +55,8 @@ const ShopItem = ({
 const mapStatetoProps = (state) => {
 	return {
 		auth: state.auth,
+		store: state.store,
 	};
 };
 
-export default connect(mapStatetoProps, { addToCart })(ShopItem);
+export default connect(mapStatetoProps, { addToCart, removeFromCart })(ShopItem);

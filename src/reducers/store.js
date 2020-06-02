@@ -1,4 +1,4 @@
-import { LOAD_ITEMS, UPLOAD_TO_STORE, ADD_CART, STORE_ERROR } from '../actions/types';
+import { LOAD_ITEMS, UPLOAD_TO_STORE, ADD_CART, STORE_ERROR, REMOVE_FROM_CART } from '../actions/types';
 
 const initialState = {
 	items: null,
@@ -28,7 +28,16 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				loading: false,
-				cart: [...state.cart, payload],
+				cart:
+					state.cart.filter((item) => item._id === payload._id).length > 0
+						? [...state.cart]
+						: [...state.cart, payload],
+			};
+		case REMOVE_FROM_CART:
+			return {
+				...state,
+				loading: false,
+				cart: state.cart.filter((item) => item._id !== payload._id),
 			};
 		case STORE_ERROR:
 			return {

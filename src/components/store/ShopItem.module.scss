@@ -62,5 +62,9 @@
 				outline: 1px solid transparent;
 			}
 		}
+		& .added {
+			background: $success;
+			box-shadow: 0 1px 5px darken($success, 5%);
+		}
 	}
 }
