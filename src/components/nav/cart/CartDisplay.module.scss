@@ -1,0 +1,42 @@
+@import '../../../../sass/variables';
+
+.cart_display {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: absolute;
+	top: 100%;
+	left: -50%;
+	background: #111;
+	box-shadow: 0 1px 5px #111;
+	border-radius: 5px;
+	padding: 1rem;
+	&:hover {
+		cursor: pointer;
+	}
+	& .item {
+		display: flex;
+		justify-content: space-around;
+		width: 10rem;
+		border-bottom: 1px solid #222;
+		& p {
+			color: #bbb;
+			transition: all 0.3s ease;
+		}
+		&:hover p {
+			color: $brand-text;
+		}
+		& p:nth-child(2) {
+			color: $brand-main;
+		}
+	}
+	& button {
+		height: 2.5rem;
+		width: 100%;
+		background: $brand-main;
+		border-radius: 5px;
+		border: 1px solid $brand-main;
+		margin: 0.5rem;
+		color: $brand-text;
+	}
+}

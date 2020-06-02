@@ -1,0 +1,28 @@
+@import '../../../../sass/variables';
+
+.cart {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	&:hover {
+		cursor: pointer;
+	}
+	& button {
+		background: transparent;
+		border: 0;
+		color: #bbb;
+		font-family: 'Muli';
+		font-size: 1rem;
+		transition: all 0.3s ease;
+		&:hover {
+			cursor: pointer;
+			color: $brand-text;
+		}
+		&:focus,
+		&:active {
+			outline: 0px solid transparent;
+		}
+	}
+}
