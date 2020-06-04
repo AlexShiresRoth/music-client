@@ -15,7 +15,10 @@ const Cart = ({ store: { cart } }) => {
 	);
 };
 
-Cart.propTypes = {};
+Cart.propTypes = {
+	cart: PropTypes.array.isRequired,
+};
+
 const mapStateToProps = (state) => {
 	return {
 		store: state.store,

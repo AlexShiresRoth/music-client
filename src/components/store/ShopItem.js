@@ -4,7 +4,7 @@ import style from './ShopItem.module.scss';
 import { connect } from 'react-redux';
 import { addToCart, removeFromCart } from '../../actions/store';
 const ShopItem = ({
-	elements: { amount, quantity, description, uploadDate, image, name, _id },
+	elements: { amount, quantity, description, uploadDate, image, name, _id, userAmt, total },
 	auth: { isAuthenticated, user, loading },
 	addToCart,
 	store: { cart },
@@ -18,6 +18,8 @@ const ShopItem = ({
 		image,
 		name,
 		_id,
+		userAmt,
+		total,
 	};
 	return (
 		<div className={style.item}>

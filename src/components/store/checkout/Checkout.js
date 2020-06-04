@@ -1,43 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import style from './Checkout.module.scss';
-import { AiFillCloseCircle } from 'react-icons/ai';
 import PriceDisplay from './PriceDisplay';
-import { removeFromCart } from '../../../actions/store';
 import { Redirect } from 'react-router-dom';
+import CheckoutForm from './CheckoutForm';
 
-const Checkout = ({ store: { cart }, removeFromCart }) => {
+const Checkout = ({ store: { cart } }) => {
+	const [total, setTotal] = useState(0);
+
 	if (cart.length <= 0) {
 		return <Redirect to="/store" />;
 	}
+
 	return (
 		<div className={style.container}>
+			<h2>Cart Review</h2>
+			<p>Please review your selected items to make sure everything is correct.</p>
 			{cart.map((item, i) => {
-				return (
-					<div className={style.item} key={i}>
-						<img src={`${item.image}`} alt={item.name} />
-						<div className={style.description}>
-							<p>
-								<span>Item:</span>
-								{item.name}
-							</p>
-
-							<p>
-								<span>Price:</span>${item.amount}
-							</p>
-							<p>
-								<span>Quantity:</span>
-							</p>
-						</div>
-						<button onClick={(e) => removeFromCart(item)}>
-							Remove
-							<AiFillCloseCircle />
-						</button>
-					</div>
-				);
+				return <CheckoutForm item={item} index={i} total={total} setTotal={setTotal} />;
 			})}
-			{cart.length > 0 ? <PriceDisplay /> : null}
+			{cart.length > 0 ? <PriceDisplay total={total} /> : null}
 		</div>
 	);
 };
@@ -47,9 +30,10 @@ Checkout.propTypes = {
 };
 
 const mapStateToProps = (state) => {
+	console.log(state);
 	return {
 		store: state.store,
 	};
 };
 
-export default connect(mapStateToProps, { removeFromCart })(Checkout);
+export default connect(mapStateToProps, null)(Checkout);

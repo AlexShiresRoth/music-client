@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import style from './CartDisplay.module.scss';
 import { NavLink } from 'react-router-dom';
@@ -26,12 +26,15 @@ const CartDisplay = ({ items, removeFromCart }) => {
 				);
 			})}
 			<NavLink to={`/store/checkout`}>
-				<button>Checkout</button>
+				<button>Review Cart & Checkout</button>
 			</NavLink>
 		</div>
 	);
 };
 
-CartDisplay.propTypes = {};
+CartDisplay.propTypes = {
+	items: PropTypes.array.isRequired,
+	removeFromCart: PropTypes.func.isRequired,
+};
 
 export default connect(null, { removeFromCart })(CartDisplay);

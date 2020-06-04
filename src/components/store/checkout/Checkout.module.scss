@@ -4,9 +4,17 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin: 5rem 0;
+	margin: 7rem 0;
 	background: #eee;
 	width: 50vw;
+	border-radius: 5px;
+	& h2 {
+		color: #111;
+	}
+	& p {
+		color: $brand-main;
+		font-weight: 700;
+	}
 	& .item {
 		display: flex;
 		flex-direction: row;
@@ -26,6 +34,13 @@
 			& p {
 				color: $brand-main;
 				& span {
+					color: #222;
+					font-weight: 700;
+					margin-right: 0.5rem;
+				}
+			}
+			& form {
+				& label {
 					color: #222;
 					font-weight: 700;
 					margin-right: 0.5rem;

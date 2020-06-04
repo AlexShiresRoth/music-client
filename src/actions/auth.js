@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTHENTICATE, USER_LOADED, AUTH_ERROR, LOAD_USER, CREATE_USER, CLEAR_USER } from './types';
+import { AUTHENTICATE, USER_LOADED, AUTH_ERROR, LOAD_USER, CREATE_USER, CLEAR_USER, CLEAR_CART } from './types';
 import setAuthToken from '../reusable/setAuthToken';
 import { setAlert } from './alert';
 
@@ -104,6 +104,9 @@ export const logoutUser = (history) => async (dispatch) => {
 	try {
 		dispatch({
 			type: CLEAR_USER,
+		});
+		dispatch({
+			type: CLEAR_CART,
 		});
 		dispatch(setAlert('You have been logged out', 'success'));
 		history.push('/');
