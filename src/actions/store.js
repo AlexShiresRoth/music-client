@@ -7,6 +7,7 @@ import {
 	REMOVE_FROM_CART,
 	UPDATE_TOTAL,
 	UPDATE_CART,
+	ADD_PURCHASE,
 } from './types';
 import { setAlert } from './alert';
 import { api } from '../components/reusable/api';
@@ -94,5 +95,32 @@ export const updateCart = (itemData) => async (dispatch) => {
 			type: STORE_ERROR,
 		});
 		dispatch(setAlert('Something went wrong updating your item', 'danger'));
+	}
+};
+
+export const addPurchaseItem = (data) => async (dispatch) => {
+	const config = {
+		accept: 'application/json',
+		headers: { 'Content-Type': 'application/json' },
+	};
+
+	const formData = JSON.stringify({ ...data });
+	try {
+		const res = await axios.post('/checkout', formData, config);
+		dispatch({
+			type: ADD_PURCHASE,
+			payload: res.data,
+		});
+	} catch (error) {
+		const errors = error.response.data.errors;
+		console.log(errors);
+		if (errors) {
+			errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+		}
+		dispatch({
+			type: STORE_ERROR,
+			payload: error.response.data,
+		});
+		dispatch(setAlert(error.response.data.msg, 'danger'));
 	}
 };

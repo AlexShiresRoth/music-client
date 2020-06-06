@@ -7,6 +7,7 @@ import {
 	UPDATE_TOTAL,
 	CLEAR_CART,
 	UPDATE_CART,
+	ADD_PURCHASE,
 } from '../actions/types';
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
 	errors: [],
 	cart: [],
 	total: [],
+	purchaseItem: null,
 };
 
 export default (state = initialState, action) => {
@@ -56,11 +58,16 @@ export default (state = initialState, action) => {
 						: [...state.cart, payload],
 			};
 		case UPDATE_CART:
-			console.log('this is thje arr');
 			return {
 				...state,
 				loading: false,
 				cart: state.cart.map((item) => (item._id === payload.id ? { ...item, total: payload.amount } : item)),
+			};
+		case ADD_PURCHASE:
+			return {
+				...state,
+				loading: false,
+				purchaseItem: payload,
 			};
 		case REMOVE_FROM_CART:
 			return {
