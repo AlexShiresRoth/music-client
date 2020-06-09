@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import Home from './components/pages/Home';
 import setAuthToken from './reusable/setAuthToken';
-import { loadUser, logoutUser } from './actions/auth';
+import { loadUser } from './actions/auth';
 import Store from './components/pages/Store';
 import Login from './components/pages/Login';
 import PrivateRoute from './components/routing/PrivateRoute';
@@ -49,7 +49,7 @@ const App = () => {
 						<Route exact path="/store/signup" component={Signup} />
 						<PrivateRoute exact path="/store/additem" component={StoreUpload} />
 						<Route exact path="/store/checkout" component={CheckoutPage} />
-						<Route exact path="/store/checkout/confirm" component={CheckoutConfirmPage} />
+						<Route exact path="/store/checkout/payment/:id" component={CheckoutConfirmPage} />
 					</Switch>
 				</HashRouter>
 			</Provider>

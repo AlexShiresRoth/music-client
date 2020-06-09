@@ -8,6 +8,7 @@ import {
 	CLEAR_CART,
 	UPDATE_CART,
 	ADD_PURCHASE,
+	LOAD_ITEM,
 } from '../actions/types';
 
 const initialState = {
@@ -16,7 +17,7 @@ const initialState = {
 	upload: null,
 	errors: [],
 	cart: [],
-	total: [],
+	total: null,
 	purchaseItem: null,
 };
 
@@ -64,6 +65,12 @@ export default (state = initialState, action) => {
 				cart: state.cart.map((item) => (item._id === payload.id ? { ...item, total: payload.amount } : item)),
 			};
 		case ADD_PURCHASE:
+			return {
+				...state,
+				loading: false,
+				purchaseItem: payload,
+			};
+		case LOAD_ITEM:
 			return {
 				...state,
 				loading: false,

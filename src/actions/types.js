@@ -19,3 +19,4 @@ export const CLEAR_CART = 'CLEAR_CART';
 export const GET_ITEM_TOTAL = 'GET_ITEM_TOTAL';
 export const UPDATE_CART = 'UPDATE_CART';
 export const ADD_PURCHASE = 'ADD_PURCHASE';
+export const LOAD_ITEM = 'LOAD_ITEM';

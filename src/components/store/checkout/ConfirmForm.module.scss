@@ -5,4 +5,21 @@
 	flex-direction: column;
 	background: #eee;
 	width: 50vw;
+	padding: 1rem;
+	& button {
+		height: 3rem;
+		border: 1px solid $brand-main;
+		background: $brand-main;
+		color: #fff;
+		font-size: 1rem;
+		margin: 1rem 0;
+		box-shadow: 0 1px 5px darken($brand-main, 5%);
+		transition: all 0.3s ease;
+		&:hover {
+			cursor: pointer;
+			border: 1px solid lighten($brand-main, 5%);
+			background: lighten($brand-main, 5%);
+			box-shadow: 0 1px 10px $brand-main;
+		}
+	}
 }

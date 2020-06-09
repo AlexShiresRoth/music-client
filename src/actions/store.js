@@ -8,6 +8,7 @@ import {
 	UPDATE_TOTAL,
 	UPDATE_CART,
 	ADD_PURCHASE,
+	LOAD_ITEM,
 } from './types';
 import { setAlert } from './alert';
 import { api } from '../components/reusable/api';
@@ -98,17 +99,56 @@ export const updateCart = (itemData) => async (dispatch) => {
 	}
 };
 
-export const addPurchaseItem = (data) => async (dispatch) => {
+export const addPurchaseItem = (item, history) => async (dispatch) => {
 	const config = {
 		accept: 'application/json',
 		headers: { 'Content-Type': 'application/json' },
 	};
 
-	const formData = JSON.stringify({ ...data });
+	const formData = JSON.stringify({ ...item });
 	try {
 		const res = await axios.post('/checkout', formData, config);
+
 		dispatch({
 			type: ADD_PURCHASE,
+			payload: res.data,
+		});
+
+		history.push(`/store/checkout/payment/${res.data._id}`);
+	} catch (error) {
+		const errors = error.response.data.errors;
+		console.log(errors);
+		if (errors) {
+			errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+		}
+		dispatch({
+			type: STORE_ERROR,
+			payload: error.response.data,
+		});
+		dispatch(setAlert(error.response.data.msg, 'danger'));
+	}
+};
+
+export const updateTotal = (total) => async (dispatch) => {
+	try {
+		dispatch({
+			type: UPDATE_TOTAL,
+			payload: total,
+		});
+	} catch (error) {
+		console.log(error);
+		dispatch({
+			type: STORE_ERROR,
+		});
+		dispatch(setAlert('Something went wrong updating your item', 'danger'));
+	}
+};
+
+export const loadItem = (id) => async (dispatch) => {
+	try {
+		const res = await axios.get(`/checkout/${id}`);
+		dispatch({
+			type: LOAD_ITEM,
 			payload: res.data,
 		});
 	} catch (error) {

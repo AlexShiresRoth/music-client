@@ -1,0 +1,27 @@
+@import '../../../../sass/variables';
+
+.container {
+	padding: 1rem;
+	& p {
+		color: #666;
+		border-bottom: 1px solid #fff;
+	}
+	& .items {
+		display: flex;
+		flex-direction: column;
+		& .item {
+			display: flex;
+			justify-content: space-around;
+			margin: 0.5rem 0;
+			padding: 0.5rem 0;
+			background: #fff;
+			box-shadow: 0 1px 5px darken(#eee, 5%);
+			& img {
+				max-width: 7rem;
+			}
+			& p {
+				border: 0;
+			}
+		}
+	}
+}
