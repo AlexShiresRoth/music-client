@@ -16,10 +16,21 @@ const PriceDisplay = ({ store: { cart, loading }, updateTotal }) => {
 
 	return (
 		<div className={style.total_container}>
-			<p>
-				<span>Your total:</span>${loading ? <p>Loading...</p> : subtotal + '.00'}
-			</p>
+			<div className={style.total_display}>
+				<p>
+					<span>Your total:</span>${loading ? <p>Loading...</p> : subtotal + '.00'}
+				</p>
+			</div>
 			<BillingInfo />
+			<div className={style.disclaimer}>
+				<p>
+					We use{' '}
+					<a href="https://stripe.com/" target="_blank" rel="noopener noreferrer">
+						stripe
+					</a>{' '}
+					for all our secure transactions.{' '}
+				</p>
+			</div>
 		</div>
 	);
 };

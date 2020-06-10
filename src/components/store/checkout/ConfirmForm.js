@@ -3,10 +3,19 @@ import PropTypes from 'prop-types';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import style from './ConfirmForm.module.scss';
 import { connect } from 'react-redux';
-import { loadItem } from '../../../actions/store';
+import { loadItem, cancelIntent, paymentSuccess, paymentError } from '../../../actions/store';
 import ItemDisplay from './ItemDisplay';
+import ConfirmModal from './ConfirmModal';
+import { withRouter } from 'react-router-dom';
 
-const ConfirmForm = ({ store: { purchaseItem, loading }, loadItem }) => {
+const ConfirmForm = ({
+	store: { purchaseItem, loading, clientSecret },
+	loadItem,
+	history,
+	cancelIntent,
+	paymentSuccess,
+	paymentError,
+}) => {
 	const stripe = useStripe();
 	const elements = useElements();
 
@@ -15,59 +24,71 @@ const ConfirmForm = ({ store: { purchaseItem, loading }, loadItem }) => {
 		loadItem(id);
 	}, [loadItem, purchaseItem._id]);
 
-	const [paymentRequest, setPaymentRequest] = useState(null);
-
-	useEffect(() => {
-		if (stripe) {
-			const pr = stripe.paymentRequest({
-				country: 'US',
-				currency: 'usd',
-				total: {
-					label: 'Demo total',
-					amount: 1099,
-				},
-				requestPayerName: true,
-				requestPayerEmail: true,
-			});
-		}
-	}, [stripe]);
-
 	const handleSubmit = async (event) => {
 		// Block native form submission.
 		event.preventDefault();
 
 		if (!stripe || !elements) {
-			// Stripe.js has not loaded yet. Make sure to disable
-			// form submission until Stripe.js has loaded.
+			// Stripe.js has not yet loaded.
+			// Make sure to disable form submission until Stripe.js has loaded.
 			return;
 		}
 
-		// Get a reference to a mounted CardElement. Elements knows how
-		// to find your CardElement because there can only ever be one of
-		// each type of element.
-		const cardElement = elements.getElement(CardElement);
-
-		// Use your card Element with other Stripe.js APIs
-		const { error, paymentMethod } = await stripe.createPaymentMethod({
-			type: 'card',
-			card: cardElement,
+		const result = await stripe.confirmCardPayment(`${clientSecret}`, {
+			payment_method: {
+				card: elements.getElement(CardElement),
+				billing_details: {
+					name: purchaseItem.name,
+				},
+			},
 		});
 
-		if (error) {
-			console.log('[error]', error);
+		if (result.error) {
+			// Show error to your customer (e.g., insufficient funds)
+			console.log(result.error.message);
+			paymentError(result.error.message);
 		} else {
-			console.log('[PaymentMethod]', paymentMethod);
+			// The payment has been processed!
+			if (result.paymentIntent.status === 'succeeded') {
+				// Show a success message to your customer
+				// There's a risk of the customer closing the window before callback
+				// execution. Set up a webhook or plugin to listen for the
+				// payment_intent.succeeded event that handles any business critical
+				// post-payment actions.
+				console.log('payment success!');
+				paymentSuccess(history);
+			}
 		}
 	};
 
+	const [modalState, setModalState] = useState(false);
+
+	const handleModal = (e) => {
+		e.preventDefault();
+		setModalState(true);
+	};
+
+	const handlePaymentRedirect = (e) => {
+		e.preventDefault(e);
+		cancelIntent(purchaseItem.payment, history);
+	};
 	return (
-		<form className={style.form}>
-			<ItemDisplay item={purchaseItem} />
-			<CardElement />
-			<button onClick={(e) => handleSubmit(e)} disabled={!stripe}>
-				Pay {loading ? 'Loading...' : '$' + purchaseItem.total}
-			</button>
-		</form>
+		<>
+			<ConfirmModal
+				modalState={modalState}
+				setModalState={setModalState}
+				handleSubmit={handleSubmit}
+				total={purchaseItem.total}
+			/>
+			<form className={style.form}>
+				<button onClick={(e) => handlePaymentRedirect(e)}>{'<-'}Go Back/Cancel Order</button>
+				<ItemDisplay item={purchaseItem} />
+				<CardElement />
+				<button onClick={(e) => handleModal(e)} onSubmit={(e) => handleModal(e)} disabled={!stripe}>
+					Pay {loading ? 'Loading...' : '$' + purchaseItem.total}
+				</button>
+			</form>
+		</>
 	);
 };
 
@@ -78,4 +99,6 @@ const mapStateToProps = (state) => {
 		store: state.store,
 	};
 };
-export default connect(mapStateToProps, { loadItem })(ConfirmForm);
+export default connect(mapStateToProps, { loadItem, cancelIntent, paymentError, paymentSuccess })(
+	withRouter(ConfirmForm)
+);

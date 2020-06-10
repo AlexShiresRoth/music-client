@@ -9,6 +9,9 @@ import {
 	UPDATE_CART,
 	ADD_PURCHASE,
 	LOAD_ITEM,
+	RETRIEVE_INTENT,
+	CANCEL_INTENT,
+	PAYMENT_SUCCESS,
 } from '../actions/types';
 
 const initialState = {
@@ -19,6 +22,7 @@ const initialState = {
 	cart: [],
 	total: null,
 	purchaseItem: null,
+	clientSecret: null,
 };
 
 export default (state = initialState, action) => {
@@ -76,12 +80,34 @@ export default (state = initialState, action) => {
 				loading: false,
 				purchaseItem: payload,
 			};
+		case RETRIEVE_INTENT: {
+			return {
+				...state,
+				loading: false,
+				clientSecret: payload,
+			};
+		}
+		case CANCEL_INTENT:
+			return {
+				...state,
+				loading: false,
+				clientSecret: null,
+			};
+		case PAYMENT_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				clientSecret: null,
+				purchaseItem: null,
+				total: null,
+				cart: [],
+			};
 		case REMOVE_FROM_CART:
 			return {
 				...state,
 				loading: false,
 				cart: state.cart.filter((item) => item._id !== payload._id),
-				total: [0],
+				total: null,
 			};
 		case STORE_ERROR:
 			return {

@@ -110,8 +110,8 @@
 }
 
 .active_nav {
-	background: #000;
-	box-shadow: 0 2px 2px lighten(#000, 5%);
+	background: $brand-dark;
+	box-shadow: 0 1px 5px darken($brand-dark, 5%);
 }
 
 @keyframes slidein {

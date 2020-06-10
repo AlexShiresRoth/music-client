@@ -6,7 +6,9 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import ConfirmForm from './ConfirmForm';
 
-const stripePromise = loadStripe('pk_test_Jna8Q4gbVOZxEMpVCDPdT6160041FZDtEe');
+const stripePromise = loadStripe(
+	'pk_test_51GsBquBxHkduRtSFOe73SXUoenzpXNapxkzSbHOwmmrmku9z0Fv39dqoJkXNv774tC5GGLJkMgYiVI0NyQ48hm5W00tLQGMZxO'
+);
 
 const CheckoutConfirmation = ({ store: { cart } }) => {
 	if (cart.length <= 0) {
@@ -20,7 +22,9 @@ const CheckoutConfirmation = ({ store: { cart } }) => {
 	);
 };
 
-CheckoutConfirmation.propTypes = {};
+CheckoutConfirmation.propTypes = {
+	cart: PropTypes.array.isRequired,
+};
 
 const mapStateToProps = (state) => {
 	return {

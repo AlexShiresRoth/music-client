@@ -6,11 +6,14 @@ import PriceDisplay from './PriceDisplay';
 import { Redirect } from 'react-router-dom';
 import CheckoutForm from './CheckoutForm';
 
-const Checkout = ({ store: { cart } }) => {
+const Checkout = ({ store: { cart, clientSecret, purchaseItem } }) => {
 	const [total, setTotal] = useState(0);
 
 	if (cart.length <= 0) {
 		return <Redirect to="/store" />;
+	}
+	if (clientSecret && purchaseItem) {
+		return <Redirect to={`/store/checkout/payment/${purchaseItem._id}`} />;
 	}
 
 	return (

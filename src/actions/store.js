@@ -9,6 +9,9 @@ import {
 	UPDATE_CART,
 	ADD_PURCHASE,
 	LOAD_ITEM,
+	RETRIEVE_INTENT,
+	CANCEL_INTENT,
+	PAYMENT_SUCCESS,
 } from './types';
 import { setAlert } from './alert';
 import { api } from '../components/reusable/api';
@@ -163,4 +166,71 @@ export const loadItem = (id) => async (dispatch) => {
 		});
 		dispatch(setAlert(error.response.data.msg, 'danger'));
 	}
+};
+
+export const retrieveIntent = (id) => async (dispatch) => {
+	try {
+		const res = await axios.get(`/checkout/retrieveintent/${id}`);
+		dispatch({
+			type: RETRIEVE_INTENT,
+			payload: res.data,
+		});
+	} catch (error) {
+		const errors = error.response.data.errors;
+		console.log(errors);
+		if (errors) {
+			errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+		}
+		dispatch({
+			type: STORE_ERROR,
+			payload: error.response.data,
+		});
+		dispatch(setAlert(error.response.data.msg, 'danger'));
+	}
+};
+
+export const cancelIntent = (id, history) => async (dispatch) => {
+	try {
+		const res = await axios.post(`/checkout/cancelintent/${id}`);
+		dispatch({
+			type: CANCEL_INTENT,
+			payload: res.data,
+		});
+		dispatch(setAlert('Order canceled.', 'success'));
+		history.goBack();
+	} catch (error) {
+		console.log(error);
+		dispatch({
+			type: STORE_ERROR,
+			payload: error.response.data,
+		});
+		dispatch(setAlert(error.response.data.msg, 'danger'));
+	}
+};
+
+export const paymentSuccess = (history) => async (dispatch) => {
+	try {
+		dispatch({
+			type: PAYMENT_SUCCESS,
+		});
+		dispatch(
+			setAlert('Thank you, your order has been submitted and a receipt has been emailed to you.', 'success')
+		);
+		history.push('/store');
+	} catch (error) {
+		console.log(error);
+		dispatch({
+			type: STORE_ERROR,
+			payload: error.response.data,
+		});
+		dispatch(setAlert(error.response.data.msg, 'danger'));
+	}
+};
+
+export const paymentError = (error) => async (dispatch) => {
+	dispatch({
+		type: STORE_ERROR,
+		payload: error,
+	});
+	dispatch(setAlert(error, 'danger'));
 };

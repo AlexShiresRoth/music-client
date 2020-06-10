@@ -4,36 +4,27 @@
 	width: 90%;
 	border-top: 1px solid #fff;
 	display: flex;
-	justify-content: flex-end;
+	flex-direction: column;
+	justify-content: center;
 	align-items: center;
 	margin: 1rem;
 	& p {
-		color: $brand-main;
+		color: $brand-secondary;
 		font-size: 2rem;
 		margin: 1rem;
 		& span {
-			color: #222;
+			color: #666;
 			font-weight: 700;
 			margin-right: 0.5rem;
 		}
 	}
-	& button {
-		height: 2.5rem;
-		width: 12rem;
-		background: $success;
-		color: $brand-text;
-		border-radius: 5px;
-		border: 1px solid $success;
-		box-shadow: 0 1px 5px darken($success, 5%);
-		transition: all 0.3s ease;
-		&:hover {
-			cursor: pointer;
-			background: lighten($success, 5%);
-			box-shadow: 0 1px 10px $success;
-		}
-		&:focus,
-		&:active {
-			outline: 0px solid $success;
+	& .disclaimer {
+		& p {
+			font-size: 1rem;
+			color: #666;
+			& a {
+				color: dodgerblue;
+			}
 		}
 	}
 }

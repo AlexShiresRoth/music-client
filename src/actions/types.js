@@ -20,3 +20,6 @@ export const GET_ITEM_TOTAL = 'GET_ITEM_TOTAL';
 export const UPDATE_CART = 'UPDATE_CART';
 export const ADD_PURCHASE = 'ADD_PURCHASE';
 export const LOAD_ITEM = 'LOAD_ITEM';
+export const RETRIEVE_INTENT = 'RETRIEVE_INTENT';
+export const CANCEL_INTENT = 'CANCEL_INTENT';
+export const PAYMENT_SUCCESS = 'PAYMENT_SUCCESS';

@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import style from './ItemDisplay.module.scss';
+import { connect } from 'react-redux';
+import { retrieveIntent } from '../../../actions/store';
 
-const ItemDisplay = ({ item }) => {
-	console.log('hellloooo' + item.payment);
+const ItemDisplay = ({ item, retrieveIntent }) => {
+	useEffect(() => {
+		if (item) {
+			const id = item.payment;
+			retrieveIntent(id);
+		}
+	}, [item, retrieveIntent]);
 	return (
 		<div className={style.container}>
 			<div className={style.items}>
@@ -29,5 +36,10 @@ const ItemDisplay = ({ item }) => {
 ItemDisplay.propTypes = {
 	item: PropTypes.object.isRequired,
 };
-
-export default ItemDisplay;
+const mapStateToProps = (state) => {
+	console.log(state);
+	return {
+		store: state.store,
+	};
+};
+export default connect(mapStateToProps, { retrieveIntent })(ItemDisplay);
