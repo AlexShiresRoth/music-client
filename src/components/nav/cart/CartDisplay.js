@@ -6,7 +6,7 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import { removeFromCart } from '../../../actions/store';
 import { connect } from 'react-redux';
 
-const CartDisplay = ({ items, removeFromCart, store: { clientSecret, purchaseItem } }) => {
+const CartDisplay = ({ items, removeFromCart, store: { clientSecret, purchaseItem }, auth: { isAuthenticated } }) => {
 	return (
 		<div className={style.container}>
 			<div className={style.point}>
@@ -28,7 +28,9 @@ const CartDisplay = ({ items, removeFromCart, store: { clientSecret, purchaseIte
 						</div>
 					);
 				})}
-				{clientSecret && purchaseItem ? (
+				{!isAuthenticated ? (
+					<button>Please Login or Create an Account To Checkout</button>
+				) : clientSecret && purchaseItem ? (
 					<Link to={`/store/checkout/payment/${purchaseItem._id}`}>
 						<button>Return to Checkout</button>
 					</Link>
@@ -50,6 +52,7 @@ CartDisplay.propTypes = {
 const mapStateToProps = (state) => {
 	return {
 		store: state.store,
+		auth: state.auth,
 	};
 };
 

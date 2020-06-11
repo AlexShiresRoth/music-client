@@ -5,6 +5,7 @@ export const AuthorizedLinks = ({ logoutUser, history, setModalState, modalState
 	const links = [
 		{ url: '/', title: 'home', type: 'link' },
 		{ url: '/store', title: 'store', type: 'link' },
+		{ url: '/store/account', title: 'account', type: 'link' },
 		{ url: '/store/logout', title: 'logout', type: 'button' },
 		{ url: '', title: 'contact', type: 'button' },
 	];

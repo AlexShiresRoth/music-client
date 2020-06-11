@@ -4,16 +4,10 @@ import bioStyles from './Bio.module.scss';
 import { addRef, setCurrent } from '../../actions/refs';
 import { connect } from 'react-redux';
 
-const ContentMap = ({ content: { content }, addRef, setCurrent }) => {
-	const [contentLength, setContentLength] = useState({
-		text: [],
-		reduced: true,
-	});
+const ContentMap = ({ content: { content }, addRef, setCurrent, text, setContentLength, reduced }) => {
 	const bioRef = useRef();
-	const { text, reduced } = contentLength;
 
 	useEffect(() => {
-		setContentLength({ text: content.slice(0, 4), reduced: true });
 		const observer = new IntersectionObserver(
 			([entry]) => {
 				if (entry.isIntersecting) {
@@ -26,15 +20,7 @@ const ContentMap = ({ content: { content }, addRef, setCurrent }) => {
 			observer.observe(bioRef.current);
 		}
 		if (bioRef.current !== null) addRef(bioRef);
-	}, [content, setContentLength, addRef, setCurrent]);
-
-	const changeLength = e =>
-		setTimeout(() => {
-			setContentLength({
-				text: reduced ? content : content.slice(0, 4),
-				reduced: !reduced,
-			});
-		}, 500);
+	}, [content, addRef, setCurrent]);
 
 	const contentMap = text.map((par, i) => {
 		return par.text !== '' ? (
@@ -55,9 +41,6 @@ const ContentMap = ({ content: { content }, addRef, setCurrent }) => {
 				<h2>Bio</h2>
 			</div>{' '}
 			{contentMap}
-			<button className={bioStyles.text_expand_btn} onClick={e => changeLength(e)}>
-				{reduced ? 'read more...' : 'reduce...'}
-			</button>
 		</div>
 	);
 };
@@ -66,7 +49,7 @@ ContentMap.propTypes = {
 	content: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
 		refs: state.refs,
 	};

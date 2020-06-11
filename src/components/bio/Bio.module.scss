@@ -8,7 +8,6 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: flex-start;
 	overflow-y: hidden;
 	padding: 2rem 0;
 	margin: 1rem 0;
@@ -18,6 +17,23 @@
 		justify-content: center;
 		& h2 {
 			@include heading;
+		}
+	}
+	& .btn_container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		& .text_expand_btn {
+			display: flex;
+			background: transparent;
+			color: $brand-main;
+			border: 0px solid transparent;
+			justify-self: center;
+			font-size: 1vw;
+			&:hover {
+				cursor: pointer;
+			}
 		}
 	}
 	& .par_grid {
@@ -34,20 +50,9 @@
 				line-height: 2;
 			}
 		}
-		& .text_expand_btn {
-			background: transparent;
-			color: $brand-main;
-			border: 0px solid transparent;
-			justify-self: center;
-			font-size: 1vw;
-			&:hover {
-				cursor: pointer;
-			}
-		}
 	}
 	& .reduced {
 		min-height: 70vh;
-		max-height: 80vh;
 	}
 	& .expanded {
 		min-height: 100vh;

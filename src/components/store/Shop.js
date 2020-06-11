@@ -13,10 +13,18 @@ const Shop = ({ loadUser, auth: { isAuthenticated, user, loading } }) => {
 
 	return !loading && user ? (
 		<section className={style.section}>
+			<div className={style.banner}>
+				<div className={style.overlay}></div>
+				<h2>Shop Merch</h2>
+			</div>
 			<ShopGrid />
 		</section>
 	) : (
 		<section className={style.section}>
+			<div className={style.banner}>
+				<div className={style.overlay}></div>
+				<h2>Shop Merch</h2>
+			</div>
 			<ShopGrid />
 		</section>
 	);

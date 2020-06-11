@@ -30,6 +30,7 @@ export default (state = initialState, action) => {
 				...state,
 				isAuthenticated: true,
 				user: payload,
+				loading: false,
 			};
 		case CLEAR_USER:
 			localStorage.removeItem('token');

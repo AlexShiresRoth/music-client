@@ -7,6 +7,7 @@ export const AdminLinks = ({ logoutUser, history, setModalState, modalState }) =
 		{ url: '/', title: 'home', type: 'link' },
 		{ url: '/store', title: 'store', type: 'link' },
 		{ url: '/store/logout', title: 'logout', type: 'button' },
+		{ url: '/store/account', title: 'account', type: 'link' },
 		{ url: '/store/additem', title: 'upload', type: 'link' },
 		{ url: '', title: 'contact', type: 'button' },
 	];

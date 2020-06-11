@@ -49,9 +49,9 @@ const App = () => {
 						<Route path="/store/login" component={Login} />
 						<Route exact path="/store/signup" component={Signup} />
 						<PrivateRoute exact path="/store/additem" component={StoreUpload} />
-						<PrivateRoute exact path={'/store/edit/:id'} component={EditStoreItem} />
-						<Route exact path="/store/checkout" component={CheckoutPage} />
-						<Route exact path="/store/checkout/payment/:id" component={CheckoutConfirmPage} />
+						<PrivateRoute exact path="/store/edit/:id" component={EditStoreItem} />
+						<PrivateRoute exact path="/store/checkout" component={CheckoutPage} />
+						<PrivateRoute exact path="/store/checkout/payment/:id" component={CheckoutConfirmPage} />
 					</Switch>
 				</HashRouter>
 			</Provider>
