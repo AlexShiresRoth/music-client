@@ -4,7 +4,7 @@ export const navLinks = [
 	{ url: '/music', title: 'music', type: 'button' },
 	{ url: '/bio', title: 'bio', type: 'button' },
 	{ url: '/store', title: 'store', type: 'link' },
-	{ url: '/contact', title: 'contact', type: 'link' },
+	{ url: '/contact', title: 'contact', type: 'button' },
 ];
 
 export const authLinks = [

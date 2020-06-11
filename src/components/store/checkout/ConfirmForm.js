@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { FiArrowLeft } from 'react-icons/fi';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import style from './ConfirmForm.module.scss';
 import { connect } from 'react-redux';
-import { loadItem, cancelIntent, paymentSuccess, paymentError } from '../../../actions/store';
+import { loadItem, cancelIntent, paymentSuccess, paymentError, updateQuantity } from '../../../actions/store';
 import ItemDisplay from './ItemDisplay';
 import ConfirmModal from './ConfirmModal';
 import { withRouter } from 'react-router-dom';
@@ -15,6 +16,7 @@ const ConfirmForm = ({
 	cancelIntent,
 	paymentSuccess,
 	paymentError,
+	updateQuantity,
 }) => {
 	const stripe = useStripe();
 	const elements = useElements();
@@ -56,6 +58,14 @@ const ConfirmForm = ({
 				// payment_intent.succeeded event that handles any business critical
 				// post-payment actions.
 				console.log('payment success!');
+				//Reduce quantity of item in the store upon success
+				purchaseItem.items.map((item) => {
+					const quantity =
+						parseInt(item.total.includes('.') ? item.total.split('.').slice(0, 1) : item.total) /
+						parseInt(item.amount.includes('.') ? item.amount.split('.').slice(0, 1) : item.amount);
+					return updateQuantity(quantity, item._id);
+				});
+
 				paymentSuccess(history);
 			}
 		}
@@ -72,23 +82,51 @@ const ConfirmForm = ({
 		e.preventDefault(e);
 		cancelIntent(purchaseItem.payment, history);
 	};
+
+	const options = {
+		style: {
+			base: {
+				color: '#32325d',
+				fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+				fontSmoothing: 'antialiased',
+				fontSize: '16px',
+				width: '100%',
+				border: '2px solid #eee',
+				margin: '1rem 0',
+				'::placeholder': {
+					color: '#aab7c4',
+				},
+			},
+			invalid: {
+				color: '#fa755a',
+				iconColor: '#fa755a',
+			},
+		},
+	};
 	return (
-		<>
+		<div className={style.container}>
 			<ConfirmModal
 				modalState={modalState}
 				setModalState={setModalState}
 				handleSubmit={handleSubmit}
 				total={purchaseItem.total}
 			/>
+			<button onClick={(e) => handlePaymentRedirect(e)}>
+				<FiArrowLeft /> Go Back/Cancel Order
+			</button>
 			<form className={style.form}>
-				<button onClick={(e) => handlePaymentRedirect(e)}>{'<-'}Go Back/Cancel Order</button>
+				<div className={style.heading}>
+					<h2>Order Summary</h2>
+					<p>Please review your selection before checking out. All sales are final.</p>
+				</div>
+
 				<ItemDisplay item={purchaseItem} />
-				<CardElement />
+				<CardElement id={style.card_element} options={options} />
 				<button onClick={(e) => handleModal(e)} onSubmit={(e) => handleModal(e)} disabled={!stripe}>
 					Pay {loading ? 'Loading...' : '$' + purchaseItem.total}
 				</button>
 			</form>
-		</>
+		</div>
 	);
 };
 
@@ -99,6 +137,6 @@ const mapStateToProps = (state) => {
 		store: state.store,
 	};
 };
-export default connect(mapStateToProps, { loadItem, cancelIntent, paymentError, paymentSuccess })(
+export default connect(mapStateToProps, { loadItem, cancelIntent, paymentError, paymentSuccess, updateQuantity })(
 	withRouter(ConfirmForm)
 );

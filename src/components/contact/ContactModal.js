@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import modalStyle from './ContactModal.module.scss';
 import { MdClose } from 'react-icons/md';
-const ContactModal = ({ modalState, setModalState }) => {
+import { connect } from 'react-redux';
+import { setModalState } from '../../actions/contact';
+
+const ContactModal = ({ contact: { modalState }, setModalState }) => {
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
@@ -12,9 +15,9 @@ const ContactModal = ({ modalState, setModalState }) => {
 
 	const { name, email, subject, message } = formData;
 
-	const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+	const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-	const formSubmit = e => {
+	const formSubmit = (e) => {
 		e.preventDefault();
 
 		console.log(formData);
@@ -32,32 +35,32 @@ const ContactModal = ({ modalState, setModalState }) => {
 			{modalState ? (
 				<div className={modalStyle.contact_modal}>
 					<div className={modalStyle.form_container}>
-						<div className={modalStyle.btn_container} onClick={e => setModalState(!modalState)}>
+						<div className={modalStyle.btn_container} onClick={(e) => setModalState(!modalState)}>
 							<MdClose />
 						</div>
 						<div className={modalStyle.grid}>
 							<div className={modalStyle.text_box}>
 								<h2>Get in contact.</h2>
 							</div>
-							<form className={modalStyle.form} onSubmit={e => formSubmit(e)}>
+							<form className={modalStyle.form} onSubmit={(e) => formSubmit(e)}>
 								<div className={modalStyle.input_row}>
 									<label>Name</label>
-									<input type="text" name="name" value={name} onChange={e => onChange(e)} />
+									<input type="text" name="name" value={name} onChange={(e) => onChange(e)} />
 								</div>
 								<div className={modalStyle.input_row}>
 									<label>Email</label>
-									<input type="email" name="email" value={email} onChange={e => onChange(e)} />
+									<input type="email" name="email" value={email} onChange={(e) => onChange(e)} />
 								</div>
 								<div className={modalStyle.input_row}>
 									<label>Subject</label>
-									<input type="text" name="subject" value={subject} onChange={e => onChange(e)} />
+									<input type="text" name="subject" value={subject} onChange={(e) => onChange(e)} />
 								</div>
 								<div className={modalStyle.input_row}>
 									<label>Message</label>
-									<textarea value={message} name="message" onChange={e => onChange(e)}></textarea>
+									<textarea value={message} name="message" onChange={(e) => onChange(e)}></textarea>
 								</div>
 								<div className={modalStyle.input_row}>
-									<button onSubmit={e => formSubmit(e)}>Send</button>
+									<button onSubmit={(e) => formSubmit(e)}>Send</button>
 								</div>
 							</form>
 						</div>
@@ -75,4 +78,11 @@ ContactModal.propTypes = {
 	setModalState: PropTypes.func.isRequired,
 };
 
-export default ContactModal;
+const mapStateToProps = (state) => {
+	console.log(state);
+	return {
+		contact: state.contact,
+	};
+};
+
+export default connect(mapStateToProps, { setModalState })(ContactModal);

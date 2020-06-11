@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import style from './PriceDisplay.module.scss';
 import { connect } from 'react-redux';
 import { updateTotal } from '../../../actions/store';
-import BillingInfo from './BillingInfo';
 
 const PriceDisplay = ({ store: { cart, loading }, updateTotal }) => {
 	const subtotal = cart.reduce((acc, next) => {
@@ -19,16 +18,6 @@ const PriceDisplay = ({ store: { cart, loading }, updateTotal }) => {
 			<div className={style.total_display}>
 				<p>
 					<span>Your total:</span>${loading ? <p>Loading...</p> : subtotal + '.00'}
-				</p>
-			</div>
-			<BillingInfo />
-			<div className={style.disclaimer}>
-				<p>
-					We use{' '}
-					<a href="https://stripe.com/" target="_blank" rel="noopener noreferrer">
-						stripe
-					</a>{' '}
-					for all our secure transactions.{' '}
 				</p>
 			</div>
 		</div>

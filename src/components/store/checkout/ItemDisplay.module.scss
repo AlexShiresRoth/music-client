@@ -1,17 +1,27 @@
 @import '../../../../sass/variables';
 
 .container {
-	padding: 1rem;
+	padding: 2rem;
+	width: 100%;
 	& p {
 		color: #666;
 		border-bottom: 1px solid #fff;
+		margin: 1rem 0;
+		font-size: 1.2rem;
+		& span {
+			color: $brand-secondary;
+			margin-right: 0.5rem;
+		}
 	}
 	& .items {
 		display: flex;
 		flex-direction: column;
+		width: 100%;
 		& .item {
+			width: 100%;
 			display: flex;
 			justify-content: space-around;
+			align-items: center;
 			margin: 0.5rem 0;
 			padding: 0.5rem 0;
 			background: #fff;

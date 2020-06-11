@@ -9,6 +9,7 @@ import { AuthorizedLinks } from './AuthorizedLinks';
 import { AdminLinks } from './AdminLinks';
 import { AuthLinks } from './AuthLinks';
 import { NavLinksComponent } from './NavLinksComponent';
+import { setModalState } from '../../actions/contact';
 import Cart from './cart/Cart';
 
 const Nav = ({
@@ -17,6 +18,8 @@ const Nav = ({
 	history,
 	auth: { isAuthenticated, user, loading },
 	logoutUser,
+	setModalState,
+	contact: { modalState },
 }) => {
 	const [page, setPage] = useState('');
 
@@ -72,23 +75,45 @@ const Nav = ({
 					!loading && isAuthenticated && user !== null ? (
 						user.role === 'admin' ? (
 							<>
-								<AdminLinks logoutUser={logoutUser} history={history} />
+								<AdminLinks
+									logoutUser={logoutUser}
+									history={history}
+									setModalState={setModalState}
+									modalState={modalState}
+								/>
 								<Cart />
 							</>
 						) : (
 							<>
-								<AuthorizedLinks logoutUser={logoutUser} history={history} />
+								<AuthorizedLinks
+									logoutUser={logoutUser}
+									history={history}
+									modalState={modalState}
+									setModalState={setModalState}
+								/>
 								<Cart />
 							</>
 						)
 					) : (
 						<>
-							<AuthLinks scrollToSection={scrollToSection} refs={refs} currentSection={currentSection} />
+							<AuthLinks
+								scrollToSection={scrollToSection}
+								refs={refs}
+								currentSection={currentSection}
+								setModalState={setModalState}
+								modalState={modalState}
+							/>
 							<Cart />
 						</>
 					)
 				) : (
-					<NavLinksComponent scrollToSection={scrollToSection} refs={refs} currentSection={currentSection} />
+					<NavLinksComponent
+						scrollToSection={scrollToSection}
+						refs={refs}
+						currentSection={currentSection}
+						setModalState={setModalState}
+						modalState={modalState}
+					/>
 				)}
 			</div>
 		</nav>
@@ -103,7 +128,8 @@ const mapStateToProps = (state) => {
 	return {
 		refs: state.refs,
 		auth: state.auth,
+		contact: state.contact,
 	};
 };
 
-export default connect(mapStateToProps, { logoutUser, setActive })(withRouter(Nav));
+export default connect(mapStateToProps, { logoutUser, setActive, setModalState })(withRouter(Nav));

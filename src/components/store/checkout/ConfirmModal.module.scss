@@ -54,7 +54,8 @@
 				color: #666;
 				font-size: 2rem;
 				& span {
-					color: $brand-main;
+					color: $brand-secondary;
+					font-weight: 100;
 				}
 			}
 		}

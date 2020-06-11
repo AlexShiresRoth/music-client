@@ -1,8 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Nav from '../nav/Nav';
 import Footer from '../footer/Footer';
 import Alert from '../alerts/Alert';
+import ContactModal from '../contact/ContactModal';
 
 const Layout = ({ children }) => {
 	const layoutStyle = {
@@ -14,6 +14,7 @@ const Layout = ({ children }) => {
 
 	return (
 		<main style={{ ...layoutStyle }}>
+			<ContactModal />
 			<Alert />
 			<Nav />
 			{children}
@@ -21,7 +22,5 @@ const Layout = ({ children }) => {
 		</main>
 	);
 };
-
-Layout.propTypes = {};
 
 export default Layout;

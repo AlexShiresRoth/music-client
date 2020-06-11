@@ -18,14 +18,13 @@ const CartDisplay = ({ items, removeFromCart, store: { clientSecret, purchaseIte
 						<div className={style.item}>
 							<p>
 								<span>Item:</span>
-								{item.name}
+								{item.name.length > 7 ? item.name.substr(0, 7) + '...' : item.name}
 							</p>
 							<p>
 								<span>Price:</span>${item.amount}
 							</p>
-							<button onClick={(e) => removeFromCart(item)}>
-								<AiFillCloseCircle />
-							</button>
+
+							<AiFillCloseCircle onClick={(e) => removeFromCart(item)} />
 						</div>
 					);
 				})}

@@ -35,6 +35,9 @@ const BillingInfo = ({ history, addPurchaseItem, store: { cart, total } }) => {
 
 	return (
 		<form className={style.form}>
+			<div className={style.heading}>
+				<p>Billing Information</p>
+			</div>
 			<div className={style.input_col}>
 				<label>Name</label>
 				<input type="text" value={name} name="name" onChange={(e) => onChange(e)} />
@@ -46,6 +49,15 @@ const BillingInfo = ({ history, addPurchaseItem, store: { cart, total } }) => {
 			<button onClick={(e) => handleSubmit(e)}>
 				Proceed to Checkout with <FaCcStripe />
 			</button>
+			<div className={style.disclaimer}>
+				<p>
+					We use{' '}
+					<a href="https://stripe.com/" target="_blank" rel="noopener noreferrer">
+						stripe
+					</a>{' '}
+					for all our secure transactions.{' '}
+				</p>
+			</div>
 		</form>
 	);
 };

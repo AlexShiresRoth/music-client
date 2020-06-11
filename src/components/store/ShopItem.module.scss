@@ -32,13 +32,16 @@
 			font-size: 1.2rem;
 		}
 		& p {
-			color: $brand-accent;
+			color: #666;
 		}
 		& .in_stock {
 			color: rgba(28, 184, 28, 0.972);
 		}
 		& .low_stock {
 			color: #e45d0f;
+		}
+		& .out_of_stock {
+			color: rgba(206, 35, 35, 0.904);
 		}
 	}
 	& .checkout {
@@ -65,6 +68,15 @@
 		& .added {
 			background: $success;
 			box-shadow: 0 1px 5px darken($success, 5%);
+		}
+		& .disabled_btn {
+			background: $brand-secondary;
+			opacity: 0.7;
+			&:hover {
+				cursor: not-allowed;
+				background: $brand-secondary;
+				box-shadow: 0 0 0;
+			}
 		}
 	}
 }

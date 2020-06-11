@@ -25,10 +25,21 @@ const ItemDisplay = ({ item, retrieveIntent }) => {
 					);
 				})}
 			</div>
-			<p>Total:${item.total}</p>
-			<p>{item.name}</p>
-			<p>{item.email}</p>
-			<p>{item.purchaseDate}</p>
+			<p>
+				<span>Total:</span>${item.total}
+			</p>
+			<p>
+				<span>Name:</span>
+				{item.name}
+			</p>
+			<p>
+				<span>Email:</span>
+				{item.email}
+			</p>
+			<p>
+				<span>Date:</span>
+				{item.purchaseDate}
+			</p>
 		</div>
 	);
 };

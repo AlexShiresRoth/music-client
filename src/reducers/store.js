@@ -12,6 +12,7 @@ import {
 	RETRIEVE_INTENT,
 	CANCEL_INTENT,
 	PAYMENT_SUCCESS,
+	GET_ITEM,
 } from '../actions/types';
 
 const initialState = {
@@ -23,6 +24,7 @@ const initialState = {
 	total: null,
 	purchaseItem: null,
 	clientSecret: null,
+	editItem: null,
 };
 
 export default (state = initialState, action) => {
@@ -39,6 +41,12 @@ export default (state = initialState, action) => {
 				...state,
 				upload: payload,
 				loading: false,
+			};
+		case GET_ITEM:
+			return {
+				...state,
+				loading: false,
+				editItem: payload,
 			};
 		case UPDATE_TOTAL:
 			return {
@@ -61,6 +69,8 @@ export default (state = initialState, action) => {
 					state.cart.filter((item) => item._id === payload._id).length > 0
 						? [...state.cart]
 						: [...state.cart, payload],
+				purchaseItem: null,
+				clientSecret: null,
 			};
 		case UPDATE_CART:
 			return {
@@ -108,6 +118,8 @@ export default (state = initialState, action) => {
 				loading: false,
 				cart: state.cart.filter((item) => item._id !== payload._id),
 				total: null,
+				purchaseItem: null,
+				clientSecret: null,
 			};
 		case STORE_ERROR:
 			return {

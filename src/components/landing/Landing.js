@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import landingStyle from './Landing.module.scss';
-import ContactModal from '../contact/ContactModal';
 import { TiSocialInstagram, TiSocialFacebook, TiSocialTwitter } from 'react-icons/ti';
 import { FaSpotify } from 'react-icons/fa';
 import { addRef, setActive, setCurrent } from '../../actions/refs';
+import { setModalState } from '../../actions/contact';
 import { connect } from 'react-redux';
 
-const Landing = ({ setActive, addRef, setCurrent }) => {
-	const [modalState, setModalState] = useState(false);
-
+const Landing = ({ setActive, addRef, setCurrent, setModalState, contact: { modalState } }) => {
 	const headerRef = useRef();
 
 	useEffect(() => {
@@ -37,7 +35,7 @@ const Landing = ({ setActive, addRef, setCurrent }) => {
 				<div className={landingStyle.overlay}></div>
 				<div className={landingStyle.grid}>
 					<button>Store</button>
-					<button onClick={e => setModalState(true)}>Contact</button>
+					<button onClick={(e) => setModalState(!modalState)}>Contact</button>
 					<div className={landingStyle.social}>
 						<TiSocialFacebook />
 						<TiSocialInstagram />
@@ -46,15 +44,15 @@ const Landing = ({ setActive, addRef, setCurrent }) => {
 					</div>
 				</div>
 			</header>
-			<ContactModal modalState={modalState} setModalState={setModalState} />
 		</>
 	);
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
 		refs: state.refs,
+		contact: state.contact,
 	};
 };
 
-export default connect(mapStateToProps, { addRef, setActive, setCurrent })(Landing);
+export default connect(mapStateToProps, { addRef, setActive, setCurrent, setModalState })(Landing);

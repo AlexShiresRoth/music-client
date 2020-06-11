@@ -1,30 +1,21 @@
 @import '../../../../sass/variables';
 
 .total_container {
-	width: 90%;
-	border-top: 1px solid #fff;
+	width: 100%;
+	border-bottom: 1px solid #fff;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
-	margin: 1rem;
+	align-items: flex-end;
+	margin: 0.5rem 0 1rem 0;
 	& p {
 		color: $brand-secondary;
-		font-size: 2rem;
+		font-size: 1.2rem;
 		margin: 1rem;
 		& span {
 			color: #666;
-			font-weight: 700;
+			font-weight: 100;
 			margin-right: 0.5rem;
-		}
-	}
-	& .disclaimer {
-		& p {
-			font-size: 1rem;
-			color: #666;
-			& a {
-				color: dodgerblue;
-			}
 		}
 	}
 }

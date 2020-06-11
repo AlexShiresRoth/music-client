@@ -12,6 +12,8 @@ import {
 	RETRIEVE_INTENT,
 	CANCEL_INTENT,
 	PAYMENT_SUCCESS,
+	GET_ITEM,
+	CLEAR_CART,
 } from './types';
 import { setAlert } from './alert';
 import { api } from '../components/reusable/api';
@@ -38,10 +40,16 @@ export const uploadToStore = (data, history) => async (dispatch) => {
 
 	try {
 		const res = await axios.post('/shop/additem/', formData, config);
+
 		dispatch({
 			type: UPLOAD_TO_STORE,
 			payload: res.data,
 		});
+
+		dispatch({
+			type: CLEAR_CART,
+		});
+
 		dispatch(setAlert('Item added to the store.', 'success'));
 
 		history.push('/store');
@@ -124,6 +132,80 @@ export const addPurchaseItem = (item, history) => async (dispatch) => {
 		if (errors) {
 			errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
 		}
+		dispatch({
+			type: STORE_ERROR,
+			payload: error.response.data,
+		});
+		dispatch(setAlert(error.response.data.msg, 'danger'));
+	}
+};
+
+export const getItemToEdit = (id) => async (dispatch) => {
+	try {
+		const res = await axios.get(`/shop/edit/${id}`);
+		dispatch({
+			type: GET_ITEM,
+			payload: res.data,
+		});
+	} catch (error) {
+		dispatch({
+			type: STORE_ERROR,
+			payload: error.response.data,
+		});
+		dispatch(setAlert(error.response.data.msg, 'danger'));
+	}
+};
+
+export const submitEditedItem = (data, history) => async (dispatch) => {
+	const config = {
+		accept: 'application/json',
+		headers: { 'Content-Type': 'application/json' },
+	};
+
+	const formData = JSON.stringify({ ...data });
+
+	try {
+		const res = await axios.put('/shop/edititem/', formData, config);
+		dispatch({
+			type: UPLOAD_TO_STORE,
+			payload: res.data,
+		});
+
+		dispatch({
+			type: CLEAR_CART,
+		});
+
+		dispatch(setAlert('Edited item in the store.', 'success'));
+
+		history.push('/store');
+	} catch (error) {
+		const errors = error.response.data.errors;
+		console.log(errors);
+		if (errors) {
+			errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+		}
+		dispatch({
+			type: STORE_ERROR,
+			payload: error.response.data,
+		});
+		dispatch(setAlert(error.response.data.msg, 'danger'));
+	}
+};
+
+export const updateQuantity = (quantity, id) => async (dispatch) => {
+	const config = {
+		accept: 'application/json',
+		headers: { 'Content-Type': 'application/json' },
+	};
+
+	const formData = JSON.stringify({ quantity, id });
+	try {
+		const res = await axios.put('/shop/paymentsuccess', formData, config);
+		dispatch({
+			type: UPLOAD_TO_STORE,
+			payload: res.data,
+		});
+	} catch (error) {
 		dispatch({
 			type: STORE_ERROR,
 			payload: error.response.data,

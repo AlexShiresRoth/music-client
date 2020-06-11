@@ -2,7 +2,7 @@
 .container {
 	position: absolute;
 	top: 100%;
-	right: -150%;
+	left: -220%;
 	& .point {
 		width: 100%;
 		display: flex;
@@ -22,24 +22,26 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-
 		background: $brand-dark;
-		box-shadow: 0 1px 5px #111;
+		box-shadow: 0 1px 5px $brand-dark;
 		border-radius: 5px;
 		padding: 1rem;
-		min-width: 12rem;
+		min-width: 20rem;
+		transition: all 0.3s ease-in-out;
 		&:hover {
-			cursor: pointer;
+			cursor: default;
 		}
 		& .item {
 			display: flex;
+			flex-direction: row;
 			align-items: center;
 			justify-content: space-between;
-			border-bottom: 1px solid #222;
+			border-bottom: 1px solid lighten($brand-dark, 5%);
 			width: 100%;
 			& p {
 				color: #bbb;
 				transition: all 0.3s ease;
+
 				& span {
 					font-weight: 700;
 					color: #ddd;
@@ -50,13 +52,18 @@
 			& p:nth-child(2) {
 				color: $brand-main;
 			}
-			& button {
+			& svg {
 				background: transparent;
 				font-size: 1.2rem;
 				border: 0;
 				color: $brand-main;
 				display: flex;
 				align-items: center;
+				justify-content: center;
+
+				&:hover {
+					cursor: pointer;
+				}
 			}
 		}
 		& button {
@@ -65,8 +72,12 @@
 			background: $brand-main;
 			border-radius: 5px;
 			border: 1px solid $brand-main;
-			margin: 0.5rem;
+			margin: 1rem 0.5rem;
 			color: $brand-text;
+			align-self: center;
+			&:hover {
+				cursor: pointer;
+			}
 		}
 	}
 }

@@ -5,11 +5,11 @@ const Alert = ({ alert }) => {
 	return alert.length > 0 ? (
 		<div className={style.container}>
 			{alert.map((item) => {
-				return (
+				return item.msg ? (
 					<div className={item.alertType === 'danger' ? style.alert_danger : style.alert_success}>
 						<p>{item.msg}</p>
 					</div>
-				);
+				) : null;
 			})}
 		</div>
 	) : null;
