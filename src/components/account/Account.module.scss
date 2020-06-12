@@ -1,0 +1,95 @@
+@import '../../../sass/variables';
+@font-face {
+	font-family: 'Rustic';
+	src: url('../../fonts/rustic.ttf') format('truetype');
+}
+
+.section {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	margin: 10rem 0;
+	& .account_container {
+		background: #eee;
+		display: flex;
+		flex-direction: column;
+		min-width: 40%;
+		padding: 1rem;
+		border-radius: 5px;
+		& h2 {
+			font-size: 2rem;
+			font-family: 'Rustic';
+			color: $brand-main;
+			text-transform: uppercase;
+			font-weight: 100;
+			border-bottom: 1px solid #fff;
+			width: 100%;
+			text-align: center;
+		}
+		& .container {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+
+			& .col {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				background: #fff;
+				box-shadow: 0 1px 5px darken(#eee, 5%);
+				width: 100%;
+				margin: 1rem 0;
+				border-radius: 5px;
+				& h3 {
+					color: #666;
+					border-bottom: 1px solid #eee;
+					margin: 1rem;
+					padding: 1rem 0;
+					display: flex;
+					align-items: center;
+					font-size: 2rem;
+					& svg {
+						color: $brand-main;
+						font-size: 2rem;
+						margin-right: 0.5rem;
+					}
+				}
+				& .row {
+					display: flex;
+					flex-direction: row;
+					justify-content: space-between;
+					align-items: center;
+					margin: 1rem;
+					& p {
+						color: #666;
+						& span {
+							color: $brand-main;
+						}
+					}
+					& button {
+						color: #fff;
+						background: $brand-main;
+						border-radius: 5px;
+						height: 2.5rem;
+						padding: 0 1rem;
+						font-size: 1rem;
+						border: 3px solid $brand-secondary;
+						display: flex;
+						align-items: center;
+						transition: all 0.3s ease-in-out;
+						& svg {
+							margin-right: 0.5rem;
+						}
+						&:hover {
+							cursor: pointer;
+							border: 3px solid $brand-main;
+							box-shadow: 0 1px 10px darken($brand-main, 5%);
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,14 +1,15 @@
 import axios from 'axios';
-import { AUTHENTICATE, USER_LOADED, AUTH_ERROR, LOAD_USER, CREATE_USER, CLEAR_USER, CLEAR_CART } from './types';
+import { AUTHENTICATE, AUTH_ERROR, LOAD_USER, CREATE_USER, CLEAR_USER, CLEAR_CART } from './types';
 import setAuthToken from '../reusable/setAuthToken';
 import { setAlert } from './alert';
+import { api } from '../reusable/api';
 
 export const loadUser = () => async (dispatch) => {
 	if (localStorage.token) {
 		setAuthToken(localStorage.token);
 	}
 	try {
-		const res = await axios.get('/auth');
+		const res = await axios.get(api + '/auth');
 
 		dispatch({
 			type: LOAD_USER,
@@ -38,7 +39,7 @@ export const authenticateUser = (data, history) => async (dispatch) => {
 	const formData = JSON.stringify({ ...data });
 
 	try {
-		const res = await axios.post('/auth', formData, config);
+		const res = await axios.post(api + '/auth', formData, config);
 
 		dispatch({
 			type: AUTHENTICATE,
@@ -73,7 +74,7 @@ export const createUser = (data, history) => async (dispatch) => {
 
 	const body = JSON.stringify({ ...data });
 	try {
-		const res = await axios.post('/users', body, config);
+		const res = await axios.post(api + '/users', body, config);
 
 		dispatch({
 			type: CREATE_USER,
@@ -109,7 +110,7 @@ export const logoutUser = (history) => async (dispatch) => {
 			type: CLEAR_CART,
 		});
 		dispatch(setAlert('You have been logged out', 'success'));
-		history.push('/');
+		history.push('/store');
 	} catch (error) {
 		console.error(error);
 		const errors = error.response.data.errors;

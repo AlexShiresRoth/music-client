@@ -1,0 +1,31 @@
+@import '../../../sass/variables';
+@font-face {
+	font-family: 'Rustic';
+	src: url('../../fonts/rustic.ttf') format('truetype');
+}
+.section {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	margin: 10rem 0;
+	& h2 {
+		font-size: 2.5rem;
+		font-family: 'Rustic';
+		color: $brand-main;
+		text-transform: uppercase;
+		font-weight: 100;
+		width: 100%;
+		text-align: center;
+	}
+	& .container {
+		padding: 1rem;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: auto;
+		gap: 2rem;
+		border-radius: 5px;
+	}
+}

@@ -37,7 +37,6 @@ Checkout.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-	console.log(state);
 	return {
 		store: state.store,
 	};

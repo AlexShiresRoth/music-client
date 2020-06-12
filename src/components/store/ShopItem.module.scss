@@ -2,13 +2,18 @@
 
 .item {
 	padding: 1rem;
-	background: darken(#eee, 5%);
+	background: $store-bg;
 	display: grid;
 	grid-template-columns: 1fr;
 	grid-template-rows: auto;
 	gap: 1rem;
 	border-radius: 5px;
 	max-width: 25rem;
+	& a {
+		display: flex;
+		align-items: center;
+		color: $brand-main;
+	}
 	& .heading {
 		max-width: 20rem;
 		& img {
@@ -29,8 +34,11 @@
 		box-shadow: 0 1px 10px darken(#eee, 5%);
 		border-radius: 5px;
 		& h2 {
-			color: $brand-main;
+			color: #666;
 			font-size: 1.2rem;
+		}
+		& span {
+			color: $brand-main;
 		}
 		& p {
 			color: #666;
@@ -54,13 +62,14 @@
 			border-radius: 100px;
 			color: #eee;
 			background: $brand-main;
-			border: 0;
+			border: 4px solid $brand-secondary;
 			box-shadow: 0 1px 5px darken($brand-main, 5%);
 			transition: all 0.3s ease;
 			&:hover {
 				cursor: pointer;
 				background: darken($brand-main, 5%);
 				box-shadow: 0 1px 10px darken($brand-main, 10%);
+				border: 4px solid $brand-main;
 			}
 			&:focus {
 				outline: 1px solid transparent;
@@ -69,6 +78,7 @@
 		& .added {
 			background: $success;
 			box-shadow: 0 1px 5px darken($success, 5%);
+			border: 4px solid $success;
 		}
 		& .disabled_btn {
 			background: $brand-secondary;

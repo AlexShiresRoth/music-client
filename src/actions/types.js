@@ -26,3 +26,4 @@ export const PAYMENT_SUCCESS = 'PAYMENT_SUCCESS';
 export const GET_ITEM = 'GET_ITEM';
 export const SUBMIT_EDIT = 'SUBMIT_EDIT';
 export const SET_MODAL = 'SET_MODAL';
+export const LOAD_ORDERS = 'LOAD_ORDERS';

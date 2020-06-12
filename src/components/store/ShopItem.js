@@ -37,13 +37,19 @@ const ShopItem = ({
 				<img src={`${image}`} alt={name} />
 			</div>
 			<div className={style.name}>
-				<h2>Item Name: {name}</h2>
+				<h2>
+					Item Name: <span>{name}</span>
+				</h2>
 			</div>
 			<div className={style.description}>
-				<p>Description: {description}</p>
+				<p>
+					Description: <span>{description}</span>
+				</p>
 			</div>
 			<div className={style.price}>
-				<p>Price: ${amount}</p>
+				<p>
+					Price: <span>${amount}</span>
+				</p>
 				{quantity > 10 ? (
 					<p className={style.in_stock}>In Stock</p>
 				) : quantity <= 0 ? (

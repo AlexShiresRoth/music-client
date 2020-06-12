@@ -18,6 +18,8 @@ import StoreUpload from './components/pages/StoreUpload';
 import CheckoutPage from './components/pages/CheckoutPage';
 import CheckoutConfirmPage from './components/pages/CheckoutConfirmPage';
 import EditStoreItem from './components/pages/EditStoreItem';
+import AccountPage from './components/pages/AccountPage';
+import ViewOrdersPage from './components/pages/ViewOrdersPage';
 
 if (localStorage.token) {
 	setAuthToken(localStorage.token);
@@ -52,6 +54,8 @@ const App = () => {
 						<PrivateRoute exact path="/store/edit/:id" component={EditStoreItem} />
 						<PrivateRoute exact path="/store/checkout" component={CheckoutPage} />
 						<PrivateRoute exact path="/store/checkout/payment/:id" component={CheckoutConfirmPage} />
+						<PrivateRoute exact path="/store/account" component={AccountPage} />
+						<PrivateRoute exact path="/store/account/vieworders" component={ViewOrdersPage} />
 					</Switch>
 				</HashRouter>
 			</Provider>

@@ -20,7 +20,7 @@ import { api } from '../components/reusable/api';
 
 export const loadItems = () => async (dispatch) => {
 	try {
-		const res = await axios.get(`/shop`);
+		const res = await axios.get(api + `/shop`);
 		dispatch({
 			type: LOAD_ITEMS,
 			payload: res.data,
@@ -39,7 +39,7 @@ export const uploadToStore = (data, history) => async (dispatch) => {
 	const formData = JSON.stringify({ ...data });
 
 	try {
-		const res = await axios.post('/shop/additem/', formData, config);
+		const res = await axios.post(api + '/shop/additem/', formData, config);
 
 		dispatch({
 			type: UPLOAD_TO_STORE,
@@ -118,7 +118,7 @@ export const addPurchaseItem = (item, history) => async (dispatch) => {
 
 	const formData = JSON.stringify({ ...item });
 	try {
-		const res = await axios.post('/checkout', formData, config);
+		const res = await axios.post(api + '/checkout', formData, config);
 
 		dispatch({
 			type: ADD_PURCHASE,
@@ -142,7 +142,7 @@ export const addPurchaseItem = (item, history) => async (dispatch) => {
 
 export const getItemToEdit = (id) => async (dispatch) => {
 	try {
-		const res = await axios.get(`/shop/edit/${id}`);
+		const res = await axios.get(api + `/shop/edit/${id}`);
 		dispatch({
 			type: GET_ITEM,
 			payload: res.data,
@@ -165,7 +165,7 @@ export const submitEditedItem = (data, history) => async (dispatch) => {
 	const formData = JSON.stringify({ ...data });
 
 	try {
-		const res = await axios.put('/shop/edititem/', formData, config);
+		const res = await axios.put(api + '/shop/edititem/', formData, config);
 		dispatch({
 			type: UPLOAD_TO_STORE,
 			payload: res.data,
@@ -200,7 +200,7 @@ export const updateQuantity = (quantity, id) => async (dispatch) => {
 
 	const formData = JSON.stringify({ quantity, id });
 	try {
-		const res = await axios.put('/shop/paymentsuccess', formData, config);
+		const res = await axios.put(api + '/checkout/updatequantity', formData, config);
 		dispatch({
 			type: UPLOAD_TO_STORE,
 			payload: res.data,
@@ -231,7 +231,7 @@ export const updateTotal = (total) => async (dispatch) => {
 
 export const loadItem = (id) => async (dispatch) => {
 	try {
-		const res = await axios.get(`/checkout/${id}`);
+		const res = await axios.get(api + `/checkout/${id}`);
 		dispatch({
 			type: LOAD_ITEM,
 			payload: res.data,
@@ -252,7 +252,7 @@ export const loadItem = (id) => async (dispatch) => {
 
 export const retrieveIntent = (id) => async (dispatch) => {
 	try {
-		const res = await axios.get(`/checkout/retrieveintent/${id}`);
+		const res = await axios.get(api + `/checkout/retrieveintent/${id}`);
 		dispatch({
 			type: RETRIEVE_INTENT,
 			payload: res.data,
@@ -273,7 +273,7 @@ export const retrieveIntent = (id) => async (dispatch) => {
 
 export const cancelIntent = (id, history) => async (dispatch) => {
 	try {
-		const res = await axios.post(`/checkout/cancelintent/${id}`);
+		const res = await axios.post(api + `/checkout/cancelintent/${id}`);
 		dispatch({
 			type: CANCEL_INTENT,
 			payload: res.data,
@@ -290,8 +290,17 @@ export const cancelIntent = (id, history) => async (dispatch) => {
 	}
 };
 
-export const paymentSuccess = (history) => async (dispatch) => {
+export const paymentSuccess = (history, purchaseItem) => async (dispatch) => {
+	const config = {
+		accept: 'application/json',
+		headers: { 'Content-Type': 'application/json' },
+	};
+
+	const formData = JSON.stringify({ ...purchaseItem });
+
 	try {
+		await axios.post(api + '/checkout/paymentsuccess', formData, config);
+
 		dispatch({
 			type: PAYMENT_SUCCESS,
 		});

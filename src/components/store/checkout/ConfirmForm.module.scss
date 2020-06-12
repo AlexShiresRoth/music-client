@@ -5,10 +5,10 @@
 	flex-direction: column;
 	margin: 10rem 0;
 	& button:nth-child(1) {
-		background: $brand-secondary;
+		background: $brand-main;
 		color: #fff;
 		box-shadow: 0 0 0 transparent;
-		border: 1px solid $brand-secondary;
+		border: 4px solid $brand-secondary;
 		border-radius: 5px;
 		align-self: flex-start;
 		justify-self: flex-start;
@@ -20,7 +20,7 @@
 		&:hover {
 			cursor: pointer;
 			background: $brand-main;
-			border: 1px solid $brand-main;
+			border: 4px solid $brand-main;
 			box-shadow: 0 1px 5px darken($brand-main, 5%);
 		}
 	}
@@ -28,7 +28,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		background: #eee;
+		background: $store-bg;
 		width: 50vw;
 		padding: 2rem;
 		border-radius: 5px;
@@ -43,7 +43,7 @@
 				margin: 0.5rem 0;
 			}
 			& p {
-				color: $brand-secondary;
+				color: $brand-main;
 				font-size: 1.5rem;
 				margin: 0;
 			}
@@ -51,7 +51,7 @@
 		& button {
 			height: 3rem;
 			width: 100%;
-			border: 1px solid $brand-main;
+			border: 4px solid $brand-secondary;
 			background: $brand-main;
 			color: #fff;
 			font-size: 1rem;

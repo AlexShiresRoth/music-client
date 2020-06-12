@@ -74,8 +74,6 @@ CheckoutForm.propTypes = {
 };
 
 const mapStateToPros = (state) => {
-	console.log(state);
-
 	return {
 		store: state.store,
 	};

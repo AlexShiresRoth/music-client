@@ -66,7 +66,7 @@ const ConfirmForm = ({
 					return updateQuantity(quantity, item._id);
 				});
 
-				paymentSuccess(history);
+				paymentSuccess(history, purchaseItem);
 			}
 		}
 	};

@@ -8,7 +8,7 @@
 	flex-direction: column;
 	min-width: 35vw;
 	max-width: 40vw;
-	background: #eee;
+	background: $store-bg;
 	position: relative;
 	border-radius: 2px;
 	margin: 7rem 0;
@@ -91,7 +91,7 @@
 				height: 3rem;
 				width: 12rem;
 				background: $brand-main;
-				border: 1px solid $brand-main;
+				border: 4px solid $brand-secondary;
 				border-radius: 150px;
 				transition: all 0.3s ease;
 				box-shadow: 0 1px 7px darken($brand-main, 2%);
@@ -101,7 +101,7 @@
 				&:hover {
 					cursor: pointer;
 					background: darken($brand-main, 5%);
-					border: 1px solid darken($brand-main, 5%);
+					border: 4px solid darken($brand-main, 5%);
 					box-shadow: 0 1px 15px darken($brand-main, 5%);
 				}
 			}

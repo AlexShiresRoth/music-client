@@ -5,6 +5,7 @@ import { FaCcStripe } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { addPurchaseItem } from '../../../actions/store';
 import { withRouter } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 const BillingInfo = ({ history, addPurchaseItem, store: { cart, total } }) => {
 	const [item, setPurchaseItem] = useState({
@@ -12,6 +13,7 @@ const BillingInfo = ({ history, addPurchaseItem, store: { cart, total } }) => {
 		name: '',
 		email: '',
 		cart: [],
+		orderId: '',
 	});
 
 	const { name, email } = item;
@@ -24,6 +26,7 @@ const BillingInfo = ({ history, addPurchaseItem, store: { cart, total } }) => {
 			name,
 			email,
 			cart,
+			orderId: uuidv4(),
 		});
 	}, [setPurchaseItem, name, email, total, cart]);
 

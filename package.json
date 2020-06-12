@@ -28,7 +28,8 @@
 		"react-scripts": "3.4.0",
 		"redux": "^4.0.5",
 		"redux-thunk": "^2.3.0",
-		"stripe": "^8.32.0"
+		"stripe": "^8.32.0",
+		"uuid": "^8.1.0"
 	},
 	"scripts": {
 		"start": "react-scripts start",
