@@ -3,6 +3,7 @@ import Nav from '../nav/Nav';
 import Footer from '../footer/Footer';
 import Alert from '../alerts/Alert';
 import ContactModal from '../contact/ContactModal';
+import EmailSignup from '../EmailSignup.js/EmailSignup';
 
 const Layout = ({ children }) => {
 	const layoutStyle = {
@@ -18,6 +19,7 @@ const Layout = ({ children }) => {
 			<Alert />
 			<Nav />
 			{children}
+			<EmailSignup />
 			<Footer />
 		</main>
 	);

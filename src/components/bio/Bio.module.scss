@@ -1,8 +1,8 @@
 @import '../../../sass/variables';
 @import '../../../sass/mixins';
 @font-face {
-	font-family: 'Rustic';
-	src: url('../../fonts/rustic.ttf') format('truetype');
+	font-family: 'Henrik';
+	src: url('../../fonts/Henrik-Regular.otf') format('truetype');
 }
 .section {
 	display: flex;
@@ -57,5 +57,53 @@
 	& .expanded {
 		min-height: 100vh;
 		max-height: 1000vh;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.section {
+		padding: 2rem 0;
+		margin: 1rem 0;
+		& .bio_heading {
+			& h2 {
+				@include heading;
+				font-size: 12vw;
+			}
+		}
+		& .btn_container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			& .text_expand_btn {
+				display: flex;
+				background: transparent;
+				color: $brand-main;
+				border: 0px solid transparent;
+				justify-self: center;
+				font-size: 4.5vw;
+				&:hover {
+					cursor: pointer;
+				}
+			}
+		}
+		& .par_grid {
+			max-width: 95%;
+			& .par_container {
+				padding: 0rem 1rem;
+				& p {
+					color: $brand-text;
+					font-size: 4.5vw;
+					line-height: 2;
+				}
+			}
+		}
+		& .reduced {
+			min-height: 70vh;
+		}
+		& .expanded {
+			min-height: 100vh;
+			max-height: 1000vh;
+		}
 	}
 }

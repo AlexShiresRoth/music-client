@@ -1,0 +1,111 @@
+@import '../../../sass/variables';
+@import '../../../sass/mixins';
+@font-face {
+	font-family: 'Henrik';
+	src: url('../../fonts/Henrik-Regular.otf') format('truetype');
+}
+.section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 6rem 0;
+	background: $brand-dark;
+	width: 100%;
+	& .heading {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		& h3 {
+			@include heading;
+			font-size: 3rem;
+			margin: 0;
+		}
+		& p {
+			color: $brand-text;
+			font-size: 2rem;
+		}
+	}
+	& form {
+		display: grid;
+		grid-template-columns: repeat(2, auto);
+		gap: 1rem;
+		height: 3rem;
+		& input {
+			color: $brand-main;
+
+			width: 20rem;
+			padding: 0 1rem;
+		}
+		& button {
+			height: 100%;
+			width: 7rem;
+			border: 2px solid $brand-main;
+			background: transparent;
+			color: $brand-main;
+			text-transform: uppercase;
+			font-size: 1rem;
+			transition: all 0.3s ease;
+			&:hover {
+				cursor: pointer;
+				background: $brand-main;
+				color: $brand-text;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.section {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 4rem 0;
+		background: $brand-dark;
+		width: 100%;
+		& .heading {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			& h3 {
+				@include heading;
+				font-size: 12vw;
+				margin: 0;
+			}
+			& p {
+				color: $brand-text;
+				font-size: 5vw;
+			}
+		}
+		& form {
+			display: grid;
+			grid-template-columns: repeat(2, auto);
+			gap: 0rem;
+			height: 2.7rem;
+			& input {
+				color: $brand-main;
+				width: 10rem;
+				padding: 0 1rem;
+			}
+			& button {
+				height: 100%;
+				width: 7rem;
+				border: 2px solid $brand-main;
+				background: $brand-main;
+				color: $brand-text;
+				text-transform: uppercase;
+				font-size: 1rem;
+				transition: all 0.3s ease;
+				box-shadow: 0 1px 5px darken($brand-main, 15%);
+				&:hover {
+					cursor: pointer;
+					background: $brand-main;
+					color: $brand-text;
+				}
+			}
+		}
+	}
+}

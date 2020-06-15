@@ -26,6 +26,7 @@ const Music = ({ addRef, setCurrent }) => {
 
 	return (
 		<section className={musicStyle.section} ref={musicRef} id="music">
+			<div className={musicStyle.overlay}></div>
 			<div className={musicStyle.heading}>
 				<h2>Music</h2>
 			</div>
@@ -72,7 +73,7 @@ const Music = ({ addRef, setCurrent }) => {
 
 Music.propTypes = { addRef: PropTypes.func.isRequired, setCurrent: PropTypes.func.isRequired };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
 		refs: state.refs,
 	};

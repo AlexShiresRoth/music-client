@@ -1,10 +1,9 @@
 @import '../../../sass/variables';
 @import '../../../sass/mixins';
 @font-face {
-	font-family: 'Rustic';
-	src: url('../../fonts/rustic.ttf') format('truetype');
+	font-family: 'Henrik';
+	src: url('../../fonts/Henrik-Regular.otf') format('truetype');
 }
-
 .section {
 	min-height: 50vh;
 	display: flex;
@@ -54,6 +53,58 @@
 			& svg {
 				color: $brand-main;
 				font-size: 1.2vw;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.section {
+		padding: 4rem 0;
+		& .heading {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			& h2 {
+				@include heading;
+				font-size: 12vw;
+			}
+		}
+		& .grid {
+			gap: 2rem;
+			width: 100%;
+			max-width: 100%;
+			justify-items: center;
+			& .gig_container {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				flex-wrap: wrap;
+				padding: 1rem;
+				width: 100%;
+				border-bottom: 1.2px solid darken($brand-accent, 3%);
+				& p {
+					display: block;
+					color: $brand-text;
+					font-size: 1.2rem;
+				}
+				& button {
+					border: 2px solid $brand-main;
+					background: $brand-main;
+					color: $brand-text;
+					padding: 0.5rem 1rem;
+					text-transform: uppercase;
+					transition: all 0.3s ease;
+					box-shadow: 0 1px 5px darken($brand-main, 5%);
+					&:hover {
+						cursor: pointer;
+						box-shadow: 0 1px 0px darken($brand-main, 5%);
+					}
+				}
+				& svg {
+					color: $brand-main;
+					font-size: 10vw;
+				}
 			}
 		}
 	}

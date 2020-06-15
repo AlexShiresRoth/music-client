@@ -1,7 +1,7 @@
 @import '../../../../sass/variables';
 @font-face {
-	font-family: 'Rustic';
-	src: url('../../../fonts/rustic.ttf') format('truetype');
+	font-family: 'Henrik';
+	src: url('../../../fonts/Henrik-Regular.otf') format('truetype');
 }
 .container {
 	display: flex;
@@ -44,8 +44,8 @@
 			line-height: 2;
 			z-index: 2;
 			margin: 0;
-			font-size: 2.3rem;
-			font-family: 'Rustic';
+			font-size: 3rem;
+			font-family: 'Henrik';
 			text-transform: uppercase;
 			color: $brand-main;
 		}

@@ -90,6 +90,29 @@
 	}
 }
 
+@media screen and (max-width: 900px) {
+	.landing {
+		& .grid {
+			z-index: 1;
+			& button {
+				width: 33.33%;
+				color: $brand-text;
+				font-size: 4vw;
+			}
+		}
+		& .social {
+			width: 33.33%;
+
+			& svg {
+				margin: 0 0.5vw;
+				color: darken($brand-text, 20%);
+				font-size: 4vw;
+				transition: all 0.3s ease-in-out;
+			}
+		}
+	}
+}
+
 @keyframes fadein {
 	0% {
 		transform: translateY(10vh);

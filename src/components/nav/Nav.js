@@ -37,20 +37,98 @@ const Nav = ({
 		switch (true) {
 			case selectedSection.current.id === 'bio':
 				handleScroll(selectedSection);
+				setNavState(!navState);
 				break;
 			case selectedSection.current.id === 'home':
 				handleScroll(selectedSection);
+				setNavState(!navState);
 				break;
 			case selectedSection.current.id === 'gigs':
 				handleScroll(selectedSection);
+				setNavState(!navState);
 				break;
 			case selectedSection.current.id === 'music':
 				handleScroll(selectedSection);
+				setNavState(!navState);
 				break;
 			default:
 				return;
 		}
 	};
+
+	const handleAppropriateNavLinks = () => {
+		return page !== '/' ? (
+			!loading && isAuthenticated && user !== null ? (
+				user.role === 'admin' ? (
+					<>
+						<AdminLinks
+							logoutUser={logoutUser}
+							history={history}
+							setModalState={setModalState}
+							modalState={modalState}
+						/>
+						<Cart />
+					</>
+				) : (
+					<>
+						<AuthorizedLinks
+							logoutUser={logoutUser}
+							history={history}
+							modalState={modalState}
+							setModalState={setModalState}
+						/>
+						<Cart />
+					</>
+				)
+			) : (
+				<>
+					<AuthLinks
+						scrollToSection={scrollToSection}
+						refs={refs}
+						currentSection={currentSection}
+						setModalState={setModalState}
+						modalState={modalState}
+					/>
+					<Cart />
+				</>
+			)
+		) : (
+			<NavLinksComponent
+				scrollToSection={scrollToSection}
+				refs={refs}
+				currentSection={currentSection}
+				setModalState={setModalState}
+				modalState={modalState}
+			/>
+		);
+	};
+
+	const [navState, setNavState] = useState(false);
+
+	const burgerMenu = (
+		<svg viewBox="0 0 100 100" className={navStyle.menu} onClick={() => setNavState(!navState)}>
+			<g>
+				<path
+					d="M 0 50 L100 50 Z"
+					strokeWidth="3px"
+					stroke="#fff"
+					className={navState ? navStyle.rotated : ''}
+				/>
+				<path
+					d="M 0, 30 L100, 30 Z"
+					strokeWidth="3px"
+					stroke="#fff"
+					className={navState ? navStyle.rotated : ''}
+				/>
+				<path
+					d="M 0, 70 L100, 70 Z"
+					strokeWidth="3px"
+					stroke="#fff"
+					className={navState ? navStyle.rotated : ''}
+				/>
+			</g>
+		</svg>
+	);
 
 	useEffect(() => {
 		setPage(history.location.pathname);
@@ -68,54 +146,15 @@ const Nav = ({
 			}
 		>
 			<div className={navStyle.nav_title}>
-				<h2>Gerry Mckeveny</h2>
+				<h2>gerry mckeveny</h2>
 			</div>
-			<div className={navStyle.nav_inner}>
-				{page !== '/' ? (
-					!loading && isAuthenticated && user !== null ? (
-						user.role === 'admin' ? (
-							<>
-								<AdminLinks
-									logoutUser={logoutUser}
-									history={history}
-									setModalState={setModalState}
-									modalState={modalState}
-								/>
-								<Cart />
-							</>
-						) : (
-							<>
-								<AuthorizedLinks
-									logoutUser={logoutUser}
-									history={history}
-									modalState={modalState}
-									setModalState={setModalState}
-								/>
-								<Cart />
-							</>
-						)
-					) : (
-						<>
-							<AuthLinks
-								scrollToSection={scrollToSection}
-								refs={refs}
-								currentSection={currentSection}
-								setModalState={setModalState}
-								modalState={modalState}
-							/>
-							<Cart />
-						</>
-					)
-				) : (
-					<NavLinksComponent
-						scrollToSection={scrollToSection}
-						refs={refs}
-						currentSection={currentSection}
-						setModalState={setModalState}
-						modalState={modalState}
-					/>
-				)}
-			</div>
+			<div className={navStyle.nav_inner}>{handleAppropriateNavLinks()}</div>
+			{/* Mobile Navigation */}
+			<div className={navStyle.mobile_nav}>{burgerMenu}</div>
+			<div className={navState ? navStyle.side_menu : `${navStyle.side_menu} ${navStyle.side_menu_hide}`}>
+				<div className={navStyle.side_menu_container}>{handleAppropriateNavLinks()}</div>
+				<div className={navStyle.tap_to_close} onClick={(e) => setNavState(!navState)}></div>
+			</div>{' '}
 		</nav>
 	);
 };

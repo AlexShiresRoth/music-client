@@ -11,7 +11,7 @@ const Footer = () => {
 			</div>
 			<div className={footerStyle.center}>
 				<a href="https://fillthevoid.io" target="_blank" rel="noopener noreferrer">
-					powered by fillthevoid.io
+					Website Design & Development by <span>fillthevoid.io</span>
 				</a>
 			</div>
 			<div className={footerStyle.right}>

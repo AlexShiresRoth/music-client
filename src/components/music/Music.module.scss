@@ -1,8 +1,8 @@
 @import '../../../sass/variables';
 @import '../../../sass/mixins';
 @font-face {
-	font-family: 'Rustic';
-	src: url('../../fonts/rustic.ttf') format('truetype');
+	font-family: 'Henrik';
+	src: url('../../fonts/Henrik-Regular.otf') format('truetype');
 }
 
 .section {
@@ -11,13 +11,30 @@
 	align-items: center;
 	justify-content: center;
 	padding: 4rem 0;
-	background: $brand-dark;
+	background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1585118479/gerry-m/gerry_xbgul1.jpg');
+	background-position: center;
+	background-attachment: fixed;
+	background-size: cover;
+	filter: sepia(0.2);
 	width: 100%;
 	box-shadow: 0 1px 10px darken($brand-dark, 2%);
+	position: relative;
+	& .overlay {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: $brand-dark;
+		opacity: 0.8;
+		z-index: 1;
+	}
 	& .heading {
 		width: 100%;
 		display: flex;
 		justify-content: center;
+		z-index: 2;
 		& h2 {
 			@include heading;
 		}
@@ -26,6 +43,7 @@
 	& .section_inner {
 		display: flex;
 		margin-bottom: 3rem;
+		z-index: 2;
 		& .text_box {
 			background: $brand-dark;
 			padding: 5rem;
@@ -74,6 +92,7 @@
 		& .spotify_container {
 			width: 20vw;
 			margin-right: -2vw;
+			z-index: 2;
 
 			& .spotify_iframe {
 				width: 100%;
@@ -82,6 +101,103 @@
 				background-color: rgba(163, 86, 56, 0.5);
 				box-shadow: 0 1px 10px darken($brand-dark, 5%);
 				margin-top: 5vh;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.section {
+		width: 100%;
+		& .heading {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			z-index: 2;
+			& h2 {
+				@include heading;
+				font-size: 12vw;
+			}
+		}
+
+		& .section_inner {
+			display: flex;
+			margin-bottom: 3rem;
+			flex-direction: column;
+			align-items: center;
+			z-index: 2;
+			width: 100%;
+			& .text_box {
+				background: $brand-dark;
+				padding: 0;
+				width: 100%;
+				margin-left: 0rem;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				& h3 {
+					color: $brand-text;
+					font-family: 'Muli';
+					font-weight: 100;
+					font-size: 6vw;
+					padding-bottom: 0.5rem;
+					padding: 1rem;
+					border-bottom: 0;
+					text-align: center;
+					margin: 0;
+				}
+				& .actions {
+					display: flex;
+					flex-direction: column;
+					margin: 1rem;
+					& a {
+						display: flex;
+						justify-content: center;
+						width: 100%;
+						height: 100%;
+						text-decoration: none;
+						margin-bottom: 2rem;
+						& .spotify_btn {
+							background: #2ebd59;
+							border: 1px solid #2ebd59;
+							border-radius: 200px;
+							height: 6vh;
+							width: 50vw;
+							color: #fff;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							text-align: center;
+							font-size: 4vw;
+							transition: all 0.3s ease-in-out;
+							&:hover {
+								cursor: pointer;
+								background: darken(#2ebd59, 5%);
+								border: 1px solid darken(#2ebd59, 5%);
+							}
+						}
+					}
+					& iframe {
+						min-height: 0;
+						height: 10vh;
+						order: 2;
+						display: none;
+					}
+				}
+			}
+			& .spotify_container {
+				width: 100%;
+				margin-right: 0;
+				z-index: 2;
+				order: 2;
+				& .spotify_iframe {
+					width: 100%;
+					min-height: 40vh;
+					padding: 0rem;
+					background-color: rgba(163, 86, 56, 0.5);
+					box-shadow: 0 1px 10px darken($brand-dark, 5%);
+					margin-top: 0vh;
+				}
 			}
 		}
 	}

@@ -19,8 +19,6 @@ const ContactModal = ({ contact: { modalState }, setModalState }) => {
 
 	const formSubmit = (e) => {
 		e.preventDefault();
-
-		console.log(formData);
 	};
 	useEffect(() => {
 		setFormData({
@@ -79,7 +77,6 @@ ContactModal.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-	console.log(state);
 	return {
 		contact: state.contact,
 	};
