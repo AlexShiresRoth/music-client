@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import Auth from './Auth';
 import style from './LoginForm.module.scss';
 import { authenticateUser } from '../../../actions/auth';
 import { connect } from 'react-redux';
-import { withRouter, NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+
 const LoginForm = ({ history, authenticateUser }) => {
 	const [data, setData] = useState({
 		email: '',
@@ -60,7 +60,5 @@ const LoginForm = ({ history, authenticateUser }) => {
 		</Auth>
 	);
 };
-
-LoginForm.propTypes = {};
 
 export default connect(null, { authenticateUser })(withRouter(LoginForm));

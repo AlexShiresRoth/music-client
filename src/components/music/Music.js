@@ -34,7 +34,7 @@ const Music = ({ addRef, setCurrent }) => {
 				<div className={musicStyle.spotify_container}>
 					<iframe
 						src="https://open.spotify.com/embed/artist/0KCWJSFxNGPh0izQhx5RAp"
-						frameborder="0"
+						frameBorder="0"
 						allowtransparency="true"
 						allow="encrypted-media"
 						title="spotify-player"
@@ -49,7 +49,7 @@ const Music = ({ addRef, setCurrent }) => {
 						<iframe
 							src="https://open.spotify.com/follow/1/?uri=spotify:artist:0KCWJSFxNGPh0izQhx5RAp&size=detail&theme=light"
 							scrolling="no"
-							frameborder="0"
+							frameBorder="0"
 							style={{ border: 'none', overflow: 'hidden' }}
 							allowtransparency="true"
 							title="spotify-follow-btn"

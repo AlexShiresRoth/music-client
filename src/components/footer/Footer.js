@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import footerStyle from './Footer.module.scss';
 import { TiSocialInstagram, TiSocialFacebook, TiSocialTwitter } from 'react-icons/ti';
 import { FaSpotify } from 'react-icons/fa';
@@ -23,7 +22,5 @@ const Footer = () => {
 		</footer>
 	);
 };
-
-Footer.propTypes = {};
 
 export default Footer;

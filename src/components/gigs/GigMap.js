@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import gigStyle from './Gigs.module.scss';
 import { GoCalendar } from 'react-icons/go';
 
 const GigMap = ({ gigs }) => {
 	const gigMap = gigs.map((gig, i) => {
 		return (
-			<div className={gigStyle.gig_container}>
+			<div className={gigStyle.gig_container} key={i}>
 				<GoCalendar />
 				<p>{gig.date}</p>
 				<p>{gig.time}</p>
@@ -19,7 +18,5 @@ const GigMap = ({ gigs }) => {
 
 	return <div className={gigStyle.grid}>{gigMap}</div>;
 };
-
-GigMap.propTypes = {};
 
 export default GigMap;

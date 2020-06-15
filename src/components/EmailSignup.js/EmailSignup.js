@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import style from './EmailSignup.module.scss';
 
 const EmailSignup = (props) => {
@@ -16,7 +15,5 @@ const EmailSignup = (props) => {
 		</section>
 	);
 };
-
-EmailSignup.propTypes = {};
 
 export default EmailSignup;

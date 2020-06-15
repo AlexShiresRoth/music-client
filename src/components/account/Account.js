@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import style from './Account.module.scss';
 import { connect, useDispatch } from 'react-redux';
 import { withRouter, Redirect, Link } from 'react-router-dom';
@@ -73,8 +72,6 @@ const Account = ({ auth: { isAuthenticated, user, loading }, setAlert }) => {
 		</div>
 	);
 };
-
-Account.propTypes = {};
 
 const mapStateToProps = (state) => {
 	return {

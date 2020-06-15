@@ -4,7 +4,7 @@ import style from './SignupForm.module.scss';
 import Auth from './Auth';
 import { createUser } from '../../../actions/auth';
 import { connect } from 'react-redux';
-import { withRouter, NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const SignupForm = ({ history, createUser }) => {
 	const [data, setData] = useState({

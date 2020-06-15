@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Order from './Order';
@@ -27,8 +26,6 @@ const ViewOrders = ({ auth: { isAuthenticated, loading, user }, account: { order
 		<p>Loading...</p>
 	);
 };
-
-ViewOrders.propTypes = {};
 
 const mapStateToProps = (state) => {
 	console.log(state);

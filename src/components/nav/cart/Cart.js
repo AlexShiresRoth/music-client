@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import style from './Cart.module.scss';
 import CartDisplay from './CartDisplay';
@@ -13,10 +12,6 @@ const Cart = ({ store: { cart } }) => {
 			{showCart && cart.length > 0 ? <CartDisplay items={cart} /> : null}
 		</div>
 	);
-};
-
-Cart.propTypes = {
-	cart: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => {

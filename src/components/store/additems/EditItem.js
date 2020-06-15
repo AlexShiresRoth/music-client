@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Auth from '../login/Auth';
 import style from './ItemUpload.module.scss';
 import { connect } from 'react-redux';
-import UploadForm from './UploadForm';
 import { withRouter } from 'react-router-dom';
 import EditForm from './EditForm';
 

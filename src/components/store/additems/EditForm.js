@@ -8,7 +8,6 @@ const EditForm = ({ submitEditedItem, history, getItemToEdit, store: { editItem,
 	const params = useParams();
 
 	useEffect(() => {
-		console.log(params.id);
 		const id = params.id;
 		getItemToEdit(id);
 	}, [params.id, getItemToEdit]);
@@ -37,7 +36,7 @@ const EditForm = ({ submitEditedItem, history, getItemToEdit, store: { editItem,
 		}
 	);
 
-	const { name, description, amount, quantity, image, id } = data;
+	const { name, description, amount, quantity, image } = data;
 
 	const onChange = (e) => setdata({ ...data, [e.target.name]: e.target.value });
 
@@ -132,7 +131,6 @@ const EditForm = ({ submitEditedItem, history, getItemToEdit, store: { editItem,
 	);
 };
 const mapStateToProps = (state) => {
-	console.log(state);
 	return {
 		store: state.store,
 	};

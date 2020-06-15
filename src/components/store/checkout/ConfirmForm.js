@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { FiArrowLeft } from 'react-icons/fi';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import style from './ConfirmForm.module.scss';
@@ -129,8 +128,6 @@ const ConfirmForm = ({
 		</div>
 	);
 };
-
-ConfirmForm.propTypes = {};
 
 const mapStateToProps = (state) => {
 	return {

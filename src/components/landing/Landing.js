@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import landingStyle from './Landing.module.scss';
 import { TiSocialInstagram, TiSocialFacebook, TiSocialTwitter } from 'react-icons/ti';
 import { FaSpotify } from 'react-icons/fa';

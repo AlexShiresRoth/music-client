@@ -72,7 +72,6 @@ const ContactModal = ({ contact: { modalState }, setModalState }) => {
 };
 
 ContactModal.propTypes = {
-	modalState: PropTypes.bool.isRequired,
 	setModalState: PropTypes.func.isRequired,
 };
 

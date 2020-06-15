@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadItems } from '../../actions/store';
 import ShopItem from './ShopItem';
@@ -24,8 +23,6 @@ const ShopGrid = ({ loadItems, store: { items, loading } }) => {
 		<p>Loading...</p>
 	);
 };
-
-ShopGrid.propTypes = {};
 
 const mapStateToProps = (state) => {
 	return {

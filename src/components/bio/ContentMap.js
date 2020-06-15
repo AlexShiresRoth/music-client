@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import bioStyles from './Bio.module.scss';
 import { addRef, setCurrent } from '../../actions/refs';
@@ -24,7 +24,7 @@ const ContentMap = ({ content: { content }, addRef, setCurrent, text, setContent
 
 	const contentMap = text.map((par, i) => {
 		return par.text !== '' ? (
-			<div className={bioStyles.par_container}>
+			<div className={bioStyles.par_container} key={i}>
 				{' '}
 				<p>{par.text}</p>
 			</div>
