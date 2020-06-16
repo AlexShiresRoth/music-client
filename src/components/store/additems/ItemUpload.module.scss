@@ -1,7 +1,7 @@
 @import '../../../../sass/variables';
 @font-face {
-	font-family: 'Rustic';
-	src: url('../../../fonts/rustic.ttf') format('truetype');
+	font-family: 'Henrik';
+	src: url('../../../fonts/Henrik-Regular.otf') format('truetype');
 }
 .container {
 	display: flex;
@@ -40,10 +40,51 @@
 			font-weight: 100;
 			line-height: 2;
 			z-index: 2;
-			font-family: 'Rustic';
+			font-family: 'Henrik';
 			color: $brand-main;
 			text-transform: uppercase;
 			font-size: 2rem;
+		}
+	}
+}
+@media screen and (max-width: 1500px) {
+	.container {
+		display: flex;
+		flex-direction: column;
+		min-width: 40vw;
+		max-width: 90vw;
+		& .heading {
+			& h2 {
+				text-align: center;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.container {
+		display: flex;
+		flex-direction: column;
+		min-width: 60vw;
+		max-width: 90vw;
+		& .heading {
+			& h2 {
+				text-align: center;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.container {
+		display: flex;
+		flex-direction: column;
+		min-width: 90vw;
+		max-width: 90vw;
+		& .heading {
+			& h2 {
+				text-align: center;
+			}
 		}
 	}
 }

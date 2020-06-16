@@ -7,9 +7,13 @@ const Cart = ({ store: { cart } }) => {
 	const [showCart, setCartState] = useState(false);
 
 	return (
-		<div className={style.cart} onMouseEnter={(e) => setCartState(true)} onMouseLeave={(e) => setCartState(false)}>
-			<button>Cart({cart.length})</button>
-			{showCart && cart.length > 0 ? <CartDisplay items={cart} /> : null}
+		<div
+			className={style.cart}
+			onMouseEnter={(e) => setCartState(!showCart)}
+			onMouseLeave={(e) => setCartState(!showCart)}
+		>
+			<button onTouchEnd={(e) => (cart.length > 0 ? setCartState(true) : null)}>Cart({cart.length})</button>
+			{showCart && cart.length > 0 ? <CartDisplay items={cart} setCartState={setCartState} /> : null}
 		</div>
 	);
 };

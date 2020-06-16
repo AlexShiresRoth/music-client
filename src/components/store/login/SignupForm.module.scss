@@ -6,8 +6,8 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	min-width: 35vw;
-	max-width: 40vw;
+	min-width: 40vw;
+	max-width: 60vw;
 	background: $store-bg;
 	position: relative;
 	border-radius: 2px;
@@ -104,6 +104,39 @@
 					border: 4px solid darken($brand-main, 5%);
 					box-shadow: 0 1px 15px darken($brand-main, 5%);
 				}
+			}
+		}
+	}
+}
+@media screen and (max-width: 1500px) {
+	.container {
+		display: flex;
+		flex-direction: column;
+		min-width: 40vw;
+		max-width: 90vw;
+	}
+}
+@media screen and (max-width: 900px) {
+	.container {
+		display: flex;
+		flex-direction: column;
+		min-width: 60vw;
+		max-width: 90vw;
+	}
+}
+@media screen and (max-width: 600px) {
+	.container {
+		display: flex;
+		flex-direction: column;
+		min-width: 90vw;
+		max-width: 90vw;
+		background: $store-bg;
+		position: relative;
+		border-radius: 2px;
+		margin: 7rem 0;
+		& .heading {
+			& h2 {
+				text-align: center;
 			}
 		}
 	}

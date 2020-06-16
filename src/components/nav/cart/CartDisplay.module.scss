@@ -1,8 +1,15 @@
 @import '../../../../sass/variables';
+@font-face {
+	font-family: 'Henrik';
+	src: url('../../../fonts/Henrik-Regular.otf') format('truetype');
+}
 .container {
 	position: absolute;
 	top: 100%;
 	left: -220%;
+	& .close_cart {
+		display: none;
+	}
 	& .point {
 		width: 100%;
 		display: flex;
@@ -30,6 +37,12 @@
 		transition: all 0.3s ease-in-out;
 		&:hover {
 			cursor: default;
+		}
+		& h2 {
+			font-family: 'Henrik', serif;
+			font-weight: 100;
+			color: $brand-main;
+			display: none;
 		}
 		& .item {
 			display: flex;
@@ -77,6 +90,94 @@
 			align-self: center;
 			&:hover {
 				cursor: pointer;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.container {
+		position: fixed;
+		top: 0vh;
+		left: 0%;
+		height: 100%;
+		width: 100%;
+		overflow-y: scroll;
+		background: $brand-dark;
+		z-index: 9999;
+		display: flex;
+		flex-direction: column;
+
+		& .close_cart {
+			display: flex;
+			align-self: flex-end;
+			margin-right: 1rem;
+		}
+		& .point {
+			display: none;
+		}
+		& .cart_display {
+			border-radius: 0px;
+			padding: 0rem;
+			& h2 {
+				font-size: 3.5rem;
+				font-weight: 100;
+				color: $brand-main;
+				display: block;
+			}
+			&:hover {
+				cursor: default;
+			}
+			& .item {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 0.5rem;
+				justify-items: center;
+				background: lighten($brand-dark, 5%);
+				border-bottom: 1px solid lighten($brand-dark, 5%);
+				box-shadow: 0 1px 5px $brand-dark;
+				width: 100%;
+				margin: 0.5rem 0;
+				& p {
+					color: #bbb;
+					transition: all 0.3s ease;
+
+					& span {
+						font-weight: 700;
+						color: #ddd;
+						margin: 0 0.5rem;
+					}
+				}
+
+				& p:nth-child(2) {
+					color: $brand-main;
+				}
+				& svg {
+					background: transparent;
+					font-size: 1.2rem;
+					border: 0;
+					color: $brand-main;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+
+					&:hover {
+						cursor: pointer;
+					}
+				}
+			}
+			& button {
+				height: 3rem;
+				width: 100%;
+				background: $brand-main;
+				border-radius: 5px;
+				border: 1px solid $brand-main;
+				margin: 1rem 0.5rem;
+				color: $brand-text;
+				align-self: center;
+				&:hover {
+					cursor: pointer;
+				}
 			}
 		}
 	}

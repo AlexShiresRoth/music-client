@@ -35,3 +35,35 @@
 		}
 	}
 }
+@media screen and (max-width: 900px) {
+	.container {
+		& .items {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			& .item {
+				flex-direction: column;
+
+				& img {
+					max-width: 17rem;
+				}
+			}
+		}
+	}
+}
+@media screen and (max-width: 600px) {
+	.container {
+		& .items {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			& .item {
+				flex-direction: column;
+
+				& img {
+					max-width: 15rem;
+				}
+			}
+		}
+	}
+}

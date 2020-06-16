@@ -29,7 +29,7 @@
 		flex-direction: column;
 		align-items: center;
 		background: $store-bg;
-		width: 50vw;
+		width: 70vw;
 		padding: 2rem;
 		border-radius: 5px;
 		& .heading {
@@ -41,11 +41,13 @@
 				color: #666;
 				font-size: 3rem;
 				margin: 0.5rem 0;
+				text-align: center;
 			}
 			& p {
 				color: $brand-main;
 				font-size: 1.5rem;
 				margin: 0;
+				text-align: center;
 			}
 		}
 		& button {
@@ -74,6 +76,27 @@
 			font-size: 16px;
 			border-radius: 5px;
 			padding: 1rem 0;
+		}
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.container {
+		display: flex;
+		flex-direction: column;
+		margin: 10rem 0;
+
+		.form {
+			width: 90vw;
+			padding: 1rem;
+			& .heading {
+				& h2 {
+					text-align: center;
+				}
+				& p {
+					text-align: center;
+				}
+			}
 		}
 	}
 }

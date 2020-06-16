@@ -6,16 +6,26 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import { removeFromCart } from '../../../actions/store';
 import { connect } from 'react-redux';
 
-const CartDisplay = ({ items, removeFromCart, store: { clientSecret, purchaseItem }, auth: { isAuthenticated } }) => {
+const CartDisplay = ({
+	items,
+	removeFromCart,
+	setCartState,
+	store: { clientSecret, purchaseItem },
+	auth: { isAuthenticated },
+}) => {
 	return (
 		<div className={style.container}>
+			<div className={style.close_cart}>
+				<button onClick={(e) => setCartState(false)}>Close X</button>
+			</div>
 			<div className={style.point}>
 				<span></span>
 			</div>
 			<div className={style.cart_display}>
+				<h2>Cart</h2>
 				{items.map((item, i) => {
 					return (
-						<div className={style.item}>
+						<div className={style.item} key={i}>
 							<p>
 								<span>Item:</span>
 								{item.name.length > 7 ? item.name.substr(0, 7) + '...' : item.name}

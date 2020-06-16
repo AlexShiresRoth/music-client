@@ -6,7 +6,7 @@ import { removeFromCart, updateCart } from '../../../actions/store';
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
 
-const CheckoutForm = ({ item, index, removeFromCart, updateCart, store: { cart } }) => {
+const CheckoutForm = ({ item, index, removeFromCart, updateCart }) => {
 	const [formData, setFormData] = useState({
 		quantity: 1,
 	});
@@ -20,11 +20,11 @@ const CheckoutForm = ({ item, index, removeFromCart, updateCart, store: { cart }
 	useEffect(() => {
 		const itemData = {
 			id: item._id,
-			quantity,
+			quantity: quantity,
 			amount: item.amount * quantity,
 		};
 		updateCart(itemData);
-	}, [quantity, item._id, item.amount, updateCart]);
+	}, [quantity, item._id, item.amount, updateCart, item.quantity]);
 
 	return (
 		<div className={style.item} key={index}>
@@ -39,7 +39,8 @@ const CheckoutForm = ({ item, index, removeFromCart, updateCart, store: { cart }
 					<span>Price Per Item:</span>${item.amount}
 				</p>
 				<p>
-					<span>Total For Item:</span>${item.amount * quantity}
+					<span>Total For Item:</span>$
+					{quantity > item.quantity ? item.quantity * item.amount : item.amount * quantity}
 				</p>
 				<p>
 					<span>Stock Amt:</span>

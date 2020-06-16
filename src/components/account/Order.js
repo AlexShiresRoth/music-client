@@ -31,7 +31,9 @@ const Order = ({ order, index }) => {
 				</div>
 			</div>
 			<div className={style.col}>
-				<h3>Items Purchased</h3>
+				<h3>
+					Items Purchased: <span>{order.items.length}</span>
+				</h3>
 				<div className={style.items_container}>
 					<div className={style.overlay}></div>
 					<div className={style.overlay}></div>

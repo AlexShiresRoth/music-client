@@ -29,3 +29,17 @@
 		border-radius: 5px;
 	}
 }
+
+@media screen and (max-width: 600px) {
+	.section {
+		align-items: flex-start;
+		& h2 {
+			font-size: 10vw;
+		}
+		& .container {
+			max-width: 100%;
+			justify-items: center;
+			padding: 0;
+		}
+	}
+}

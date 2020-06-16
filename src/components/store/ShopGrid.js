@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { loadItems } from '../../actions/store';
 import ShopItem from './ShopItem';
 import style from './ShopGrid.module.scss';
+import { LoadingSpinner } from '../loader/LoadingSpinner';
 
 const ShopGrid = ({ loadItems, store: { items, loading } }) => {
 	useEffect(() => {
@@ -20,7 +21,7 @@ const ShopGrid = ({ loadItems, store: { items, loading } }) => {
 			)}
 		</section>
 	) : (
-		<p>Loading...</p>
+		<LoadingSpinner />
 	);
 };
 
