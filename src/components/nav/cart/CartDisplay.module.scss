@@ -6,7 +6,8 @@
 .container {
 	position: absolute;
 	top: 100%;
-	left: -220%;
+	left: 0rem;
+	transform: translateX(-9.5rem);
 	& .close_cart {
 		display: none;
 	}
@@ -22,17 +23,17 @@
 			height: 0;
 			border-left: 2rem solid transparent;
 			border-right: 2rem solid transparent;
-			border-bottom: 2rem solid $brand-dark;
+			border-bottom: 2rem solid $brand-text;
 		}
 	}
 	& .cart_display {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		background: $brand-dark;
-		box-shadow: 0 1px 5px $brand-dark;
+		background: $brand-text;
+		box-shadow: 0 1px 5px darken(#eee, 15%);
 		border-radius: 5px;
-		padding: 1rem;
+		padding: 1.5rem;
 		min-width: 20rem;
 		transition: all 0.3s ease-in-out;
 		&:hover {
@@ -49,15 +50,15 @@
 			flex-direction: row;
 			align-items: center;
 			justify-content: space-between;
-			border-bottom: 1px solid lighten($brand-dark, 5%);
+			border-bottom: 1px solid darken($brand-text, 5%);
 			width: 100%;
 			& p {
-				color: #bbb;
+				color: $brand-main;
 				transition: all 0.3s ease;
 
 				& span {
 					font-weight: 700;
-					color: #ddd;
+					color: #666;
 					margin: 0 0.5rem;
 				}
 			}
@@ -67,7 +68,7 @@
 			}
 			& svg {
 				background: transparent;
-				font-size: 1.2rem;
+				font-size: 1.5rem;
 				border: 0;
 				color: $brand-main;
 				display: flex;
@@ -82,14 +83,18 @@
 		& button {
 			height: 3rem;
 			width: 100%;
-			background: $brand-main;
+			background: transparent;
 			border-radius: 5px;
-			border: 1px solid $brand-main;
-			margin: 1rem 0.5rem;
-			color: $brand-text;
+			border: 2px solid $brand-main;
+			margin: 1.5rem 0rem 0 0;
+			color: $brand-main;
 			align-self: center;
+			font-size: 1rem;
+			transition: all 0.3s ease;
 			&:hover {
 				cursor: pointer;
+				background: $brand-main;
+				color: $brand-text;
 			}
 		}
 	}
@@ -107,7 +112,7 @@
 		z-index: 9999;
 		display: flex;
 		flex-direction: column;
-
+		transform: translatex(0);
 		& .close_cart {
 			display: flex;
 			align-self: flex-end;
@@ -119,6 +124,8 @@
 		& .cart_display {
 			border-radius: 0px;
 			padding: 0rem;
+			background: $brand-dark;
+			box-shadow: 0 0 0;
 			& h2 {
 				font-size: 3.5rem;
 				font-weight: 100;
@@ -166,17 +173,20 @@
 					}
 				}
 			}
-			& button {
-				height: 3rem;
-				width: 100%;
-				background: $brand-main;
-				border-radius: 5px;
-				border: 1px solid $brand-main;
-				margin: 1rem 0.5rem;
-				color: $brand-text;
-				align-self: center;
-				&:hover {
-					cursor: pointer;
+			& a {
+				& .btn_checkout {
+					height: 3rem;
+					width: 100%;
+					padding: 0 1rem;
+					background: $brand-main;
+					border-radius: 5px;
+					border: 1px solid $brand-main;
+					margin: 1rem 0.5rem;
+					color: $brand-text;
+					align-self: center;
+					&:hover {
+						cursor: pointer;
+					}
 				}
 			}
 		}

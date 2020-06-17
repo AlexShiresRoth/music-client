@@ -85,18 +85,18 @@
 				}
 				& iframe {
 					min-height: 0;
-					height: 10vh;
+					height: 5rem;
 				}
 			}
 		}
 		& .spotify_container {
-			width: 20vw;
+			width: 20rem;
 			margin-right: -2vw;
 			z-index: 2;
 
 			& .spotify_iframe {
 				width: 100%;
-				min-height: 40vh;
+				min-height: 20rem;
 				padding: 1rem;
 				background-color: rgba(163, 86, 56, 0.5);
 				box-shadow: 0 1px 10px darken($brand-dark, 5%);

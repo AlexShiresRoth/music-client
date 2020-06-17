@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 const CartDisplay = ({
 	items,
 	removeFromCart,
+	showCart,
 	setCartState,
 	store: { clientSecret, purchaseItem },
 	auth: { isAuthenticated },
@@ -39,14 +40,16 @@ const CartDisplay = ({
 					);
 				})}
 				{!isAuthenticated ? (
-					<button>Please Login or Create an Account To Checkout</button>
+					<Link to="/store/signup">
+						<button className={style.btn_checkout}>Please Signup To Checkout</button>
+					</Link>
 				) : clientSecret && purchaseItem ? (
 					<Link to={`/store/checkout/payment/${purchaseItem._id}`}>
-						<button>Return to Checkout</button>
+						<button className={style.btn_checkout}>Return to Checkout</button>
 					</Link>
 				) : (
 					<Link to={`/store/checkout`}>
-						<button>Review Cart & Checkout</button>
+						<button className={style.btn_checkout}>Review Cart & Checkout</button>
 					</Link>
 				)}
 			</div>

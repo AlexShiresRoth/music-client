@@ -18,12 +18,13 @@
 	& .form_container {
 		padding: 1rem;
 		min-height: 50vh;
-		width: 50vw;
+		width: 60vw;
 		background: $brand-accent;
 		color: #fff;
 		display: flex;
 		flex-direction: column;
 		animation: fadeIn 0.5s linear forwards;
+		margin: 10rem 0;
 		& .btn_container {
 			padding: 1rem;
 			border-radius: 50%;
@@ -46,9 +47,21 @@
 			grid-template-columns: repeat(2, 1fr);
 			grid-template-rows: 1fr;
 			& .text_box {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
 				& h2 {
 					font-family: 'Muli';
-					font-size: 5rem;
+					font-size: 6vw;
+					margin: 0;
+				}
+				& .social {
+					display: flex;
+					& svg {
+						font-size: 2rem;
+						margin: 0 0.5rem;
+						color: $brand-main;
+					}
 				}
 			}
 			& .form {
@@ -62,7 +75,11 @@
 					align-items: flex-start;
 					& label {
 						color: '#fff';
-						font-size: 1vw;
+						font-size: 1.2rem;
+						&::after {
+							content: '*';
+							color: $brand-main;
+						}
 					}
 					& input,
 					textarea {
@@ -70,13 +87,18 @@
 						border-bottom: 3px solid $brand-main;
 						font-size: 16px;
 						color: #fff;
-						padding: 0rem;
+						padding: 0.5rem 0;
 						background: transparent;
 						width: 100%;
 						min-height: 2rem;
 						resize: none;
 						&:focus {
 							outline: 0px solid transparent;
+						}
+						&::placeholder {
+							color: $brand-text;
+							opacity: 0.5;
+							font-family: 'Muli';
 						}
 					}
 					& button {
@@ -100,6 +122,65 @@
 		}
 	}
 }
+
+@media screen and (max-width: 1000px) {
+	.contact_modal {
+		display: flex;
+		position: fixed;
+
+		& .form_container {
+			width: 80vw;
+
+			& .btn_container {
+				padding: 0.5rem;
+				border-radius: 50%;
+				color: #fff;
+				font-size: 1.5rem;
+				background: $brand-main;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: center;
+				align-self: flex-end;
+				transition: all 0.3s ease-in-out;
+				&:hover {
+					box-shadow: 0 10px 10px darken($brand-accent, 10%);
+					cursor: pointer;
+				}
+			}
+			& .grid {
+				display: grid;
+				grid-template-columns: repeat(1, 1fr);
+				grid-template-rows: 1fr;
+				& .text_box {
+					display: flex;
+					flex-direction: column;
+					& h2 {
+						order: 1;
+						font-family: 'Muli';
+						font-size: 2rem;
+						margin-bottom: 1rem;
+					}
+					& .social {
+						display: flex;
+						margin: 0.5rem 0;
+						& svg {
+							font-size: 1.2rem;
+							margin: 0 0.5rem;
+							color: $brand-main;
+						}
+					}
+				}
+				& .form {
+					display: grid;
+					grid-template-rows: repeat(5, 1fr);
+					gap: 1rem;
+				}
+			}
+		}
+	}
+}
+
 @keyframes fadeIn {
 	0% {
 		opacity: 0;

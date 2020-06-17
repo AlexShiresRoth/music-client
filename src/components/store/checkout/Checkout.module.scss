@@ -29,6 +29,7 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-around;
+		flex-wrap: wrap;
 		background: #fff;
 		padding: 1rem;
 		margin: 1rem 0;
@@ -79,6 +80,17 @@
 		& .item_row:nth-child(1) {
 			border-bottom: 1px solid #eee;
 		}
+	}
+}
+@media screen and (max-width: 1300px) {
+	.container {
+		display: flex;
+		flex-direction: column;
+		margin: 10rem 0;
+		background: $store-bg;
+		width: 80vw;
+		border-radius: 5px;
+		padding: 2rem;
 	}
 }
 

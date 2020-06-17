@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import style from './Alert.module.scss';
 const Alert = ({ alert }) => {
@@ -15,7 +16,9 @@ const Alert = ({ alert }) => {
 	) : null;
 };
 
-Alert.propTypes = {};
+Alert.propTypes = {
+	alert: PropTypes.array.isRequired,
+};
 
 const mapStateToProps = (state) => {
 	return {
