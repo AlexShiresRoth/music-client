@@ -4,7 +4,7 @@
 	width: 100vw;
 	background: $brand-dark;
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(4, auto);
 	gap: 1rem;
 	justify-items: center;
 	min-height: 5rem;
@@ -19,8 +19,10 @@
 			font-weight: 700;
 			font-size: 1.5rem;
 			color: #999;
+			text-transform: uppercase;
 		}
 		& p {
+			text-transform: uppercase;
 			color: #ddd;
 		}
 		& .social {
@@ -41,7 +43,8 @@
 		& a {
 			color: #ddd;
 			text-decoration: none;
-			text-transform: lowercase;
+			margin: 0.5rem 0;
+			text-transform: capitalize;
 			& span {
 				color: rgb(62, 25, 148);
 			}
