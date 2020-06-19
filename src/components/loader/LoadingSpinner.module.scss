@@ -1,7 +1,6 @@
 @import '../../../sass/variables';
 
 .section {
-	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -19,8 +18,8 @@
 			height: 2rem;
 			width: 2rem;
 			border: 5px solid $brand-main;
-			border-right: 5px solid $brand-accent;
-			border-left: 5px solid $brand-accent;
+			border-right: 5px solid transparent;
+			border-left: 5px solid transparent;
 			border-radius: 50%;
 			transform: rotateY(30deg);
 			animation: spin 2s linear infinite;

@@ -5,6 +5,7 @@ import Auth from './Auth';
 import { createUser } from '../../../actions/auth';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const SignupForm = ({ history, createUser }) => {
 	const [data, setData] = useState({
@@ -12,12 +13,11 @@ const SignupForm = ({ history, createUser }) => {
 		email: '',
 		password: '',
 		password2: '',
-		adminCode: '',
 	});
 
 	const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
 
-	const { name, email, password, password2, adminCode } = data;
+	const { name, email, password, password2 } = data;
 
 	const formSubmit = (e) => {
 		e.preventDefault();
@@ -77,17 +77,7 @@ const SignupForm = ({ history, createUser }) => {
 							required={true}
 						/>
 					</div>
-					<div className={style.input_col}>
-						<label>If you have an admin code, please enter it.</label>
-						<input
-							type="password"
-							placeholder="enter admin code"
-							value={adminCode}
-							name="adminCode"
-							onChange={(e) => onChange(e)}
-							required={true}
-						/>
-					</div>
+					<ReCAPTCHA sitekey="6Lf9eqYZAAAAAFqLN28KOAKFCfjz138SnYM7aaH1" onChange={onChange} />
 					<div className={style.btn_col}>
 						<button onClick={(e) => formSubmit(e)}>Create Account</button>
 					</div>
@@ -98,7 +88,6 @@ const SignupForm = ({ history, createUser }) => {
 };
 
 SignupForm.propTypes = {
-	setForm: PropTypes.func.isRequired,
 	createUser: PropTypes.func.isRequired,
 };
 

@@ -20,15 +20,14 @@ import CheckoutConfirmPage from './components/pages/CheckoutConfirmPage';
 import EditStoreItem from './components/pages/EditStoreItem';
 import AccountPage from './components/pages/AccountPage';
 import ViewOrdersPage from './components/pages/ViewOrdersPage';
+import ForgotPassword from './components/pages/ForgotPassword';
+import PasswordResetPage from './components/pages/PasswordResetPage';
 
 if (localStorage.token) {
 	setAuthToken(localStorage.token);
 }
 
 const App = () => {
-	const initState = store.getState();
-	console.log(initState.auth);
-
 	useEffect(() => {
 		store.dispatch(loadUser);
 	}, []);
@@ -50,6 +49,8 @@ const App = () => {
 						<Route exact path="/store" component={Store} />
 						<Route path="/store/login" component={Login} />
 						<Route exact path="/store/signup" component={Signup} />
+						<Route exact path="/store/forgotpassword" component={ForgotPassword} />
+						<Route exact path="/store/passwordreset/:id" component={PasswordResetPage} />
 						<PrivateRoute exact path="/store/additem" component={StoreUpload} />
 						<PrivateRoute exact path="/store/edit/:id" component={EditStoreItem} />
 						<PrivateRoute exact path="/store/checkout" component={CheckoutPage} />

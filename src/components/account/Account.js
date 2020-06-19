@@ -1,13 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import style from './Account.module.scss';
 import { connect, useDispatch } from 'react-redux';
 import { withRouter, Redirect, Link } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import { AiOutlineUser, AiOutlineMail } from 'react-icons/ai';
 import { FaKey, FaUserEdit, FaStore, FaSadTear } from 'react-icons/fa';
+import ChangePassword from './ChangePassword';
+import DeleteAccount from './DeleteAccount';
+import ChangeEmail from './ChangeEmail';
+import { loadUser } from '../../actions/auth';
 
-const Account = ({ auth: { isAuthenticated, user, loading }, setAlert }) => {
+const Account = ({
+	auth: { isAuthenticated, user, loading },
+	loadUser,
+	setAlert,
+	account: { updateSuccess, emailUpdate },
+}) => {
 	const dispatch = useDispatch();
+
+	const [isFormShown, setFormState] = useState({
+		password: false,
+		email: false,
+		deleteAccount: false,
+	});
+
+	const { password, email, deleteAccount } = isFormShown;
+
+	useEffect(() => {
+		loadUser();
+	}, [updateSuccess, emailUpdate, loadUser]);
 
 	if (!isAuthenticated) {
 		dispatch(setAlert('You must be logged in.', 'danger'));
@@ -39,17 +60,46 @@ const Account = ({ auth: { isAuthenticated, user, loading }, setAlert }) => {
 							Account Actions
 						</h3>
 						<div className={style.row}>
-							<button>
-								<AiOutlineMail />
-								Change Email
-							</button>
-							<button>
-								<FaKey /> Change Password
-							</button>
-							<button>
-								<FaSadTear />
-								Delete Account
-							</button>
+							<div className={style.col}>
+								<button
+									onClick={(e) =>
+										setFormState({ deleteAccount: false, email: !email, password: false })
+									}
+								>
+									<AiOutlineMail />
+									Change Email
+								</button>
+								{email ? <ChangeEmail setFormState={setFormState} isFormShown={isFormShown} /> : null}
+							</div>
+						</div>
+						<div className={style.row}>
+							<div className={style.col}>
+								<button
+									onClick={(e) =>
+										setFormState({ deleteAccount: false, email: false, password: !password })
+									}
+								>
+									<FaKey /> Change Password
+								</button>
+								{password ? (
+									<ChangePassword setFormState={setFormState} isFormShown={isFormShown} />
+								) : null}
+							</div>
+						</div>
+						<div className={style.row}>
+							<div className={style.col}>
+								<button
+									onClick={(e) =>
+										setFormState({ deleteAccount: !deleteAccount, email: false, password: false })
+									}
+								>
+									<FaSadTear />
+									Delete Account
+								</button>
+								{deleteAccount ? (
+									<DeleteAccount setFormState={setFormState} isFormShown={isFormShown} />
+								) : null}
+							</div>
 						</div>
 					</div>
 					<div className={style.col}>
@@ -76,7 +126,8 @@ const Account = ({ auth: { isAuthenticated, user, loading }, setAlert }) => {
 const mapStateToProps = (state) => {
 	return {
 		auth: state.auth,
+		account: state.account,
 	};
 };
 
-export default connect(mapStateToProps, { setAlert })(withRouter(Account));
+export default connect(mapStateToProps, { setAlert, loadUser })(withRouter(Account));

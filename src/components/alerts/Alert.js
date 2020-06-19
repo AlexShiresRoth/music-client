@@ -5,9 +5,9 @@ import style from './Alert.module.scss';
 const Alert = ({ alert }) => {
 	return alert.length > 0 ? (
 		<div className={style.container}>
-			{alert.map((item) => {
+			{alert.map((item, i) => {
 				return item.msg ? (
-					<div className={item.alertType === 'danger' ? style.alert_danger : style.alert_success}>
+					<div className={item.alertType === 'danger' ? style.alert_danger : style.alert_success} key={i}>
 						<p>{item.msg}</p>
 					</div>
 				) : null;

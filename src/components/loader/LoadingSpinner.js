@@ -8,7 +8,6 @@ export const LoadingSpinner = () => {
 				<div className={style.spinner}></div>
 				<div className={style.spinner}></div>
 			</div>
-			<p>Loading...</p>
 		</section>
 	);
 };

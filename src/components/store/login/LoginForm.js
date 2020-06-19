@@ -3,7 +3,7 @@ import Auth from './Auth';
 import style from './LoginForm.module.scss';
 import { authenticateUser } from '../../../actions/auth';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 const LoginForm = ({ history, authenticateUser }) => {
 	const [data, setData] = useState({
@@ -52,7 +52,8 @@ const LoginForm = ({ history, authenticateUser }) => {
 						/>
 					</div>
 
-					<div className={style.input_col}>
+					<div className={style.input_row}>
+						<Link to="/store/forgotpassword">Forgot Password</Link>
 						<button onClick={(e) => formSubmit(e)}>Login</button>
 					</div>
 				</form>
