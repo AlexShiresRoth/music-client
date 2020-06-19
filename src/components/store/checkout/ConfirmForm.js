@@ -7,6 +7,7 @@ import { loadItem, cancelIntent, paymentSuccess, paymentError, updateQuantity } 
 import ItemDisplay from './ItemDisplay';
 import ConfirmModal from './ConfirmModal';
 import { withRouter } from 'react-router-dom';
+import { FaCcStripe } from 'react-icons/fa';
 
 const ConfirmForm = ({
 	store: { purchaseItem, loading, clientSecret },
@@ -28,6 +29,17 @@ const ConfirmForm = ({
 	const handleSubmit = async (event) => {
 		// Block native form submission.
 		event.preventDefault();
+
+		//look for the item one more time to make sure it hasn't been removed
+		const id = purchaseItem._id;
+
+		const foundItem = loadItem(id);
+
+		if (!foundItem) {
+			console.error('Clould not locate purchase item');
+			paymentError('Clould not locate purchase item');
+			return;
+		}
 
 		if (!stripe || !elements) {
 			// Stripe.js has not yet loaded.
@@ -72,8 +84,22 @@ const ConfirmForm = ({
 
 	const [modalState, setModalState] = useState(false);
 
-	const handleModal = (e) => {
+	const handleModal = async (e) => {
 		e.preventDefault();
+
+		//look for the item one more time to make sure it hasn't been removed
+		const id = purchaseItem._id;
+
+		const foundItem = loadItem(id);
+
+		if (!foundItem) {
+			console.error('Clould not locate purchase item');
+			paymentError('Clould not locate purchase item');
+			return;
+		}
+
+		if (!stripe) return;
+
 		setModalState(true);
 	};
 
@@ -110,7 +136,7 @@ const ConfirmForm = ({
 				handleSubmit={handleSubmit}
 				total={purchaseItem.total}
 			/>
-			<button onClick={(e) => handlePaymentRedirect(e)}>
+			<button onClick={(e) => handlePaymentRedirect(e)} className={style.go_back_btn}>
 				<FiArrowLeft /> Go Back/Cancel Order
 			</button>
 			<form className={style.form}>
@@ -122,7 +148,8 @@ const ConfirmForm = ({
 				<ItemDisplay item={purchaseItem} />
 				<CardElement id={style.card_element} options={options} />
 				<button onClick={(e) => handleModal(e)} onSubmit={(e) => handleModal(e)} disabled={!stripe}>
-					Pay {loading ? 'Loading...' : '$' + purchaseItem.total}
+					Pay with <FaCcStripe />
+					{loading ? 'Loading...' : '$' + purchaseItem.total}
 				</button>
 			</form>
 		</div>

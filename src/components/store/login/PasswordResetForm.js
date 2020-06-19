@@ -89,7 +89,9 @@ const PasswordResetForm = ({
 			</div>
 		</Auth>
 	) : (
-		<LoadingSpinner />
+		<div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+			<LoadingSpinner />
+		</div>
 	);
 };
 

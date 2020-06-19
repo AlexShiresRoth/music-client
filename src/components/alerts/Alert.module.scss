@@ -1,3 +1,5 @@
+@import '../../../sass/variables';
+
 .container {
 	display: grid;
 	grid-template-columns: 1fr;
@@ -8,16 +10,17 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: 9999;
+	z-index: 1000;
 	& .alert_success {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		height: 3rem;
+		padding: 0.5rem;
 		width: 100%;
-		background: #4f9246c4;
+		background: $success;
 		color: #eee;
-		z-index: 999999999;
+		z-index: 1000;
 	}
 	& .alert_danger {
 		display: flex;
@@ -25,8 +28,9 @@
 		align-items: center;
 		height: 3rem;
 		width: 100%;
+		padding: 0.5rem;
 		background: #d1460fa4;
 		color: #fff;
-		z-index: 999999999;
+		z-index: 1000;
 	}
 }

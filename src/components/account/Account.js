@@ -60,7 +60,7 @@ const Account = ({
 							Account Actions
 						</h3>
 						<div className={style.row}>
-							<div className={style.col}>
+							<div className={style.col_actions}>
 								<button
 									onClick={(e) =>
 										setFormState({ deleteAccount: false, email: !email, password: false })
@@ -73,7 +73,7 @@ const Account = ({
 							</div>
 						</div>
 						<div className={style.row}>
-							<div className={style.col}>
+							<div className={style.col_actions}>
 								<button
 									onClick={(e) =>
 										setFormState({ deleteAccount: false, email: false, password: !password })
@@ -87,7 +87,7 @@ const Account = ({
 							</div>
 						</div>
 						<div className={style.row}>
-							<div className={style.col}>
+							<div className={style.col_actions}>
 								<button
 									onClick={(e) =>
 										setFormState({ deleteAccount: !deleteAccount, email: false, password: false })
@@ -108,9 +108,11 @@ const Account = ({
 							Order History
 						</h3>
 						<div className={style.row}>
-							<Link to="/store/account/vieworders">
-								<button>View Past Orders</button>
-							</Link>
+							<div className={style.col_actions}>
+								<Link to="/store/account/vieworders">
+									<button>View Past Orders</button>
+								</Link>
+							</div>
 						</div>
 					</div>
 				</div>

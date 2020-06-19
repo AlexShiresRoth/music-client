@@ -72,12 +72,13 @@
 			align-items: center;
 			& h3 {
 				@include heading;
-				font-size: 12vw;
+				font-size: 3rem;
 				margin: 0;
 			}
 			& p {
 				color: $brand-text;
-				font-size: 5vw;
+				font-size: 2rem;
+				text-align: center;
 			}
 		}
 		& form {

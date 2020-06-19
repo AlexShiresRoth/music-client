@@ -31,3 +31,5 @@ label {
 button {
   font-size: 1rem;
   font-family: 'Muli'; }
+  button:active, button:focus {
+    outline: 0px solid transparent; }

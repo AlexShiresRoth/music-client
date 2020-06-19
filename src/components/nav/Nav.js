@@ -11,6 +11,7 @@ import { AuthLinks } from './AuthLinks';
 import { NavLinksComponent } from './NavLinksComponent';
 import { setModalState } from '../../actions/contact';
 import Cart from './cart/Cart';
+import { cancelIntent } from '../../actions/store';
 
 const Nav = ({
 	refs: { active, refs, currentSection },
@@ -20,6 +21,8 @@ const Nav = ({
 	logoutUser,
 	setModalState,
 	contact: { modalState },
+	store: { purchaseItem },
+	cancelIntent,
 }) => {
 	const [page, setPage] = useState('');
 
@@ -66,6 +69,8 @@ const Nav = ({
 							history={history}
 							setModalState={setModalState}
 							modalState={modalState}
+							cancelIntent={cancelIntent}
+							purchaseItem={purchaseItem}
 						/>
 						<Cart />
 					</>
@@ -76,6 +81,8 @@ const Nav = ({
 							history={history}
 							modalState={modalState}
 							setModalState={setModalState}
+							cancelIntent={cancelIntent}
+							purchaseItem={purchaseItem}
 						/>
 						<Cart />
 					</>
@@ -168,7 +175,8 @@ const mapStateToProps = (state) => {
 		refs: state.refs,
 		auth: state.auth,
 		contact: state.contact,
+		store: state.store,
 	};
 };
 
-export default connect(mapStateToProps, { logoutUser, setActive, setModalState })(withRouter(Nav));
+export default connect(mapStateToProps, { logoutUser, setActive, setModalState, cancelIntent })(withRouter(Nav));

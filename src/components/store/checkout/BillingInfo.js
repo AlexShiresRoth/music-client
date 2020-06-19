@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import style from './BillingInfo.module.scss';
 import { FaCcStripe } from 'react-icons/fa';
 import { connect } from 'react-redux';
@@ -63,10 +62,6 @@ const BillingInfo = ({ history, addPurchaseItem, store: { cart, total } }) => {
 			</div>
 		</form>
 	);
-};
-
-BillingInfo.propTypes = {
-	total: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => {

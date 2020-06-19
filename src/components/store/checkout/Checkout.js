@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import style from './Checkout.module.scss';
 import PriceDisplay from './PriceDisplay';
@@ -24,16 +23,12 @@ const Checkout = ({ store: { cart, clientSecret, purchaseItem } }) => {
 				<p>Please review your selected items to make sure everything is correct.</p>
 			</div>
 			{cart.map((item, i) => {
-				return <CheckoutForm item={item} index={i} total={total} setTotal={setTotal} />;
+				return <CheckoutForm item={item} index={i} total={total} setTotal={setTotal} key={i} />;
 			})}
 			{cart.length > 0 ? <PriceDisplay total={total} /> : null}
 			<BillingInfo />
 		</div>
 	);
-};
-
-Checkout.propTypes = {
-	cart: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => {

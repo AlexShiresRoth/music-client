@@ -53,7 +53,7 @@ const LoginForm = ({ history, authenticateUser }) => {
 					</div>
 
 					<div className={style.input_row}>
-						<Link to="/store/forgotpassword">Forgot Password</Link>
+						<Link to="/store/forgotpassword">Forgot Password?</Link>
 						<button onClick={(e) => formSubmit(e)}>Login</button>
 					</div>
 				</form>

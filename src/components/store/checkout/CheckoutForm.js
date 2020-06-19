@@ -20,7 +20,7 @@ const CheckoutForm = ({ item, index, removeFromCart, updateCart }) => {
 	useEffect(() => {
 		const itemData = {
 			id: item._id,
-			quantity: quantity,
+			quantity,
 			amount: item.amount * quantity,
 		};
 		updateCart(itemData);
@@ -40,7 +40,10 @@ const CheckoutForm = ({ item, index, removeFromCart, updateCart }) => {
 				</p>
 				<p>
 					<span>Total For Item:</span>$
-					{quantity > item.quantity ? item.quantity * item.amount : item.amount * quantity}
+					{quantity > parseInt(item.quantity)
+						? parseInt(item.quantity) * parseInt(item.amount)
+						: parseInt(item.amount) * quantity}
+					.00
 				</p>
 				<p>
 					<span>Stock Amt:</span>

@@ -66,6 +66,7 @@
 			border-radius: 5px;
 			& label {
 				color: $brand-main;
+				margin: 0.5rem 0;
 			}
 			& input {
 				height: 2.5rem;
@@ -88,6 +89,7 @@
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
+			flex-wrap: wrap;
 			& a {
 				margin-left: 1rem;
 				color: $brand-main;
@@ -134,6 +136,11 @@
 		background: $store-bg;
 		position: relative;
 		border-radius: 2px;
+		& .heading {
+			& h2 {
+				font-size: 2.5rem;
+			}
+		}
 	}
 }
 @media screen and (max-width: 600px) {
@@ -145,5 +152,17 @@
 		background: $store-bg;
 		position: relative;
 		border-radius: 2px;
+		& .form {
+			& .input_row {
+				& a {
+					align-self: flex-end;
+				}
+				& button {
+					margin: 2rem 0;
+					align-self: flex-end;
+					width: 100%;
+				}
+			}
+		}
 	}
 }

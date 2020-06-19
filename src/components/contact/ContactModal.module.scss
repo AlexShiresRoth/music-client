@@ -112,6 +112,7 @@
 						transition: all 0.3s ease-in-out;
 						text-transform: uppercase;
 						box-shadow: 0 10px 10px darken($brand-accent, 10%);
+						margin: 1rem 0;
 						&:hover {
 							cursor: pointer;
 							box-shadow: 0 1px 1px darken($brand-accent, 10%);
@@ -155,18 +156,20 @@
 				& .text_box {
 					display: flex;
 					flex-direction: column;
+					margin-bottom: 1rem;
 					& h2 {
 						order: 1;
 						font-family: 'Muli';
-						font-size: 2rem;
+						font-size: 2.5rem;
 						margin-bottom: 1rem;
 					}
 					& .social {
 						display: flex;
-						margin: 0.5rem 0;
+						margin: 0.8rem 0;
 						& svg {
-							font-size: 1.2rem;
-							margin: 0 0.5rem;
+							font-size: 1.5rem;
+							margin: 0;
+							margin-right: 0.5rem;
 							color: $brand-main;
 						}
 					}

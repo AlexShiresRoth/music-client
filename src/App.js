@@ -23,14 +23,12 @@ import ViewOrdersPage from './components/pages/ViewOrdersPage';
 import ForgotPassword from './components/pages/ForgotPassword';
 import PasswordResetPage from './components/pages/PasswordResetPage';
 
-if (localStorage.token) {
-	setAuthToken(localStorage.token);
-}
-
 const App = () => {
+	const token = localStorage.getItem('token');
 	useEffect(() => {
-		store.dispatch(loadUser);
-	}, []);
+		setAuthToken(token);
+		store.dispatch(loadUser());
+	}, [token]);
 
 	const client = new ApolloClient({
 		link: new PrismicLink({

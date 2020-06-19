@@ -14,7 +14,7 @@
 		background: #eee;
 		display: flex;
 		flex-direction: column;
-		min-width: 40%;
+		min-width: 50%;
 		padding: 1rem;
 		border-radius: 5px;
 		& h2 {
@@ -29,26 +29,29 @@
 		}
 		& .container {
 			width: 100%;
-			display: flex;
-			flex-direction: column;
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 2rem;
 
 			& .col {
 				display: flex;
 				flex-direction: column;
 				justify-content: space-around;
+				align-items: center;
 				background: #fff;
 				box-shadow: 0 1px 5px darken(#eee, 5%);
 				width: 100%;
-				margin: 1rem 0;
 				border-radius: 5px;
 				& h3 {
 					color: #666;
 					border-bottom: 1px solid #eee;
-					margin: 1rem;
+					margin: 1rem 0;
 					padding: 1rem 0;
 					display: flex;
+					justify-content: center;
 					align-items: center;
 					font-size: 2rem;
+					width: 100%;
 					& svg {
 						color: $brand-main;
 						font-size: 2rem;
@@ -58,33 +61,40 @@
 				& .row {
 					display: flex;
 					flex-direction: row;
-					justify-content: space-between;
+					justify-content: space-around;
 					align-items: center;
-					margin: 1rem;
+					width: 100%;
 					& p {
 						color: #666;
+						margin: 1rem;
 						& span {
 							color: $brand-main;
 						}
 					}
-					& button {
-						color: #fff;
-						background: $brand-main;
-						border-radius: 5px;
-						height: 2.5rem;
-						padding: 0 1rem;
-						font-size: 1rem;
-						border: 3px solid $brand-secondary;
-						display: flex;
-						align-items: center;
-						transition: all 0.3s ease-in-out;
-						& svg {
-							margin-right: 0.5rem;
-						}
-						&:hover {
-							cursor: pointer;
-							border: 3px solid $brand-main;
-							box-shadow: 0 1px 10px darken($brand-main, 5%);
+					& .col_actions {
+						width: 100%;
+						margin: 1rem;
+						& button {
+							color: #fff;
+							background: $brand-main;
+							border-radius: 5px;
+							height: 3rem;
+							padding: 0 1rem;
+							font-size: 1rem;
+							border: 3px solid $brand-secondary;
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							transition: all 0.3s ease-in-out;
+							width: 100%;
+							& svg {
+								margin-right: 0.5rem;
+							}
+							&:hover {
+								cursor: pointer;
+								border: 3px solid $brand-main;
+								box-shadow: 0 1px 10px darken($brand-main, 5%);
+							}
 						}
 					}
 				}
@@ -122,6 +132,7 @@
 					display: flex;
 					flex-direction: column;
 					justify-content: space-around;
+
 					background: #fff;
 					box-shadow: 0 1px 5px darken(#eee, 5%);
 					width: 100%;
@@ -148,20 +159,23 @@
 						flex-wrap: wrap;
 						align-items: center;
 						margin: 1rem 0;
+						width: 100%;
 						& p {
 							color: #666;
 							& span {
 								color: $brand-main;
 							}
 						}
-						& button {
-							height: 3rem;
-							margin: 0.5rem 0;
-							flex: 1;
-
-							& svg {
-								margin-right: 0.5rem;
-								font-size: 1.5rem;
+						& .col_actions {
+							& button {
+								height: 3rem;
+								width: 100%;
+								display: flex;
+								justify-content: center;
+								& svg {
+									margin-right: 0.5rem;
+									font-size: 1.5rem;
+								}
 							}
 						}
 					}

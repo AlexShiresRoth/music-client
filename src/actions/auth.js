@@ -1,13 +1,10 @@
 import axios from 'axios';
 import { AUTHENTICATE, AUTH_ERROR, LOAD_USER, CREATE_USER, CLEAR_USER, CLEAR_CART } from './types';
-import setAuthToken from '../reusable/setAuthToken';
+
 import { setAlert } from './alert';
 import { api } from '../reusable/api';
 
 export const loadUser = () => async (dispatch) => {
-	if (localStorage.token) {
-		setAuthToken(localStorage.token);
-	}
 	try {
 		const res = await axios.get(api + '/auth');
 

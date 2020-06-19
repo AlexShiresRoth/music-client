@@ -30,7 +30,7 @@
 			color: $brand-main;
 			border: 0px solid transparent;
 			justify-self: center;
-			font-size: 1vw;
+			font-size: 1.2rem;
 			&:hover {
 				cursor: pointer;
 			}
@@ -46,7 +46,7 @@
 			padding: 0rem 4rem;
 			& p {
 				color: $brand-text;
-				font-size: 1vw;
+				font-size: 1.2rem;
 				line-height: 2;
 			}
 		}
@@ -81,7 +81,6 @@
 				color: $brand-main;
 				border: 0px solid transparent;
 				justify-self: center;
-				font-size: 4.5vw;
 				&:hover {
 					cursor: pointer;
 				}
@@ -93,7 +92,7 @@
 				padding: 0rem 1rem;
 				& p {
 					color: $brand-text;
-					font-size: 4.5vw;
+					font-size: 1rem;
 					line-height: 2;
 				}
 			}

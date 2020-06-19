@@ -9,11 +9,12 @@ const ChangePassword = ({ changePassword, setFormState, isFormShown, account: { 
 	const [formData, setFormData] = useState({
 		passwordOne: '',
 		passwordTwo: '',
+		passwordThree: '',
 	});
 
 	const [loading, setLoading] = useState(false);
 
-	const { passwordOne, passwordTwo } = formData;
+	const { passwordOne, passwordTwo, passwordThree } = formData;
 
 	const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -40,6 +41,7 @@ const ChangePassword = ({ changePassword, setFormState, isFormShown, account: { 
 
 	return (
 		<form className={style.form}>
+			<h4>Enter your current password and then your desired new password</h4>
 			<div className={style.input_col}>
 				<label>Current Password</label>
 				<input
@@ -59,6 +61,17 @@ const ChangePassword = ({ changePassword, setFormState, isFormShown, account: { 
 					placeholder="new password"
 					onChange={(e) => onChange(e)}
 					value={passwordTwo}
+					required={true}
+				/>
+			</div>
+			<div className={style.input_col}>
+				<label>Confirm New Password</label>
+				<input
+					type="password"
+					name="passwordThree"
+					placeholder="confirm new password"
+					onChange={(e) => onChange(e)}
+					value={passwordThree}
 					required={true}
 				/>
 			</div>

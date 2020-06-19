@@ -8,6 +8,8 @@
 	margin: 1rem 0;
 	& h4 {
 		color: #666;
+		text-align: center;
+		margin: 1rem;
 	}
 	& .input_col {
 		display: flex;
@@ -34,5 +36,8 @@
 	& button {
 		align-self: flex-end;
 		margin: 1rem;
+		max-width: 10rem;
+		display: flex;
+		justify-content: center;
 	}
 }

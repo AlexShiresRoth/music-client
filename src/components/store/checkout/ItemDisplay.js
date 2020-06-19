@@ -26,7 +26,7 @@ const ItemDisplay = ({ item, retrieveIntent }) => {
 				})}
 			</div>
 			<p>
-				<span>Total:</span>${item.total}
+				<span>Total:</span>${item.total}.00
 			</p>
 			<p>
 				<span>Name:</span>

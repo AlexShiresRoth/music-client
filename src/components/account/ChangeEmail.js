@@ -40,6 +40,7 @@ const ChangeEmail = ({ changeEmail, setFormState, isFormShown, account: { emailU
 
 	return (
 		<form className={style.form}>
+			<h4>Please enter your current email and then the email you wish to change to</h4>
 			<div className={style.input_col}>
 				<label>Current Email</label>
 				<input
