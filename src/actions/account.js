@@ -93,7 +93,9 @@ export const deleteAccount = (formData, history) => async (dispatch) => {
 		dispatch({
 			type: CLEAR_USER,
 		});
+
 		dispatch(setAlert('Account has been deleted :(', 'success'));
+
 		history.push('/store');
 	} catch (error) {
 		const errors = error.response.data.errors;

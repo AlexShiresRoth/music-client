@@ -38,16 +38,14 @@ export const authenticateUser = (data, history) => async (dispatch) => {
 	try {
 		const res = await axios.post(api + '/auth', formData, config);
 
-		console.log(res.data);
-
 		dispatch({
 			type: AUTHENTICATE,
 			payload: res.data,
 		});
 
-		dispatch(loadUser());
-
 		dispatch(setAlert('Welcome back', 'success'));
+
+		dispatch(loadUser());
 
 		history.push('/store');
 	} catch (error) {
@@ -110,7 +108,9 @@ export const logoutUser = (history) => async (dispatch) => {
 		dispatch({
 			type: CLEAR_CART,
 		});
+
 		dispatch(setAlert('You have been logged out', 'success'));
+
 		history.push('/store');
 	} catch (error) {
 		console.error(error);
