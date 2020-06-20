@@ -23,6 +23,11 @@ import ViewOrdersPage from './components/pages/ViewOrdersPage';
 import ForgotPassword from './components/pages/ForgotPassword';
 import PasswordResetPage from './components/pages/PasswordResetPage';
 
+const token = localStorage.getItem('token');
+if (token) {
+	setAuthToken(token);
+}
+
 const App = () => {
 	const token = localStorage.getItem('token');
 	useEffect(() => {
