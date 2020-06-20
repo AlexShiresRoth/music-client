@@ -38,10 +38,14 @@ export const authenticateUser = (data, history) => async (dispatch) => {
 	try {
 		const res = await axios.post(api + '/auth', formData, config);
 
+		console.log(res.data);
+
 		dispatch({
 			type: AUTHENTICATE,
 			payload: res.data,
 		});
+
+		dispatch(loadUser());
 
 		dispatch(setAlert('Welcome back', 'success'));
 
@@ -78,11 +82,11 @@ export const createUser = (data, history) => async (dispatch) => {
 			payload: res.data,
 		});
 
+		dispatch(loadUser());
+
 		dispatch(setAlert('You have successfully created an account', 'success'));
 
 		history.push('/store');
-
-		dispatch(loadUser());
 	} catch (error) {
 		const errors = error.response.data.errors;
 		console.log(errors);
