@@ -1,4 +1,4 @@
-import { AUTHENTICATE, CLEAR_USER, LOAD_USER, CREATE_USER } from '../actions/types';
+import { AUTHENTICATE, CLEAR_USER, LOAD_USER, CREATE_USER, AUTH_ERROR } from '../actions/types';
 
 const initialState = {
 	token: localStorage.getItem('token'),
@@ -34,6 +34,15 @@ export default (state = initialState, action) => {
 				loading: false,
 			};
 		case CLEAR_USER:
+			localStorage.removeItem('token');
+			return {
+				...state,
+				isAuthenticated: false,
+				token: null,
+				loading: false,
+				user: null,
+			};
+		case AUTH_ERROR:
 			localStorage.removeItem('token');
 			return {
 				...state,
