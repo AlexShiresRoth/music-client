@@ -23,16 +23,7 @@ import ViewOrdersPage from './components/pages/ViewOrdersPage';
 import ForgotPassword from './components/pages/ForgotPassword';
 import PasswordResetPage from './components/pages/PasswordResetPage';
 
-if (localStorage.token) {
-	setAuthToken(localStorage.token);
-}
-
 const App = () => {
-	useEffect(() => {
-		setAuthToken(localStorage.token);
-		store.dispatch(loadUser());
-	}, []);
-
 	const client = new ApolloClient({
 		link: new PrismicLink({
 			uri: 'https://gerrymckeveny.prismic.io/graphql',
@@ -41,9 +32,18 @@ const App = () => {
 		cache: new InMemoryCache(),
 	});
 
+	const token = localStorage.getItem('token');
+
+	useEffect(() => {
+		if (token) {
+			setAuthToken(localStorage.token);
+			store.dispatch(loadUser());
+		}
+	}, [token]);
+
 	return (
-		<ApolloProvider client={client}>
-			<Provider store={store}>
+		<Provider store={store}>
+			<ApolloProvider client={client}>
 				<HashRouter>
 					<Switch>
 						<Route exact path="/" component={Home} />
@@ -60,8 +60,8 @@ const App = () => {
 						<PrivateRoute exact path="/store/account/vieworders" component={ViewOrdersPage} />
 					</Switch>
 				</HashRouter>
-			</Provider>
-		</ApolloProvider>
+			</ApolloProvider>
+		</Provider>
 	);
 };
 

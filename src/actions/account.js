@@ -1,17 +1,15 @@
-import Axios from 'axios';
+import api from '../reusable/api';
 import {
 	LOAD_ORDERS,
-	AUTH_ERROR,
 	CHANGE_PASSWORD,
 	ACCOUNT_ERROR,
 	DELETE_ACCOUNT,
-	CLEAR_USER,
 	CHANGE_EMAIL,
 	RESET_PASSWORD,
 	LOAD_PASSWORD_RESET,
+	LOGOUT,
 } from './types';
 import { setAlert } from './alert';
-import { api } from '../reusable/api';
 
 const config = {
 	accept: 'application/json',
@@ -19,7 +17,7 @@ const config = {
 };
 export const loadOrderHistory = () => async (dispatch) => {
 	try {
-		const res = await Axios.get(api + '/users/orders');
+		const res = await api.get('/users/orders');
 
 		dispatch({
 			type: LOAD_ORDERS,
@@ -28,7 +26,7 @@ export const loadOrderHistory = () => async (dispatch) => {
 	} catch (error) {
 		console.log(error);
 		dispatch({
-			type: AUTH_ERROR,
+			type: ACCOUNT_ERROR,
 			payload: error.response.data,
 		});
 		dispatch(setAlert(error.response.data.msg, 'danger'));
@@ -37,8 +35,8 @@ export const loadOrderHistory = () => async (dispatch) => {
 
 export const changePassword = (formData) => async (dispatch) => {
 	try {
-		const res = await Axios.put(api + '/users/changepassword', formData, config);
-		console.log(res.data);
+		const res = await api.put('/users/changepassword', formData, config);
+
 		dispatch({
 			type: CHANGE_PASSWORD,
 			payload: res.data,
@@ -60,8 +58,8 @@ export const changePassword = (formData) => async (dispatch) => {
 
 export const changeEmail = (formData) => async (dispatch) => {
 	try {
-		const res = await Axios.put(api + '/users/changeemail', formData, config);
-		console.log(res.data);
+		const res = await api.put('/users/changeemail', formData, config);
+
 		dispatch({
 			type: CHANGE_EMAIL,
 			payload: res.data,
@@ -83,7 +81,7 @@ export const changeEmail = (formData) => async (dispatch) => {
 
 export const deleteAccount = (formData, history) => async (dispatch) => {
 	try {
-		const res = await Axios.put(api + '/users/deleteaccount', formData, config);
+		const res = await api.put('/users/deleteaccount', formData, config);
 
 		dispatch({
 			type: DELETE_ACCOUNT,
@@ -91,7 +89,7 @@ export const deleteAccount = (formData, history) => async (dispatch) => {
 		});
 
 		dispatch({
-			type: CLEAR_USER,
+			type: LOGOUT,
 		});
 
 		dispatch(setAlert('Account has been deleted :(', 'success'));
@@ -113,7 +111,7 @@ export const deleteAccount = (formData, history) => async (dispatch) => {
 
 export const sendPasswordResetLink = (formData) => async (dispatch) => {
 	try {
-		await Axios.post(api + '/users/resetpassword', formData, config);
+		await api.post('/users/resetpassword', formData, config);
 
 		dispatch({
 			type: RESET_PASSWORD,
@@ -141,7 +139,7 @@ export const sendPasswordResetLink = (formData) => async (dispatch) => {
 
 export const loadPasswordResetObject = (id) => async (dispatch) => {
 	try {
-		const res = await Axios.get(api + `/users/passwordreset/${id}`);
+		const res = await api.get(`/users/passwordreset/${id}`);
 
 		dispatch({
 			type: LOAD_PASSWORD_RESET,
@@ -155,7 +153,7 @@ export const loadPasswordResetObject = (id) => async (dispatch) => {
 
 export const sendPasswordResetRequest = (formData, history) => async (dispatch) => {
 	try {
-		await Axios.put(api + '/users/resetforgottenpassword', formData, config);
+		await api.put('/users/resetforgottenpassword', formData, config);
 		dispatch({
 			type: RESET_PASSWORD,
 		});

@@ -3,9 +3,9 @@ import Auth from './Auth';
 import style from './LoginForm.module.scss';
 import { authenticateUser } from '../../../actions/auth';
 import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, Redirect } from 'react-router-dom';
 
-const LoginForm = ({ history, authenticateUser }) => {
+const LoginForm = ({ history, authenticateUser, auth: { isAuthenticated } }) => {
 	const [data, setData] = useState({
 		email: '',
 		password: '',
@@ -19,6 +19,10 @@ const LoginForm = ({ history, authenticateUser }) => {
 		e.preventDefault();
 		authenticateUser(data, history);
 	};
+
+	if (isAuthenticated) {
+		return <Redirect to="/store" />;
+	}
 
 	return (
 		<Auth>
@@ -62,4 +66,10 @@ const LoginForm = ({ history, authenticateUser }) => {
 	);
 };
 
-export default connect(null, { authenticateUser })(withRouter(LoginForm));
+const mapStateToProps = (state) => {
+	return {
+		auth: state.auth,
+	};
+};
+
+export default connect(mapStateToProps, { authenticateUser })(withRouter(LoginForm));

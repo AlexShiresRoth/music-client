@@ -33,3 +33,4 @@ export const DELETE_ACCOUNT = 'DELETE_ACCOUNT';
 export const CHANGE_EMAIL = 'CHANGE_EMAIL';
 export const RESET_PASSWORD = 'RESET_PASSWORD';
 export const LOAD_PASSWORD_RESET = 'LOAD_PASSWORD_RESET';
+export const LOGOUT = 'LOGOUT';

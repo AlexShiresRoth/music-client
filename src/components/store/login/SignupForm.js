@@ -4,10 +4,10 @@ import style from './SignupForm.module.scss';
 import Auth from './Auth';
 import { createUser } from '../../../actions/auth';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
 
-const SignupForm = ({ history, createUser }) => {
+const SignupForm = ({ history, createUser, auth: { isAuthenticated } }) => {
 	const [data, setData] = useState({
 		name: '',
 		email: '',
@@ -23,6 +23,10 @@ const SignupForm = ({ history, createUser }) => {
 		e.preventDefault();
 		createUser(data, history);
 	};
+
+	if (isAuthenticated) {
+		return <Redirect to="/store" />;
+	}
 
 	return (
 		<Auth>
@@ -91,4 +95,10 @@ SignupForm.propTypes = {
 	createUser: PropTypes.func.isRequired,
 };
 
-export default connect(null, { createUser })(withRouter(SignupForm));
+const mapStateToProps = (state) => {
+	return {
+		auth: state.auth,
+	};
+};
+
+export default connect(mapStateToProps, { createUser })(withRouter(SignupForm));

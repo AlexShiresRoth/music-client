@@ -1,25 +1,8 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import style from './Shop.module.scss';
-import { connect } from 'react-redux';
-import { loadUser } from '../../actions/auth';
 import ShopGrid from './ShopGrid';
-const Shop = ({ loadUser, auth: { isAuthenticated, user, loading } }) => {
-	useEffect(() => {
-		if (isAuthenticated) {
-			loadUser();
-		}
-	}, [isAuthenticated, loadUser]);
-
-	return !loading && user ? (
-		<section className={style.section}>
-			<div className={style.banner}>
-				<div className={style.overlay}></div>
-				<h2>Shop Merch</h2>
-			</div>
-			<ShopGrid />
-		</section>
-	) : (
+const Shop = () => {
+	return (
 		<section className={style.section}>
 			<div className={style.banner}>
 				<div className={style.overlay}></div>
@@ -30,15 +13,4 @@ const Shop = ({ loadUser, auth: { isAuthenticated, user, loading } }) => {
 	);
 };
 
-Shop.propTypes = {
-	loadUser: PropTypes.func.isRequired,
-	auth: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => {
-	return {
-		auth: state.auth,
-	};
-};
-
-export default connect(mapStateToProps, { loadUser })(Shop);
+export default Shop;

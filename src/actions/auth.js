@@ -1,23 +1,23 @@
-import axios from 'axios';
-import { AUTHENTICATE, AUTH_ERROR, LOAD_USER, CREATE_USER, CLEAR_USER, CLEAR_CART } from './types';
+import { AUTHENTICATE, AUTH_ERROR, LOAD_USER, CREATE_USER, CLEAR_CART, LOGOUT } from './types';
 
 import { setAlert } from './alert';
-import { api } from '../reusable/api';
+import api from '../reusable/api';
+import setAuthToken from '../reusable/setAuthToken';
 
 export const loadUser = () => async (dispatch) => {
-	try {
-		const res = await axios.get(api + '/auth');
+	const token = localStorage.getItem('token');
 
+	setAuthToken(token);
+
+	try {
+		const res = await api.get('/auth/');
+
+		console.log('this is the user', res.data);
 		dispatch({
 			type: LOAD_USER,
 			payload: res.data,
 		});
 	} catch (error) {
-		console.error(error);
-		const errors = error.response.data.errors;
-		if (errors) {
-			errors.forEach((err) => dispatch(setAlert(err.msg[0].msg, 'danger')));
-		}
 		dispatch({
 			type: AUTH_ERROR,
 			payload: error.response.data.msg,
@@ -26,55 +26,40 @@ export const loadUser = () => async (dispatch) => {
 	}
 };
 
+//login the user
 export const authenticateUser = (data, history) => async (dispatch) => {
-	const config = {
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	};
-
-	const formData = JSON.stringify({ ...data });
-
 	try {
-		const res = await axios.post(api + '/auth', formData, config);
+		const res = await api.post('/auth', data);
 
 		dispatch({
 			type: AUTHENTICATE,
 			payload: res.data,
 		});
 
-		dispatch(setAlert('Welcome back', 'success'));
-
 		dispatch(loadUser());
 
-		history.push('/store');
+		dispatch(setAlert('Welcome back', 'success'));
 	} catch (error) {
 		const errors = error.response.data.errors;
-
+		dispatch({
+			type: AUTH_ERROR,
+			payload: error.response.data.msg,
+		});
 		if (errors) {
 			console.log(errors[0].msg[0].msg, 'HELP');
 			errors.forEach((err) => dispatch(setAlert(err.msg, 'danger')));
 		} else {
-			dispatch({
-				type: AUTH_ERROR,
-				payload: error.response.data.msg,
-			});
 			dispatch(setAlert(error.response.data.msg, 'danger'));
 		}
+		dispatch(setAlert(error.response.data.msg, 'danger'));
 	}
 };
 
 export const createUser = (data, history) => async (dispatch) => {
-	const config = {
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	};
-
-	const body = JSON.stringify({ ...data });
 	try {
-		const res = await axios.post(api + '/users', body, config);
+		const res = await api.post('/users', data);
 
+		console.log('user created', res.data);
 		dispatch({
 			type: CREATE_USER,
 			payload: res.data,
@@ -83,8 +68,6 @@ export const createUser = (data, history) => async (dispatch) => {
 		dispatch(loadUser());
 
 		dispatch(setAlert('You have successfully created an account', 'success'));
-
-		history.push('/store');
 	} catch (error) {
 		const errors = error.response.data.errors;
 		console.log(errors);
@@ -103,7 +86,7 @@ export const createUser = (data, history) => async (dispatch) => {
 export const logoutUser = (history) => async (dispatch) => {
 	try {
 		dispatch({
-			type: CLEAR_USER,
+			type: LOGOUT,
 		});
 		dispatch({
 			type: CLEAR_CART,
