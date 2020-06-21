@@ -12,7 +12,6 @@ export const loadUser = () => async (dispatch) => {
 	try {
 		const res = await api.get('/auth/');
 
-		console.log('this is the user', res.data);
 		dispatch({
 			type: LOAD_USER,
 			payload: res.data,
@@ -59,7 +58,6 @@ export const createUser = (data, history) => async (dispatch) => {
 	try {
 		const res = await api.post('/users', data);
 
-		console.log('user created', res.data);
 		dispatch({
 			type: CREATE_USER,
 			payload: res.data,
