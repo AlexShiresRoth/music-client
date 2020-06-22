@@ -2,7 +2,7 @@
 
 .landing {
 	height: 100vh;
-	width: 100vw;
+	width: 100%;
 	position: relative;
 	z-index: 0;
 	overflow: hidden;
@@ -14,6 +14,7 @@
 	background-position: center;
 	background-attachment: fixed;
 	background-size: cover;
+	background-repeat: no-repeat;
 	filter: sepia(0.2);
 	& .overlay {
 		height: 100%;
@@ -92,6 +93,7 @@
 
 @media screen and (max-width: 900px) {
 	.landing {
+		background-attachment: auto;
 		& .grid {
 			z-index: 1;
 			& button {

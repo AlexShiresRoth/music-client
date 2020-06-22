@@ -84,7 +84,7 @@ const ConfirmForm = ({
 
 	const [modalState, setModalState] = useState(false);
 
-	const handleModal = async (e) => {
+	const handleModal = (e) => {
 		e.preventDefault();
 
 		//look for the item one more time to make sure it hasn't been removed
@@ -128,6 +128,7 @@ const ConfirmForm = ({
 			},
 		},
 	};
+
 	return (
 		<div className={style.container}>
 			<ConfirmModal
@@ -139,7 +140,7 @@ const ConfirmForm = ({
 			<button onClick={(e) => handlePaymentRedirect(e)} className={style.go_back_btn}>
 				<FiArrowLeft /> Go Back/Cancel Order
 			</button>
-			<form className={style.form}>
+			<form className={style.form} onSubmit={(e) => handleModal(e)}>
 				<div className={style.heading}>
 					<h2>Order Summary</h2>
 					<p>Please review your selection before checking out. All sales are final.</p>
@@ -147,10 +148,17 @@ const ConfirmForm = ({
 
 				<ItemDisplay item={purchaseItem} />
 				<CardElement id={style.card_element} options={options} />
-				<button onClick={(e) => handleModal(e)} onSubmit={(e) => handleModal(e)} disabled={!stripe}>
-					Pay with <FaCcStripe />
-					{loading ? 'Loading...' : '$' + purchaseItem.total}
-				</button>
+				{stripe ? (
+					<button onSubmit={(e) => handleModal(e)} disabled={!stripe}>
+						Pay with <FaCcStripe />
+						{loading ? 'Loading...' : '$' + purchaseItem.total}
+					</button>
+				) : (
+					<button>
+						Pay with <FaCcStripe />
+						{loading ? 'Loading...' : '$' + purchaseItem.total}
+					</button>
+				)}
 			</form>
 		</div>
 	);

@@ -9,7 +9,6 @@ import { AuthorizedLinks } from './AuthorizedLinks';
 import { AdminLinks } from './AdminLinks';
 import { AuthLinks } from './AuthLinks';
 import { NavLinksComponent } from './NavLinksComponent';
-import { setModalState } from '../../actions/contact';
 import Cart from './cart/Cart';
 import { cancelIntent } from '../../actions/store';
 
@@ -19,8 +18,6 @@ const Nav = ({
 	history,
 	auth: { isAuthenticated, user, loading },
 	logoutUser,
-	setModalState,
-	contact: { modalState },
 	store: { purchaseItem },
 	cancelIntent,
 }) => {
@@ -67,8 +64,6 @@ const Nav = ({
 						<AdminLinks
 							logoutUser={logoutUser}
 							history={history}
-							setModalState={setModalState}
-							modalState={modalState}
 							cancelIntent={cancelIntent}
 							purchaseItem={purchaseItem}
 						/>
@@ -79,8 +74,6 @@ const Nav = ({
 						<AuthorizedLinks
 							logoutUser={logoutUser}
 							history={history}
-							modalState={modalState}
-							setModalState={setModalState}
 							cancelIntent={cancelIntent}
 							purchaseItem={purchaseItem}
 						/>
@@ -89,24 +82,12 @@ const Nav = ({
 				)
 			) : (
 				<>
-					<AuthLinks
-						scrollToSection={scrollToSection}
-						refs={refs}
-						currentSection={currentSection}
-						setModalState={setModalState}
-						modalState={modalState}
-					/>
+					<AuthLinks scrollToSection={scrollToSection} refs={refs} currentSection={currentSection} />
 					<Cart />
 				</>
 			)
 		) : (
-			<NavLinksComponent
-				scrollToSection={scrollToSection}
-				refs={refs}
-				currentSection={currentSection}
-				setModalState={setModalState}
-				modalState={modalState}
-			/>
+			<NavLinksComponent scrollToSection={scrollToSection} refs={refs} currentSection={currentSection} />
 		);
 	};
 
@@ -179,4 +160,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { logoutUser, setActive, setModalState, cancelIntent })(withRouter(Nav));
+export default connect(mapStateToProps, { logoutUser, setActive, cancelIntent })(withRouter(Nav));

@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 import { addPurchaseItem } from '../../../actions/store';
 import { withRouter } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { LoadingSpinner } from '../../loader/LoadingSpinner';
 
-const BillingInfo = ({ history, addPurchaseItem, store: { cart, total } }) => {
+const BillingInfo = ({ history, addPurchaseItem, store: { cart, total, errors } }) => {
 	const [item, setPurchaseItem] = useState({
 		total: null,
 		name: '',
@@ -14,6 +15,8 @@ const BillingInfo = ({ history, addPurchaseItem, store: { cart, total } }) => {
 		cart: [],
 		orderId: '',
 	});
+
+	const [loading, setLoading] = useState(false);
 
 	const { name, email } = item;
 
@@ -31,9 +34,15 @@ const BillingInfo = ({ history, addPurchaseItem, store: { cart, total } }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
+		setLoading(true);
 		addPurchaseItem(item, history);
 	};
+
+	useEffect(() => {
+		if (errors.length > 0) {
+			setLoading(false);
+		}
+	}, [errors]);
 
 	return (
 		<form className={style.form}>
@@ -48,9 +57,15 @@ const BillingInfo = ({ history, addPurchaseItem, store: { cart, total } }) => {
 				<label>Email</label>
 				<input type="text" value={email} name="email" onChange={(e) => onChange(e)} />
 			</div>
-			<button onClick={(e) => handleSubmit(e)}>
-				Proceed to Checkout with <FaCcStripe />
-			</button>
+			{loading ? (
+				<button>
+					<LoadingSpinner />
+				</button>
+			) : (
+				<button onClick={(e) => handleSubmit(e)}>
+					Proceed to Checkout with <FaCcStripe />
+				</button>
+			)}
 			<div className={style.disclaimer}>
 				<p>
 					We use{' '}

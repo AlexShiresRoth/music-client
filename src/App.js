@@ -22,6 +22,7 @@ import AccountPage from './components/pages/AccountPage';
 import ViewOrdersPage from './components/pages/ViewOrdersPage';
 import ForgotPassword from './components/pages/ForgotPassword';
 import PasswordResetPage from './components/pages/PasswordResetPage';
+import ContactPage from './components/pages/ContactPage';
 
 const App = () => {
 	const client = new ApolloClient({
@@ -52,6 +53,7 @@ const App = () => {
 						<Route exact path="/store/signup" component={Signup} />
 						<Route exact path="/store/forgotpassword" component={ForgotPassword} />
 						<Route exact path="/store/passwordreset/:id" component={PasswordResetPage} />
+						<Route exact path="/contact" component={ContactPage} />
 						<PrivateRoute exact path="/store/additem" component={StoreUpload} />
 						<PrivateRoute exact path="/store/edit/:id" component={EditStoreItem} />
 						<PrivateRoute exact path="/store/checkout" component={CheckoutPage} />

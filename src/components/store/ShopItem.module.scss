@@ -75,6 +75,11 @@
 			&:focus {
 				outline: 1px solid transparent;
 			}
+			&:active {
+				background: $success;
+				box-shadow: 0 1px 5px darken($success, 5%);
+				border: 4px solid $success;
+			}
 		}
 		& .added {
 			background: $success;
@@ -88,6 +93,24 @@
 				cursor: not-allowed;
 				background: $brand-secondary;
 				box-shadow: 0 0 0;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.item {
+		& .checkout {
+			& button {
+				height: 3rem;
+				width: 10rem;
+				border-radius: 100px;
+				color: #eee;
+				background: $brand-main;
+				border: 4px solid $brand-secondary;
+				box-shadow: 0 1px 5px darken($brand-main, 5%);
+				transition: all 0.3s ease;
+				font-size: 0.9rem;
 			}
 		}
 	}

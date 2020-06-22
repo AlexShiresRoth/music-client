@@ -5,6 +5,7 @@ import { FaSpotify } from 'react-icons/fa';
 import { addRef, setActive, setCurrent } from '../../actions/refs';
 import { setModalState } from '../../actions/contact';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Landing = ({ setActive, addRef, setCurrent, setModalState, contact: { modalState } }) => {
 	const headerRef = useRef();
@@ -34,8 +35,12 @@ const Landing = ({ setActive, addRef, setCurrent, setModalState, contact: { moda
 			<header className={landingStyle.landing} ref={headerRef} id="home">
 				<div className={landingStyle.overlay}></div>
 				<div className={landingStyle.grid}>
-					<button>Store</button>
-					<button onClick={(e) => setModalState(!modalState)}>Contact</button>
+					<Link to="/store">
+						<button>Store</button>
+					</Link>
+					<Link to="/contact">
+						<button>Contact</button>
+					</Link>
 					<div className={landingStyle.social}>
 						<TiSocialFacebook />
 						<TiSocialInstagram />

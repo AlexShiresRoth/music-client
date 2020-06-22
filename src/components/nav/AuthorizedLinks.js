@@ -2,13 +2,13 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './Nav.module.scss';
 
-export const AuthorizedLinks = ({ logoutUser, history, setModalState, modalState, purchaseItem, cancelIntent }) => {
+export const AuthorizedLinks = ({ logoutUser, history, purchaseItem, cancelIntent }) => {
 	const links = [
 		{ url: '/', title: 'home', type: 'link' },
 		{ url: '/store', title: 'store', type: 'link' },
 		{ url: '/store/account', title: 'account', type: 'link' },
 		{ url: '/store/logout', title: 'logout', type: 'button' },
-		{ url: '', title: 'contact', type: 'button' },
+		{ url: '/contact', title: 'contact', type: 'link' },
 	];
 
 	const handleUserLogout = () => {
@@ -24,12 +24,8 @@ export const AuthorizedLinks = ({ logoutUser, history, setModalState, modalState
 			<NavLink exact to={link.url} activeClassName={style.active} className={style.link}>
 				{link.title}
 			</NavLink>
-		) : link.title !== 'contact' ? (
-			<button onClick={() => handleUserLogout()} className={style.link}>
-				{link.title}
-			</button>
 		) : (
-			<button className={style.link} onClick={(e) => setModalState(!modalState)}>
+			<button onClick={() => handleUserLogout()} className={style.link}>
 				{link.title}
 			</button>
 		);
