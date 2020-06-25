@@ -95,6 +95,7 @@
 	.landing {
 		background-attachment: auto;
 		& .grid {
+			justify-content: space-around;
 			z-index: 1;
 			& button {
 				width: 33.33%;
