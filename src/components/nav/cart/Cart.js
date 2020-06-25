@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import style from './Cart.module.scss';
 import CartDisplay from './CartDisplay';
+import { withRouter } from 'react-router-dom';
 
-const Cart = ({ store: { cart } }) => {
+const Cart = ({ store: { cart }, history }) => {
 	const [showCart, setCartState] = useState(false);
 	const [isMobile, handleMobile] = useState(false);
 
@@ -23,7 +24,8 @@ const Cart = ({ store: { cart } }) => {
 		return () => window.removeEventListener('resize', handleResize);
 	});
 
-	return cart.length > 0 ? (
+	//disable use of cart in payment form page
+	return cart.length > 0 && !history.location.pathname.includes('payment') ? (
 		<div
 			className={style.cart}
 			onClick={isMobile ? (e) => setCartState(!showCart) : null}
@@ -48,4 +50,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, null)(Cart);
+export default connect(mapStateToProps, null)(withRouter(Cart));

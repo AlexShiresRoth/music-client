@@ -1,7 +1,7 @@
-$brand-accent: #d7c79e;
-$brand-secondary: #e79e85;
-$brand-main: #ce5120;
-$brand-dark: #250808;
+$brand-accent: #ffcf99;
+$brand-main: #d84a05;
+$brand-secondary: lighten($brand-main, 10%);
+$brand-dark: #280003;
 $brand-text: #fff;
 $store-bg: #fbfbfb;
-$success: rgba(23, 163, 10, 0.698);
+$success: #67a357dc;

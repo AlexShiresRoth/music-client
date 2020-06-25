@@ -273,18 +273,23 @@ export const retrieveIntent = (id) => async (dispatch) => {
 export const cancelIntent = (id, history) => async (dispatch) => {
 	try {
 		const res = await api.post(`/checkout/cancelintent/${id}`);
+
 		dispatch({
 			type: CANCEL_INTENT,
 			payload: res.data,
 		});
+
 		dispatch(setAlert('Order canceled.', 'success'));
+
 		history.goBack();
 	} catch (error) {
-		console.log(error);
+		console.error(error.response.data);
+
 		dispatch({
 			type: STORE_ERROR,
 			payload: error.response.data,
 		});
+
 		dispatch(setAlert(error.response.data.msg, 'danger'));
 	}
 };

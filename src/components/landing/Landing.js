@@ -6,8 +6,9 @@ import { addRef, setActive, setCurrent } from '../../actions/refs';
 import { setModalState } from '../../actions/contact';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import IntersectionObserver from 'intersection-observer-polyfill';
 
-const Landing = ({ setActive, addRef, setCurrent, setModalState, contact: { modalState } }) => {
+const Landing = ({ setActive, addRef, setCurrent }) => {
 	const headerRef = useRef();
 
 	useEffect(() => {
@@ -22,7 +23,7 @@ const Landing = ({ setActive, addRef, setCurrent, setModalState, contact: { moda
 					//add redux to handle state
 				}
 			},
-			{ rootMargin: '0px 0px 00px 0px', threshold: 0.8 }
+			{ rootMargin: '0px 0px 00px 0px', threshold: 0.5 }
 		);
 		if (headerRef.current) {
 			observer.observe(headerRef.current);

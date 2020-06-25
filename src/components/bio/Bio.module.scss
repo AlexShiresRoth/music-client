@@ -37,7 +37,7 @@
 		}
 	}
 	& .par_grid {
-		max-width: 40vw;
+		max-width: 42vw;
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-template-rows: auto;
@@ -46,7 +46,7 @@
 			padding: 0rem 4rem;
 			& p {
 				color: $brand-text;
-				font-size: 1.2rem;
+				font-size: 1.3rem;
 				line-height: 2;
 			}
 		}

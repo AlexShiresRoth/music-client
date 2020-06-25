@@ -28,7 +28,6 @@ const ViewOrders = ({ auth: { isAuthenticated, loading, user }, account: { order
 };
 
 const mapStateToProps = (state) => {
-	console.log(state);
 	return {
 		account: state.account,
 		auth: state.auth,

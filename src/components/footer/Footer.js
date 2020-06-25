@@ -14,8 +14,9 @@ const Footer = () => {
 			</div>
 			<div className={footerStyle.col}>
 				<h3>Contact</h3>
-				<a href="mailto:gerrymckeveny@gmail.com">Booking</a>
+				<Link to="/contact">Booking</Link>
 				<a href="mailto:alex@fillthevoid.io">Support</a>
+				<Link to="/contact">Contact Page</Link>
 			</div>
 			<div className={footerStyle.col}>
 				<h3>Site</h3>

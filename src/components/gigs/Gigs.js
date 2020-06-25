@@ -3,7 +3,7 @@ import gigStyle from './Gigs.module.scss';
 import GigMap from './GigMap';
 import { addRef, setCurrent } from '../../actions/refs';
 import { connect } from 'react-redux';
-
+import IntersectionObserver from 'intersection-observer-polyfill';
 const Gigs = ({ addRef, setCurrent }) => {
 	const gigsRef = useRef();
 
@@ -15,7 +15,7 @@ const Gigs = ({ addRef, setCurrent }) => {
 					//add redux to handle state
 				}
 			},
-			{ rootMargin: '0px 0px 00px 0px', threshold: 0.5 }
+			{ rootMargin: '0px 0px -200px 0px', threshold: 0.5 }
 		);
 		if (gigsRef.current) {
 			observer.observe(gigsRef.current);

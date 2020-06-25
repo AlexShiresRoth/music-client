@@ -61,7 +61,6 @@ export default (state = initialState, action) => {
 				cart: [],
 			};
 		case ADD_CART:
-			//localStorage.setItem('cart', state.cart)
 			return {
 				...state,
 				loading: false,
@@ -102,6 +101,7 @@ export default (state = initialState, action) => {
 				...state,
 				loading: false,
 				clientSecret: null,
+				purchaseItem: null,
 			};
 		case PAYMENT_SUCCESS:
 			return {
@@ -117,9 +117,6 @@ export default (state = initialState, action) => {
 				...state,
 				loading: false,
 				cart: state.cart.filter((item) => item._id !== payload._id),
-				total: null,
-				purchaseItem: null,
-				clientSecret: null,
 			};
 		case STORE_ERROR:
 			return {

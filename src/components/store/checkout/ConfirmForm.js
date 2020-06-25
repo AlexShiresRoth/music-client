@@ -6,8 +6,9 @@ import { connect } from 'react-redux';
 import { loadItem, cancelIntent, paymentSuccess, paymentError, updateQuantity } from '../../../actions/store';
 import ItemDisplay from './ItemDisplay';
 import ConfirmModal from './ConfirmModal';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { FaCcStripe } from 'react-icons/fa';
+import { LoadingSpinner } from '../../loader/LoadingSpinner';
 
 const ConfirmForm = ({
 	store: { purchaseItem, loading, clientSecret },
@@ -17,14 +18,13 @@ const ConfirmForm = ({
 	paymentSuccess,
 	paymentError,
 	updateQuantity,
+	match,
 }) => {
 	const stripe = useStripe();
 	const elements = useElements();
-
 	useEffect(() => {
-		const id = purchaseItem._id;
-		loadItem(id);
-	}, [loadItem, purchaseItem._id]);
+		loadItem(match.params.id);
+	}, [loadItem, match.params.id]);
 
 	const handleSubmit = async (event) => {
 		// Block native form submission.
@@ -115,9 +115,6 @@ const ConfirmForm = ({
 				fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
 				fontSmoothing: 'antialiased',
 				fontSize: '16px',
-				width: '100%',
-				border: '2px solid #eee',
-				margin: '1rem 0',
 				'::placeholder': {
 					color: '#aab7c4',
 				},
@@ -129,7 +126,13 @@ const ConfirmForm = ({
 		},
 	};
 
-	return (
+	if (purchaseItem === null) {
+		return <Redirect to="/store/checkout" />;
+	}
+
+	return loading ? (
+		<LoadingSpinner />
+	) : (
 		<div className={style.container}>
 			<ConfirmModal
 				modalState={modalState}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import style from './Order.module.scss';
 
 const Order = ({ order, index }) => {
+	console.log(order);
 	return (
 		<div key={index} className={style.order}>
 			<h3>

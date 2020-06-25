@@ -3,7 +3,7 @@ import store from '../store';
 import { LOGOUT } from '../actions/types';
 
 const url = 'https://murmuring-badlands-16689.herokuapp.com/api';
-// const devUrl = 'http://localhost:5000/api'
+// const devUrl = 'http://localhost:5000/api';
 const api = axios.create({
 	baseURL: url,
 	headers: {

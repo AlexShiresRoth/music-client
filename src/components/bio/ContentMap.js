@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import bioStyles from './Bio.module.scss';
 import { addRef, setCurrent } from '../../actions/refs';
 import { connect } from 'react-redux';
-
+import IntersectionObserver from 'intersection-observer-polyfill';
 const ContentMap = ({ content: { content }, addRef, setCurrent, text, setContentLength, reduced }) => {
 	const bioRef = useRef();
 

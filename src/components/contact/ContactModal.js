@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import modalStyle from './ContactModal.module.scss';
-import { MdClose } from 'react-icons/md';
 import { connect } from 'react-redux';
 import { FaSpotify } from 'react-icons/fa';
 import { TiSocialTwitter, TiSocialInstagram, TiSocialFacebook } from 'react-icons/ti';
 import { withRouter } from 'react-router-dom';
 
-const ContactModal = ({ history }) => {
+const ContactModal = () => {
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
@@ -25,9 +24,6 @@ const ContactModal = ({ history }) => {
 	return (
 		<div className={modalStyle.contact_modal}>
 			<div className={modalStyle.form_container}>
-				<div className={modalStyle.btn_container}>
-					<MdClose onClick={(e) => history.goBack()} />
-				</div>
 				<div className={modalStyle.grid}>
 					<div className={modalStyle.text_box}>
 						<h2>Get In Contact.</h2>

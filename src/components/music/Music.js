@@ -4,7 +4,7 @@ import musicStyle from './Music.module.scss';
 import { FaSpotify } from 'react-icons/fa';
 import { addRef, setCurrent } from '../../actions/refs';
 import { connect } from 'react-redux';
-
+import IntersectionObserver from 'intersection-observer-polyfill';
 const Music = ({ addRef, setCurrent }) => {
 	const musicRef = useRef();
 
