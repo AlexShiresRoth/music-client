@@ -93,12 +93,12 @@
 
 @media screen and (max-width: 900px) {
 	.landing {
-		background-attachment: auto;
+		background-attachment: inherit;
 		& .grid {
 			justify-content: space-around;
 			z-index: 1;
 			& button {
-				width: 33.33%;
+				width: 100%;
 				color: $brand-text;
 				font-size: 4vw;
 			}
