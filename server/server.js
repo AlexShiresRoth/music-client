@@ -15,9 +15,10 @@ app.get('/api', (req, res) => res.send('Music client api is running'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/shop', require('./routes/storeItems'));
+app.use('/api/checkout', require('./routes/purchasing'));
 
 //Mongo db connect
-
+//wtf
 const connectDB = async () => {
 	const uri = process.env.MONGO_URI;
 

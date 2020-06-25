@@ -5,22 +5,22 @@ const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
-
 //@route GET ROUTE
 //@desc get user
 //@access private access
 router.get('/', auth, async (req, res) => {
 	try {
 		const user = await User.findById(req.user.id).select('-password');
-
+		console.log('this is the user', user);
 		if (!user) {
-			return res.status(400).json({ errors: [{ msg: 'Could not load user' }] });
+			console.log('could not load user');
+			return res.status(400).json({ msg: 'Could not load user' });
 		}
-		console.log(user, 'GOT THAT USER');
+
 		return res.json(user);
 	} catch (error) {
 		console.error(error);
-		return res.status(500).json({ errors: [{ msg: 'Internal Server Error' }] });
+		return res.status(500).json({ msg: 'Internal Server Error' });
 	}
 });
 
@@ -37,7 +37,7 @@ router.post(
 		const errors = validationResult(req);
 
 		if (!errors.isEmpty()) {
-			return res.status(400).json({ errors: [{ msg: errors.array() }] });
+			return res.status(400).json({ errors: errors.array() });
 		}
 
 		const { email, password } = req.body;
@@ -46,13 +46,13 @@ router.post(
 			const foundUser = await User.findOne({ email });
 
 			if (!foundUser) {
-				return res.status(400).json({ errors: [{ msg: 'Could not find a user with that email' }] });
+				return res.status(400).json({ msg: 'Could not find a user with that email' });
 			}
 
 			const match = await bcrypt.compare(password, foundUser.password);
 
 			if (!match) {
-				return res.status(400).json({ errors: [{ msg: 'Password is invalid' }] });
+				return res.status(400).json({ msg: 'Password is invalid' });
 			}
 
 			const payload = {
@@ -61,14 +61,14 @@ router.post(
 				},
 			};
 
-			jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 360000 }, (err, token) => {
+			jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 600000 }, (err, token) => {
 				if (err) throw err;
-				console.log(foundUser);
+				console.log('success');
 				return res.json({ token });
 			});
 		} catch (error) {
 			console.error(error);
-			return res.status(500).json({ errors: [{ msg: 'Internal Server Error' }] });
+			return res.status(500).json({ msg: 'Internal Server Error' });
 		}
 	}
 );
@@ -86,7 +86,7 @@ router.post('/logout', async (req, res) => {
 		return res.json({ msg: 'You have been logged out' });
 	} catch (error) {
 		console.log(error);
-		return res.status(500).json({ errors: [{ msg: 'Internal Server Error' }] });
+		return res.status(500).json({ msg: 'Internal Server Error' });
 	}
 });
 

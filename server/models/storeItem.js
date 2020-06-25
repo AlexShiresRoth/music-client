@@ -17,6 +17,9 @@ const StoreItemSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	total: {
+		type: String,
+	},
 	quantity: {
 		type: String,
 		required: true,
