@@ -43,11 +43,13 @@
 		grid-template-rows: auto;
 		transition: all 1s ease;
 		& .par_container {
-			padding: 0rem 4rem;
 			& p {
-				color: $brand-text;
-				font-size: 1.3rem;
+				color: lighten($brand-dark, 10%);
+				font-size: 1.5rem;
 				line-height: 2;
+				font-family: sofia-pro-condensed, sans-serif;
+				font-weight: 700;
+				font-style: normal;
 			}
 		}
 	}
@@ -91,7 +93,6 @@
 			& .par_container {
 				padding: 0rem 1rem;
 				& p {
-					color: $brand-text;
 					font-size: 1.15rem;
 					line-height: 2;
 				}

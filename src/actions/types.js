@@ -34,3 +34,5 @@ export const CHANGE_EMAIL = 'CHANGE_EMAIL';
 export const RESET_PASSWORD = 'RESET_PASSWORD';
 export const LOAD_PASSWORD_RESET = 'LOAD_PASSWORD_RESET';
 export const LOGOUT = 'LOGOUT';
+export const SEND_EMAIL = 'SEND_EMAIL';
+export const EMAIL_ERROR = 'EMAIL_ERROR';

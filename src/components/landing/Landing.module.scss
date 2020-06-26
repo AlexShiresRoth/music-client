@@ -60,6 +60,7 @@
 			text-transform: uppercase;
 			transition: all 0.3s ease-in-out;
 			height: 100%;
+			font-size: 1.2rem;
 			&:hover {
 				cursor: pointer;
 				background: $brand-main;
@@ -78,10 +79,11 @@
 		animation: fadein 1.3s linear forwards;
 		transform: translateY(-10vh);
 		opacity: 0;
+		min-width: 10rem;
 		& svg {
 			margin: 0 0.5vw;
 			color: darken($brand-text, 20%);
-			font-size: 1.2vw;
+			font-size: 1.5rem;
 			transition: all 0.3s ease-in-out;
 			&:hover {
 				cursor: pointer;
@@ -100,7 +102,7 @@
 			& button {
 				width: 100%;
 				color: $brand-text;
-				font-size: 4vw;
+				font-size: 1rem;
 			}
 		}
 		& .social {
@@ -109,7 +111,7 @@
 			& svg {
 				margin: 0 0.5vw;
 				color: darken($brand-text, 20%);
-				font-size: 4vw;
+				font-size: 1.2rem;
 				transition: all 0.3s ease-in-out;
 			}
 		}

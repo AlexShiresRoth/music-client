@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Muli|Playfair+Display|Archivo&display=swap');
-
+@import url('https://use.typekit.net/heb5qtl.css');
 @import './mixins';
 @import './variables';
 
@@ -8,7 +8,9 @@ body {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-	font-family: 'Muli';
+	font-family: sofia-pro-condensed, sans-serif;
+	font-weight: 400;
+	font-style: normal;
 	overflow-x: hidden;
 	background: $brand-accent;
 }
@@ -36,7 +38,9 @@ label {
 
 button {
 	font-size: 1rem;
-	font-family: 'Muli';
+	font-family: sofia-pro-condensed, sans-serif;
+	font-weight: 400;
+	font-style: normal;
 	&:active,
 	&:focus {
 		outline: 0px solid transparent;

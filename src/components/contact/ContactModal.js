@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import modalStyle from './ContactModal.module.scss';
 import { connect } from 'react-redux';
 import { FaSpotify } from 'react-icons/fa';
 import { TiSocialTwitter, TiSocialInstagram, TiSocialFacebook } from 'react-icons/ti';
 import { withRouter } from 'react-router-dom';
+import { sendEmail, sendConfirmationEmail } from '../../actions/contact';
+import { LoadingSpinner } from '../loader/LoadingSpinner';
 
-const ContactModal = () => {
+const ContactModal = ({ sendConfirmationEmail, sendEmail, contact: { emailResult, status } }) => {
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
@@ -13,13 +15,30 @@ const ContactModal = () => {
 		message: '',
 	});
 
+	const [loading, setLoading] = useState(false);
+
 	const { name, email, subject, message } = formData;
 
 	const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
 	const formSubmit = (e) => {
 		e.preventDefault();
+		setLoading(true);
+		sendEmail(formData);
+		sendConfirmationEmail(formData);
 	};
+
+	useEffect(() => {
+		if (status === 'sent') {
+			setLoading(false);
+			setFormData({ name: '', email: '', subject: '', message: '' });
+		}
+		if (status === 'error') {
+			setLoading(false);
+		}
+
+		return () => setLoading(false);
+	}, [status]);
 
 	return (
 		<div className={modalStyle.contact_modal}>
@@ -51,6 +70,7 @@ const ContactModal = () => {
 								value={name}
 								onChange={(e) => onChange(e)}
 								placeholder="enter your name"
+								required={true}
 							/>
 						</div>
 						<div className={modalStyle.input_row}>
@@ -61,6 +81,7 @@ const ContactModal = () => {
 								value={email}
 								onChange={(e) => onChange(e)}
 								placeholder="enter your email"
+								required={true}
 							/>
 						</div>
 						<div className={modalStyle.input_row}>
@@ -71,6 +92,7 @@ const ContactModal = () => {
 								value={subject}
 								onChange={(e) => onChange(e)}
 								placeholder="enter message subject"
+								required={true}
 							/>
 						</div>
 						<div className={modalStyle.input_row}>
@@ -79,11 +101,12 @@ const ContactModal = () => {
 								value={message}
 								name="message"
 								onChange={(e) => onChange(e)}
+								required={true}
 								placeholder="enter your message"
 							></textarea>
 						</div>
 						<div className={modalStyle.input_row}>
-							<button onSubmit={(e) => formSubmit(e)}>Send</button>
+							{loading ? <LoadingSpinner /> : <button onSubmit={(e) => formSubmit(e)}>Send</button>}
 						</div>
 					</form>
 				</div>
@@ -98,4 +121,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, null)(withRouter(ContactModal));
+export default connect(mapStateToProps, { sendConfirmationEmail, sendEmail })(withRouter(ContactModal));
