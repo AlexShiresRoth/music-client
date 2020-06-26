@@ -44,11 +44,11 @@
 		transition: all 1s ease;
 		& .par_container {
 			& p {
-				color: lighten($brand-dark, 10%);
+				color: $brand-text;
 				font-size: 1.5rem;
 				line-height: 2;
-				font-family: sofia-pro-condensed, sans-serif;
-				font-weight: 700;
+				font-family: acumin-pro, sans-serif;
+				font-weight: 400;
 				font-style: normal;
 			}
 		}

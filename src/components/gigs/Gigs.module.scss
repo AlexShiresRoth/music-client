@@ -40,20 +40,24 @@
 			}
 			& button {
 				border: 2px solid $brand-main;
-				color: $brand-main;
-				background: transparent;
+				color: $brand-text;
+				background: $brand-main;
 				padding: 0.5rem 1rem;
 				text-transform: uppercase;
 				transition: all 0.3s ease;
+				box-shadow: 0 1px 5px darken($brand-main, 5%);
+				transition: all 0.3s ease;
 				&:hover {
-					background: $brand-main;
+					background: darken($brand-main, 2%);
+					border: 2px solid darken($brand-main, 2%);
 					color: $brand-text;
 					cursor: pointer;
+					box-shadow: 0 1px 10px darken($brand-main, 5%);
 				}
 			}
 			& svg {
 				color: $brand-main;
-				font-size: 1.2vw;
+				font-size: 3rem;
 			}
 		}
 	}
