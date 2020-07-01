@@ -11,6 +11,7 @@ const UploadForm = ({ uploadToStore, history }) => {
 		amount: 0,
 		quantity: 0,
 		image: '',
+		category: '',
 	});
 
 	const widget = window.cloudinary.createUploadWidget(
@@ -28,7 +29,7 @@ const UploadForm = ({ uploadToStore, history }) => {
 		}
 	);
 
-	const { name, description, amount, quantity, image } = data;
+	const { name, description, amount, quantity, image, category } = data;
 
 	const onChange = (e) => setdata({ ...data, [e.target.name]: e.target.value });
 
@@ -55,6 +56,17 @@ const UploadForm = ({ uploadToStore, history }) => {
 					required={true}
 				></input>
 				<button onClick={(e) => handleWidgetVisibility(e)}>Upload Image</button>
+			</div>
+			<div className={style.input_col}>
+				<label>What category is the item?</label>
+				<input
+					type="text"
+					name="category"
+					placeholder="Enter a category"
+					value={category}
+					onChange={(e) => onChange(e)}
+					required={true}
+				></input>
 			</div>
 			<div className={style.input_col}>
 				<label>Name the item</label>
@@ -84,7 +96,9 @@ const UploadForm = ({ uploadToStore, history }) => {
 					type="number"
 					name="amount"
 					placeholder="Enter a price"
-					value={amount}
+					min="0"
+					max="100"
+					value={amount + '.00'}
 					onChange={(e) => onChange(e)}
 					required={true}
 				></input>
@@ -95,6 +109,8 @@ const UploadForm = ({ uploadToStore, history }) => {
 					type="number"
 					name="quantity"
 					placeholder="Enter an amount of available stock"
+					min="1"
+					max="99999999"
 					value={quantity}
 					onChange={(e) => onChange(e)}
 					required={true}

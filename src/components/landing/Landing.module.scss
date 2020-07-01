@@ -49,7 +49,7 @@
 		animation: fadein 1.2s linear forwards;
 		transform: translateY(-10vh);
 		opacity: 0;
-		height: 8vh;
+		min-height: 5rem;
 		gap: 1rem;
 		background: $brand-dark;
 		& button {

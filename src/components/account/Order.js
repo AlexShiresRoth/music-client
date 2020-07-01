@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import style from './Order.module.scss';
+import convertPrice from '../reusable/convertPrice';
 
 const Order = ({ order, index }) => {
-	console.log(order);
 	return (
 		<div key={index} className={style.order}>
 			<h3>
@@ -24,7 +24,7 @@ const Order = ({ order, index }) => {
 					<h3>Purchase Details</h3>
 
 					<p>
-						Total For Purchase: <span>${order.total}</span>
+						Total For Purchase: <span>${convertPrice(order.total)}</span>
 					</p>
 					<p>
 						Purchase Date: <span>{order.purchaseDate}</span>
@@ -55,7 +55,7 @@ const Order = ({ order, index }) => {
 									</div>
 									<div className={style.item_row}>
 										<p>
-											Price Per Item: <span>${item.amount}</span>
+											Price Per Item: <span>${convertPrice(item.amount)}</span>
 										</p>
 									</div>
 									<div className={style.item_row}>

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { removeFromCart } from '../../../actions/store';
 import { connect } from 'react-redux';
+import convertPrice from '../../reusable/convertPrice';
 
 const CartDisplay = ({
 	items,
@@ -32,7 +33,7 @@ const CartDisplay = ({
 								{item.name.length > 7 ? item.name.substr(0, 7) + '...' : item.name}
 							</p>
 							<p>
-								<span>Price:</span>${item.amount}
+								<span>Price:</span>${convertPrice(item.amount)}
 							</p>
 
 							<AiFillCloseCircle onClick={(e) => removeFromCart(item)} />

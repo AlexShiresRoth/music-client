@@ -1,0 +1,119 @@
+@import '../../../../sass/variables';
+
+.container {
+	width: 100%;
+	min-height: 6rem;
+	background: $store-bg;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	align-items: center;
+	box-shadow: 0 1px 5px darken($store-bg, 35%);
+	& p {
+		color: $brand-dark;
+		& span {
+			font-weight: 900;
+		}
+	}
+	& button {
+		background: $brand-dark;
+		border: 5px solid $brand-dark;
+		transition: all 0.3s ease;
+		min-width: 10rem;
+		height: 3.5rem;
+		color: $brand-text;
+		border-radius: 100px;
+		font-weight: 900;
+		&:hover {
+			cursor: pointer;
+			box-shadow: 0 1px 5px darken($brand-dark, 5%);
+		}
+
+		&:focus {
+			outline: 0px solid transparent;
+		}
+	}
+	& form {
+		display: flex;
+		flex-direction: row;
+		border-radius: 100px;
+		border: 5px solid $brand-dark;
+		margin-right: 2rem;
+		& input {
+			height: 3rem;
+			width: 20rem;
+			margin-left: 0.5rem;
+			border: 0;
+			background: transparent;
+			border-radius: 100px;
+			&:focus {
+				outline: 0px solid transparent;
+			}
+		}
+		input:-webkit-autofill,
+		input:-webkit-autofill:hover,
+		input:-webkit-autofill:focus {
+			border: 0px solid transparent;
+			-webkit-text-fill-color: $brand-dark;
+			-webkit-box-shadow: 0 0 0px 1000px $store-bg inset;
+			transition: background-color 5000s ease-in-out 0s;
+		}
+		& button {
+			background: transparent;
+			border: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			min-width: 5rem;
+			height: auto;
+			&:hover {
+				cursor: pointer;
+				box-shadow: 0 0 0;
+			}
+			&:hover svg {
+				color: $brand-main;
+			}
+			& svg {
+				transition: all 0.3s ease;
+				color: $brand-dark;
+				font-size: 1.6rem;
+			}
+			&:focus {
+				outline: 0px solid transparent;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.container {
+		width: 100%;
+		min-height: 6rem;
+		background: $brand-text;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		box-shadow: 0 1px 5px darken($store-bg, 35%);
+		padding: 1rem 0;
+		& button {
+			width: 90%;
+			padding: 0;
+		}
+		& form {
+			margin: 0;
+			margin-right: 0;
+			width: 90%;
+			margin-bottom: 1rem;
+			padding: 0;
+			& input {
+				width: 100%;
+				margin-left: 0;
+				padding: 0 2px;
+			}
+			& button {
+				width: auto;
+			}
+		}
+	}
+}

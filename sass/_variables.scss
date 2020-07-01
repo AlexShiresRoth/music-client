@@ -1,8 +1,9 @@
-$brand-accent: #f4d1ae;
-$brand-main: #d84a05;
+$brand-accent: #ebebd3;
+$brand-main: #8c6057;
 $brand-secondary: lighten($brand-main, 10%);
-$brand-dark: #280003;
-$brand-text: #fbfbfb;
+$brand-dark: #1e1014;
+$brand-text: $brand-accent;
+$brand-text-alt: $brand-dark;
 $brand-text-secondary: #878c8f;
 $store-bg: #fbfbfb;
-$success: #67a357dc;
+$success: #41521fdc;

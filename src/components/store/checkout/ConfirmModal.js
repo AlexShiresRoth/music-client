@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import style from './ConfirmModal.module.scss';
+import convertPrice from '../../reusable/convertPrice';
 const ConfirmModal = ({ setModalState, modalState, total, handleSubmit }) => {
 	return modalState ? (
 		<div className={style.modal_container}>
@@ -10,7 +11,7 @@ const ConfirmModal = ({ setModalState, modalState, total, handleSubmit }) => {
 				</div>
 				<div className={style.message}>
 					<h2>
-						Pay<span> ${total}.00</span>?
+						Pay<span> ${convertPrice(total)}</span>?
 					</h2>
 				</div>
 				<button onClick={(e) => handleSubmit(e)}>Confirm Payment</button>

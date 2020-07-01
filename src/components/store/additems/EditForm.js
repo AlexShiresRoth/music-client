@@ -18,6 +18,7 @@ const EditForm = ({ submitEditedItem, history, getItemToEdit, store: { editItem,
 		amount: 0,
 		quantity: 0,
 		image: '',
+		category: '',
 		id: '',
 	});
 
@@ -36,7 +37,7 @@ const EditForm = ({ submitEditedItem, history, getItemToEdit, store: { editItem,
 		}
 	);
 
-	const { name, description, amount, quantity, image } = data;
+	const { name, description, amount, quantity, image, category } = data;
 
 	const onChange = (e) => setdata({ ...data, [e.target.name]: e.target.value });
 
@@ -57,9 +58,10 @@ const EditForm = ({ submitEditedItem, history, getItemToEdit, store: { editItem,
 				name: editItem.name,
 				description: editItem.description,
 				quantity: editItem.quantity,
-				amount: editItem.amount,
+				amount: editItem.amount / 100,
 				image: editItem.image,
 				id: editItem._id,
+				category: editItem.category,
 			});
 		}
 	}, [editItem]);
@@ -67,7 +69,7 @@ const EditForm = ({ submitEditedItem, history, getItemToEdit, store: { editItem,
 	return !loading && editItem ? (
 		<form className={style.form} onSubmit={(e) => formSubmit(e)}>
 			<div className={style.input_col}>
-				<label>Add an image for the item.</label>
+				<label>Add different image</label>
 				<input
 					type="text"
 					name="image"
@@ -79,7 +81,18 @@ const EditForm = ({ submitEditedItem, history, getItemToEdit, store: { editItem,
 				<button onClick={(e) => handleWidgetVisibility(e)}>Upload Image</button>
 			</div>
 			<div className={style.input_col}>
-				<label>Name the item</label>
+				<label>Change item category</label>
+				<input
+					type="text"
+					name="category"
+					placeholder="Enter a category"
+					value={category}
+					onChange={(e) => onChange(e)}
+					required={true}
+				></input>
+			</div>
+			<div className={style.input_col}>
+				<label>Edit Name</label>
 				<input
 					type="text"
 					name="name"
@@ -90,7 +103,7 @@ const EditForm = ({ submitEditedItem, history, getItemToEdit, store: { editItem,
 				></input>
 			</div>
 			<div className={style.input_col}>
-				<label>Add a description</label>
+				<label>Edit description</label>
 				<input
 					type="text"
 					name="description"
@@ -101,18 +114,19 @@ const EditForm = ({ submitEditedItem, history, getItemToEdit, store: { editItem,
 				></input>
 			</div>
 			<div className={style.input_col}>
-				<label>Add a price</label>
+				<label>Edit price</label>
 				<input
 					type="number"
 					name="amount"
 					placeholder="Enter a price"
-					value={amount}
+					min="0"
+					value={amount + '.00'}
 					onChange={(e) => onChange(e)}
 					required={true}
 				></input>
 			</div>
 			<div className={style.input_col}>
-				<label>How many are available?</label>
+				<label>Edit Stock Count</label>
 				<input
 					type="number"
 					name="quantity"

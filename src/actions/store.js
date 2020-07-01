@@ -14,6 +14,7 @@ import {
 	PAYMENT_SUCCESS,
 	GET_ITEM,
 	CLEAR_CART,
+	SEARCH_STORE,
 } from './types';
 import { setAlert } from './alert';
 
@@ -325,7 +326,24 @@ export const paymentSuccess = (history, purchaseItem) => async (dispatch) => {
 export const paymentError = (error) => async (dispatch) => {
 	dispatch({
 		type: STORE_ERROR,
-		payload: error,
+		payload: error.response.data.msg,
 	});
-	dispatch(setAlert(error, 'danger'));
+	dispatch(setAlert(error.response.data.msg, 'danger'));
+};
+
+export const searchStore = (formData) => async (dispatch) => {
+	try {
+		console.log(formData);
+		const res = await api.post('/shop/search', formData);
+		dispatch({
+			type: SEARCH_STORE,
+			payload: res.data,
+		});
+	} catch (error) {
+		dispatch({
+			type: STORE_ERROR,
+			payload: error.response.data.msg,
+		});
+		dispatch(setAlert(error.response.data.msg, 'danger'));
+	}
 };

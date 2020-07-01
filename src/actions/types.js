@@ -36,3 +36,4 @@ export const LOAD_PASSWORD_RESET = 'LOAD_PASSWORD_RESET';
 export const LOGOUT = 'LOGOUT';
 export const SEND_EMAIL = 'SEND_EMAIL';
 export const EMAIL_ERROR = 'EMAIL_ERROR';
+export const SEARCH_STORE = 'SEARCH_STORE';

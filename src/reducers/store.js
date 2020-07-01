@@ -13,6 +13,7 @@ import {
 	CANCEL_INTENT,
 	PAYMENT_SUCCESS,
 	GET_ITEM,
+	SEARCH_STORE,
 } from '../actions/types';
 
 const initialState = {
@@ -35,6 +36,13 @@ export default (state = initialState, action) => {
 				...state,
 				items: payload,
 				loading: false,
+			};
+		case SEARCH_STORE:
+			return {
+				...state,
+				items: payload,
+				loading: false,
+				errors: [],
 			};
 		case UPLOAD_TO_STORE:
 			return {

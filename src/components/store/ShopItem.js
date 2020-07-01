@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { addToCart, removeFromCart } from '../../actions/store';
 import { FiEdit } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import convertPrice from '../reusable/convertPrice';
 const ShopItem = ({
 	elements: { amount, quantity, description, uploadDate, image, name, _id, userAmt, total },
 	auth: { isAuthenticated, user, loading },
@@ -47,7 +48,7 @@ const ShopItem = ({
 			</div>
 			<div className={style.price}>
 				<p>
-					Price: <span>${amount}</span>
+					Price: <span>${convertPrice(amount)}</span>
 				</p>
 				{quantity > 10 ? (
 					<p className={style.in_stock}>In Stock</p>

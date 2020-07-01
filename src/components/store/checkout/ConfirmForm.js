@@ -9,6 +9,7 @@ import ConfirmModal from './ConfirmModal';
 import { withRouter, Redirect } from 'react-router-dom';
 import { FaCcStripe } from 'react-icons/fa';
 import { LoadingSpinner } from '../../loader/LoadingSpinner';
+import convertPrice from '../../reusable/convertPrice';
 
 const ConfirmForm = ({
 	store: { purchaseItem, loading, clientSecret },
@@ -154,12 +155,12 @@ const ConfirmForm = ({
 				{stripe ? (
 					<button onSubmit={(e) => handleModal(e)} disabled={!stripe}>
 						Pay with <FaCcStripe />
-						{loading ? 'Loading...' : '$' + purchaseItem.total}
+						{loading ? 'Loading...' : '$' + convertPrice(purchaseItem.total)}
 					</button>
 				) : (
 					<button>
 						Pay with <FaCcStripe />
-						{loading ? 'Loading...' : '$' + purchaseItem.total}
+						{loading ? 'Loading...' : '$' + convertPrice(purchaseItem.total)}
 					</button>
 				)}
 			</form>

@@ -5,6 +5,7 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import { removeFromCart, updateCart } from '../../../actions/store';
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
+import convertPrice from '../../reusable/convertPrice';
 
 const CheckoutForm = ({ item, index, removeFromCart, updateCart }) => {
 	const [formData, setFormData] = useState({
@@ -36,14 +37,13 @@ const CheckoutForm = ({ item, index, removeFromCart, updateCart }) => {
 				</p>
 
 				<p>
-					<span>Price Per Item:</span>${item.amount}
+					<span>Price Per Item:</span>${convertPrice(item.amount)}
 				</p>
 				<p>
 					<span>Total For Item:</span>$
 					{quantity > parseInt(item.quantity)
-						? parseInt(item.quantity) * parseInt(item.amount)
-						: parseInt(item.amount) * quantity}
-					.00
+						? convertPrice(parseInt(item.quantity) * parseInt(item.amount))
+						: convertPrice(parseInt(item.amount) * quantity)}
 				</p>
 				<p>
 					<span>Stock Amt:</span>

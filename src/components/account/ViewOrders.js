@@ -18,7 +18,7 @@ const ViewOrders = ({ auth: { isAuthenticated, loading, user }, account: { order
 			<div className={style.container}>
 				<h2>Past Orders/Purchases</h2>
 				{orderHistory.map((order, i) => {
-					return <Order order={order} index={i} />;
+					return <Order order={order} index={i} key={i} />;
 				})}
 			</div>
 		</section>

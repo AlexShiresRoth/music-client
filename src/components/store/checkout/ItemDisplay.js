@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import style from './ItemDisplay.module.scss';
 import { connect } from 'react-redux';
 import { retrieveIntent } from '../../../actions/store';
+import convertPrice from '../../reusable/convertPrice';
 
 const ItemDisplay = ({ item, retrieveIntent }) => {
 	useEffect(() => {
@@ -19,14 +20,14 @@ const ItemDisplay = ({ item, retrieveIntent }) => {
 						<div className={style.item} key={i}>
 							<img src={cartItem.image} alt={cartItem.description} />
 							<p>Item:{cartItem.name}</p>
-							<p>Cost:${cartItem.total}.00</p>
+							<p>Cost:${convertPrice(cartItem.total)}</p>
 							<p>Quantity: {parseInt(cartItem.total) / parseInt(cartItem.amount)}</p>
 						</div>
 					);
 				})}
 			</div>
 			<p>
-				<span>Total:</span>${item.total}.00
+				<span>Total:</span>${convertPrice(item.total)}
 			</p>
 			<p>
 				<span>Name:</span>
