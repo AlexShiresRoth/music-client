@@ -4,8 +4,7 @@ import style from './SearchBar.module.scss';
 import { searchStore } from '../../../actions/store';
 import { connect } from 'react-redux';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { LoadingSpinner } from '../../loader/LoadingSpinner';
-const SearchBar = ({ searchStore, store: { items, loading, errors } }) => {
+const SearchBar = ({ searchStore }) => {
 	const [formData, setFormData] = useState({
 		search: '',
 	});
@@ -50,8 +49,6 @@ SearchBar.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-	console.log(state);
-
 	return {
 		store: state.store,
 	};
