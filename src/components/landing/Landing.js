@@ -14,16 +14,16 @@ const Landing = ({ setActive, addRef, setCurrent }) => {
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			([entry]) => {
-				if (entry.intersectionRatio <= 5) {
-					setActive(true);
-				}
 				if (entry.isIntersecting) {
 					setActive(false);
 					setCurrent('home');
-					//add redux to handle state
+					console.log('is intersecting');
+				}
+				if (!entry.isIntersecting) {
+					setActive(true);
 				}
 			},
-			{ rootMargin: '0px 0px 00px 0px', threshold: 0.5 }
+			{ rootMargin: '-200px 0px 00px 0px', threshold: 0.6 }
 		);
 		if (headerRef.current) {
 			observer.observe(headerRef.current);
@@ -33,8 +33,8 @@ const Landing = ({ setActive, addRef, setCurrent }) => {
 
 	return (
 		<>
-			<header className={landingStyle.landing} ref={headerRef} id="home">
-				<div className={landingStyle.overlay}></div>
+			<header className={landingStyle.landing}>
+				<div className={landingStyle.overlay} ref={headerRef} id="home"></div>
 				<div className={landingStyle.grid}>
 					<Link to="/store">
 						<button>Store</button>

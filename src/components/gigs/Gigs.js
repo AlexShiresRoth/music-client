@@ -1,10 +1,11 @@
 import React, { useRef, useEffect } from 'react';
 import gigStyle from './Gigs.module.scss';
 import GigMap from './GigMap';
-import { addRef, setCurrent } from '../../actions/refs';
+import { addRef, setCurrent, setActive } from '../../actions/refs';
 import { connect } from 'react-redux';
 import IntersectionObserver from 'intersection-observer-polyfill';
-const Gigs = ({ addRef, setCurrent }) => {
+import { gigs } from './gigArray';
+const Gigs = ({ addRef, setCurrent, setActive }) => {
 	const gigsRef = useRef();
 
 	useEffect(() => {
@@ -12,31 +13,16 @@ const Gigs = ({ addRef, setCurrent }) => {
 			([entry]) => {
 				if (entry.isIntersecting) {
 					setCurrent('gigs');
-					//add redux to handle state
 				}
 			},
-			{ rootMargin: '0px 0px -200px 0px', threshold: 0.5 }
+			{ rootMargin: '-200px 0px -200px 0px', threshold: 0.2 }
 		);
 		if (gigsRef.current) {
 			observer.observe(gigsRef.current);
 		}
 		if (gigsRef.current !== null) addRef(gigsRef);
-	}, [addRef, gigsRef, setCurrent]);
+	}, [addRef, gigsRef, setCurrent, setActive]);
 
-	const gigs = [
-		{ date: '10/10/20', location: `The Ol' Bar`, time: '7:00pm-9:00pm', address: '1234 bar street, NY' },
-		{ date: '10/10/20', location: `The Ol' Bar`, time: '7:00pm-9:00pm', address: '1234 bar street, NY' },
-		{ date: '10/10/20', location: `The Ol' Bar`, time: '7:00pm-9:00pm', address: '1234 bar street, NY' },
-		{ date: '10/10/20', location: `The Ol' Bar`, time: '7:00pm-9:00pm', address: '1234 bar street, NY' },
-		{ date: '10/10/20', location: `The Ol' Bar`, time: '7:00pm-9:00pm', address: '1234 bar street, NY' },
-		{ date: '10/10/20', location: `The Ol' Bar`, time: '7:00pm-9:00pm', address: '1234 bar street, NY' },
-		{ date: '10/10/20', location: `The Ol' Bar`, time: '7:00pm-9:00pm', address: '1234 bar street, NY' },
-		{ date: '10/10/20', location: `The Ol' Bar`, time: '7:00pm-9:00pm', address: '1234 bar street, NY' },
-		{ date: '10/10/20', location: `The Ol' Bar`, time: '7:00pm-9:00pm', address: '1234 bar street, NY' },
-		{ date: '10/10/20', location: `The Ol' Bar`, time: '7:00pm-9:00pm', address: '1234 bar street, NY' },
-		{ date: '10/10/20', location: `The Ol' Bar`, time: '7:00pm-9:00pm', address: '1234 bar street, NY' },
-		{ date: '10/10/20', location: `The Ol' Bar`, time: '7:00pm-9:00pm', address: '1234 bar street, NY' },
-	];
 	return (
 		<section className={gigStyle.section}>
 			<div className={gigStyle.heading} ref={gigsRef} id="gigs">
@@ -53,4 +39,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { addRef, setCurrent })(Gigs);
+export default connect(mapStateToProps, { addRef, setCurrent, setActive })(Gigs);

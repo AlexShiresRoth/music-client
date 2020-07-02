@@ -120,8 +120,9 @@ const Nav = ({
 
 	useEffect(() => {
 		setPage(history.location.pathname);
-		setActive(history.location.pathname !== '/');
-	}, [history.location.pathname, setActive]);
+		//change nav background depending on path location
+		setActive(history.location.pathname !== '/' || currentSection !== 'home');
+	}, [history.location.pathname, setActive, currentSection]);
 
 	return (
 		<nav
@@ -130,7 +131,7 @@ const Nav = ({
 					? page !== '/'
 						? `${navStyle.nav_reg} ${navStyle.active_nav}`
 						: `${navStyle.nav} ${navStyle.active_nav}`
-					: `${navStyle.nav}`
+					: navStyle.nav
 			}
 		>
 			<div className={navStyle.nav_title}>

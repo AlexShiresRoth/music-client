@@ -16,6 +16,7 @@
 	background-attachment: fixed;
 	background-size: cover;
 	filter: sepia(0.2);
+	min-height: 100vh;
 	width: 100%;
 	box-shadow: 0 1px 10px darken($brand-dark, 2%);
 	position: relative;
@@ -92,7 +93,7 @@
 			}
 		}
 		& .spotify_container {
-			width: 20rem;
+			width: 22.5rem;
 			margin-right: -2vw;
 			z-index: 2;
 
@@ -100,7 +101,7 @@
 				width: 100%;
 				min-height: 20rem;
 				padding: 1rem;
-				background-color: rgba(163, 86, 56, 0.5);
+				background-color: $brand-main;
 				box-shadow: 0 1px 10px darken($brand-dark, 5%);
 				margin-top: 5vh;
 			}

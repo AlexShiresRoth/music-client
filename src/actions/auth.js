@@ -40,17 +40,20 @@ export const authenticateUser = (data, history) => async (dispatch) => {
 		dispatch(setAlert('Welcome back', 'success'));
 	} catch (error) {
 		const errors = error.response.data.errors;
-		dispatch({
-			type: AUTH_ERROR,
-			payload: error.response.data.msg,
-		});
 		if (errors) {
-			console.log(errors[0].msg[0].msg, 'HELP');
+			console.log(errors, 'HELP');
+			dispatch({
+				type: AUTH_ERROR,
+				payload: errors.map((err) => err.msg),
+			});
 			errors.forEach((err) => dispatch(setAlert(err.msg, 'danger')));
 		} else {
+			dispatch({
+				type: AUTH_ERROR,
+				payload: error.response.data.msg,
+			});
 			dispatch(setAlert(error.response.data.msg, 'danger'));
 		}
-		dispatch(setAlert(error.response.data.msg, 'danger'));
 	}
 };
 

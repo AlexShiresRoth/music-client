@@ -5,12 +5,5 @@
 	font-weight: 100;
 	text-transform: uppercase;
 	text-align: center;
-	&:after {
-		content: '';
-		width: 100%;
-		height: 2px;
-		display: block;
-		margin-top: 1rem;
-		background: darken($brand-main, 5%);
-	}
+	margin: 2rem 0;
 }

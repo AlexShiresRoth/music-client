@@ -25,7 +25,7 @@ const LoginForm = ({ history, authenticateUser, auth: { isAuthenticated, errors 
 	};
 
 	useEffect(() => {
-		if (errors.length > 0) {
+		if (errors && errors.length > 0) {
 			setLoading(false);
 		}
 	}, [setLoading, errors]);

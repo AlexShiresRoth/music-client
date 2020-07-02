@@ -4,7 +4,7 @@ import bioStyles from './Bio.module.scss';
 import { addRef, setCurrent } from '../../actions/refs';
 import { connect } from 'react-redux';
 import IntersectionObserver from 'intersection-observer-polyfill';
-const ContentMap = ({ content: { content }, addRef, setCurrent, text, setContentLength, reduced }) => {
+const ContentMap = ({ content: { content }, addRef, setCurrent, text, reduced }) => {
 	const bioRef = useRef();
 
 	useEffect(() => {
@@ -14,7 +14,7 @@ const ContentMap = ({ content: { content }, addRef, setCurrent, text, setContent
 					setCurrent('bio');
 				}
 			},
-			{ rootMargin: '0px 0px -200px 0px', threshold: 0.5 }
+			{ rootMargin: '-200px 0px -400px 0px', threshold: 0.5 }
 		);
 		if (bioRef.current) {
 			observer.observe(bioRef.current);
