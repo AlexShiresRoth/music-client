@@ -97,14 +97,28 @@
 			& .gig_container {
 				display: flex;
 				flex-direction: column;
+				align-items: center;
 				justify-content: space-around;
-				flex-wrap: wrap;
-				padding: 1rem;
-				width: 100%;
-				border-bottom: 1.2px solid darken($brand-accent, 3%);
-				& p {
-					display: block;
-					font-size: 1.2rem;
+				& .inner {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					& .col {
+						display: flex;
+						flex-direction: row;
+						margin: 0.8rem 0;
+						& h3 {
+							margin: 0 0.5rem;
+							color: $brand-secondary;
+							font-weight: 900;
+						}
+						& p {
+							display: block;
+							color: $brand-text;
+							font-size: 1rem;
+							margin: 0rem 0.5rem;
+						}
+					}
 				}
 				& button {
 					border: 2px solid $brand-main;
@@ -114,6 +128,7 @@
 					text-transform: uppercase;
 					transition: all 0.3s ease;
 					box-shadow: 0 1px 5px darken($brand-main, 5%);
+					margin: 1rem 0;
 					&:hover {
 						cursor: pointer;
 						box-shadow: 0 1px 0px darken($brand-main, 5%);

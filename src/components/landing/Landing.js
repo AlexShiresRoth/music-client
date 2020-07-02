@@ -17,7 +17,6 @@ const Landing = ({ setActive, addRef, setCurrent }) => {
 				if (entry.isIntersecting) {
 					setActive(false);
 					setCurrent('home');
-					console.log('is intersecting');
 				}
 				if (!entry.isIntersecting) {
 					setActive(true);
