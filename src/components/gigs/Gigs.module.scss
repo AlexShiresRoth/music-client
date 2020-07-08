@@ -13,9 +13,30 @@
 	& .heading {
 		width: 100%;
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
+		margin: 2rem 0;
 		& h2 {
 			@include heading;
+		}
+		& .decorator {
+			display:flex;
+			align-items: center;
+			justify-content: center;
+			& span {
+				height:6px;
+				width:50px;
+				display:block;
+				background: $brand-secondary;
+
+			}
+			& span:nth-child(2){
+				background: lighten($brand-secondary,5%);
+			}
+			& span:nth-child(3){
+				background: lighten($brand-secondary,10%);
+			}
+
 		}
 	}
 	& .grid {
