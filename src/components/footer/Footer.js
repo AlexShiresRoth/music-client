@@ -3,7 +3,23 @@ import footerStyle from './Footer.module.scss';
 import { TiSocialInstagram, TiSocialFacebook, TiSocialTwitter } from 'react-icons/ti';
 import { FaSpotify } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-const Footer = () => {
+import { connect } from 'react-redux';
+const Footer = ({ auth: { isAuthenticated } }) => {
+	const authLinks = (
+		<>
+			<Link to="/">Home</Link>
+			<Link to="/store">store</Link>
+			<Link to="/store/login">login</Link>
+			<Link to="/store/signup">signup</Link>
+		</>
+	);
+	const authorizedLinks = (
+		<>
+			<Link to="/">Home</Link>
+			<Link to="/store">Store</Link>
+			<Link to="/store/account">Account</Link>
+		</>
+	);
 	return (
 		<footer className={footerStyle.footer}>
 			<div className={footerStyle.col}>
@@ -20,10 +36,7 @@ const Footer = () => {
 			</div>
 			<div className={footerStyle.col}>
 				<h3>Site</h3>
-				<Link to="/">Home</Link>
-				<Link to="/store">store</Link>
-				<Link to="/store/login">login</Link>
-				<Link to="/store/signup">signup</Link>
+				{isAuthenticated ? authorizedLinks : authLinks}
 			</div>
 			<div className={footerStyle.col}>
 				<div className={footerStyle.social}>
@@ -37,4 +50,10 @@ const Footer = () => {
 	);
 };
 
-export default Footer;
+const mapStateToProps = (state) => {
+	return {
+		auth: state.auth,
+	};
+};
+
+export default connect(mapStateToProps, null)(Footer);

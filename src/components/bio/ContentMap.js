@@ -39,6 +39,11 @@ const ContentMap = ({ content: { content }, addRef, setCurrent, text, reduced })
 		>
 			<div className={bioStyles.bio_heading} ref={bioRef} id="bio">
 				<h2>Bio</h2>
+				<div className={bioStyles.decorator}>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
 			</div>{' '}
 			{contentMap}
 		</div>

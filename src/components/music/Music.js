@@ -29,6 +29,11 @@ const Music = ({ addRef, setCurrent }) => {
 			<div className={musicStyle.overlay}></div>
 			<div className={musicStyle.heading}>
 				<h2>Music</h2>
+				<div className={musicStyle.decorator}>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
 			</div>
 			<div className={musicStyle.section_inner}>
 				<div className={musicStyle.spotify_container}>

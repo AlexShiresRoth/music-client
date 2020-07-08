@@ -20,23 +20,21 @@
 			@include heading;
 		}
 		& .decorator {
-			display:flex;
+			display: flex;
 			align-items: center;
 			justify-content: center;
 			& span {
-				height:6px;
-				width:50px;
-				display:block;
+				height: 6px;
+				width: 50px;
+				display: block;
 				background: $brand-secondary;
-
 			}
-			& span:nth-child(2){
-				background: lighten($brand-secondary,5%);
+			& span:nth-child(2) {
+				background: lighten($brand-secondary, 5%);
 			}
-			& span:nth-child(3){
-				background: lighten($brand-secondary,10%);
+			& span:nth-child(3) {
+				background: lighten($brand-secondary, 10%);
 			}
-
 		}
 	}
 	& .grid {

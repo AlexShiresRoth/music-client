@@ -27,7 +27,6 @@ const SearchBar = ({ searchStore }) => {
 
 	return (
 		<div className={style.container}>
-			<p>Search the store by item category or name</p>
 			<form onSubmit={(e) => handleSearchSubmit(e)}>
 				<input
 					type="text"
